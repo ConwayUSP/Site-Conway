@@ -100,7 +100,7 @@ function CursoCard({ file, type, id }) {
             isSmallScreen() ? 
                 <motion.div className="bg-overlay" onClick={() => setIsModalOpen(false) }>
                     <motion.div className="curso-modal-container" style={{ top: modalPos.y, left: modalPos.x }}
-                    initial={{ scale: 1.25 / window.visualViewport?.scale }} animate={{ scale: 1.25 / window.visualViewport?.scale }} transition={{ duration: 0.03, ease: 'easeOut' }}>
+                    initial={{ scale: 1.3 / window.visualViewport?.scale }} animate={{ scale: 1.25 / window.visualViewport?.scale }} transition={{ duration: 0.03, ease: 'easeOut' }}>
                         <CursoModal data={data} />
                     </motion.div>
                 </motion.div>
