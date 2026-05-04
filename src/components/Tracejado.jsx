@@ -2,6 +2,13 @@ import { motion } from 'framer-motion'
 import './Tracejado.css'
 import getPathEnd from '@utils/getPathEnd'
 
+/*
+- Para utilizar, basta passar a propriedade "d" com o caminho do tracejado. Este "d" pode ser obtido diretamente do elemento SVG. É recomendado fazer o caminho simples (sem tracejados nem marcadores) no Figma, 'copiar como SVG' e extrair o "d" do elemento <path>.
+- Caso deseje marcadores no início ou no final, utilize as propriedades "comeco" e "final" com os seguintes valores:
+  - comeco: "circulo", ...
+  - final: "seta", ...
+*/
+
 function Tracejado({d, comeco, final, id}) {
     const { start, end } = getPathEnd(d);
 
