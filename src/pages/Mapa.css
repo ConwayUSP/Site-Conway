@@ -20,32 +20,32 @@
         gap: 3rem;
         margin: 0;
     }
+
+    & .topico-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border: 1.5px solid white;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+    & .topico-title {
+        position: relative;
+        bottom: -0.8rem;
+        
+        display: inline-block;
+        width: fit-content;
+        background-color: var(--bg-primary);
+        padding: 0 0.5rem;
+
+        font-family: 'EB Garamond', serif;
+        font-size: 1.2rem;        
+        font-weight: 600;
+        text-align: center;
+    }
 }
 
-.topico-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border: 1.5px solid white;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    gap: 1rem;
-}
-.topico-title {
-    position: relative;
-    bottom: -0.8rem;
-    
-    display: inline-block;
-    width: fit-content;
-    background-color: var(--bg-primary);
-    padding: 0 0.5rem;
-
-    font-family: 'EB Garamond', serif;
-    font-size: 1.2rem;        
-    font-weight: 600;
-    text-align: center;
-  
-}
 
 /* TRILHA DE MEMBROS */
 .trilha-membros {

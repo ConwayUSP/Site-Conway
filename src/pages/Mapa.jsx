@@ -6,6 +6,11 @@ import HomeButton from '@components/mapa/HomeButton'
 import TrilhaCard from '@components/mapa/TrilhaCard'
 import Tracejado from '@components/Tracejado'
 
+/*
+Para adicionar uma nova trilha, crie uma nova seção. Dentro dela, adicione um TrilhaCard, CursoCards e Tracejados para conectar os cards.
+Leia a especificação de como usar cada componente em seus respectivos arquivos.
+*/
+
 function Mapa() {
   
   useEffect(() => {
@@ -35,7 +40,7 @@ function Mapa() {
         </div>
         <header className="topico-title">Conhecimentos Gerais</header>
 
-        {/* Rotas */}
+        {/* Rotas de tracejados */}
         <div className="rotas-container">
             <Tracejado id="trilha_materiais-1" final="" d="M147.849 112 V0" />
             <Tracejado id="trilha_materiais-2" final="seta" d="M147.849 64.2889 C147.849 57.8088 142.596 52.5556 136.116 52.5555 H113.582 C107.102 52.5555 101.849 47.3023 101.849 40.8222 V0" />
