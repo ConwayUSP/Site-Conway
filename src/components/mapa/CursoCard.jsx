@@ -7,7 +7,7 @@ import { remToPx } from '@utils/convertValues'
 import CursoModal from './CursoModal'
 
 /*
-- Para utilizar, forneça no campo "file" o nome do arquivo de dados presente em /public/data/trilhas/ como "EXEMPLO" para EXEMPLO.json
+- Para utilizar, forneça no campo "file" o nome do arquivo de dados presente em /public/data/trilhas/ como "EXEMPLO" para EXEMPLO.json. Confira o arquivo de exemplo (EXEMPLO.txt) para entender a estrutura dos dados
 - "type" é um campo opcional. Caso deseje utilizar um card horizontal (texto à direita do ícone), basta fornecer o valor "horizontal"
 */
 
