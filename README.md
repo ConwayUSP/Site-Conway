@@ -7,7 +7,7 @@ Em breve...
 ## Executando o projeto localmente
 Para rodar o projeto localmente, certifique-se de ter o **Node.js** e o Yarn instalados. Siga os seguintes passos:
 - Execute `npm install` para instalar as dependências;
-- Execute `npm dev` para iniciar a aplicação no **localhost:5173**.
+- Execute `npm run dev` para iniciar a aplicação no **localhost:5173**.
 
 ## Estrutura do projeto:
 Este projeto foi desenvolvido com **Vite (React)**. Abaixo está a estrutura das pastas principais dentro de `/src`: 
@@ -17,5 +17,5 @@ Este projeto foi desenvolvido com **Vite (React)**. Abaixo está a estrutura das
 3. `/pages`: definições de serviços que podem ser chamados nas páginas;
 4. `/utils`: funções que podem ser reutilizadas pelos componentes e páginas.
 
-<br/><br/><br/><br/>
-<img src="./public/readme-footer.webp" style="marginTop: '100px'" alt="footer" />
+<br/><br/><br/>
+<img src="./public/readme-footer.webp" alt="footer" />
