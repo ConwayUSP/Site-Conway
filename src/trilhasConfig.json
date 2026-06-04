@@ -1,0 +1,26 @@
+{
+  "opengl": {
+    "name": "Estado da Arte",
+    "description": "Aprenda os conceitos de pipeline de renderização, shaders e matrizes de projeção do zero.",
+    "thumbnail": "https://godotshaders.com/wp-content/uploads/2025/08/Skull-Upload2.png",
+    "theme": "theme-opengl",
+    "repoRootUrl": "https://raw.githubusercontent.com/ConwayUSP/Estado-da-Arte/main/",
+    "chapters": [
+      {
+        "id": "cap-0",
+        "title": "O Primeiro Passo",
+        "filepath": "capitulos/00%20-%20O%20Primeiro%20Passo.md"
+      },
+      {
+        "id": "cap-1",
+        "title": "O Triângulo",
+        "filepath": "capitulos/01%20-%20Triângulo.md"
+      },
+      {
+        "id": "cap-2",
+        "title": "Shaders",
+        "filepath": "capitulos/02%20-%20Shaders.md"
+      }
+    ]
+  }
+}

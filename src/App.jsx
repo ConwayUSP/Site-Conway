@@ -1,0 +1,16 @@
+import { HashRouter, Routes, Route } from 'react-router-dom';
+import { Home } from './pages/Home';
+import { TrilhaIndexView } from './pages/TrilhaIndexView';
+import { ChapterRouteWrapper } from './pages/ChapterRouteWrapper';
+
+export default function App() {
+  return (
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/trilha/:trailId" element={<TrilhaIndexView />} />
+        <Route path="/trilha/:trailId/capitulo/:chapterIndex" element={<ChapterRouteWrapper />} />
+      </Routes>
+    </HashRouter>
+  );
+}
