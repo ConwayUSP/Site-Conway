@@ -18,21 +18,22 @@ export function ChapterRouteWrapper() {
     <div className={`trail-page ${trail.themeClass}`}>
     <div className='container-reading'>
       <nav style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2rem' }}>
-        <Link to={`/trilha/${trailId}`} style={{textDecoration: 'none', color: 'var(--cor-destaque)'}}>⬅ Voltar para a Trilha</Link>
+        <Link to={`/trilha/${trailId}`} style={{textDecoration: 'none', color: 'var(--cor-url)'}}>Voltar para a Trilha</Link>
         <div style={{ display: 'flex', gap: '1rem' }}>
-          {hasPrev && <Link to={`/trilha/${trailId}/capitulo/${currentIndex - 1}`} style={{ textDecoration: 'none',color: 'var(--cor-destaque)' }}>Anterior</Link>}
-          {hasNext && <Link to={`/trilha/${trailId}/capitulo/${currentIndex + 1}`} style={{ textDecoration: 'none', color: 'var(--cor-destaque)' }}>Próximo</Link>}
+          {hasPrev && <Link to={`/trilha/${trailId}/capitulo/${currentIndex - 1}`} style={{ textDecoration: 'none',color: 'var(--cor-url)' }}>Anterior</Link>}
+          {hasPrev && hasNext && <span style={{color: 'var(--cor-url)'}}> | </span>}
+          {hasNext && <Link to={`/trilha/${trailId}/capitulo/${currentIndex + 1}`} style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>Próximo</Link>}
         </div>
       </nav>
 
       <ChapterView repoRootUrl={trail.repoRootUrl} filepath={chapter.filepath} />
 
-      <nav style={{ display: 'flex', justifyContent: 'space-between', marginTop: '3rem', paddingTop: '1rem', borderTop: '1px solid #333' }}>
+      <nav className='nav-bar nav-bar-footer'>
         {hasPrev ? (
-          <Link to={`/trilha/${trailId}/capitulo/${currentIndex - 1}`} style={{ textDecoration: 'none', color: 'var(--cor-destaque)' }}>⬅ {trail.chapters[currentIndex - 1].title}</Link>
+          <Link to={`/trilha/${trailId}/capitulo/${currentIndex - 1}`} style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>{'< ' + trail.chapters[currentIndex - 1].title}</Link>
         ) : <span />}
         {hasNext ? (
-          <Link to={`/trilha/${trailId}/capitulo/${currentIndex + 1}`} style={{ textDecoration: 'none', color: 'var(--cor-destaque)' }}>{trail.chapters[currentIndex + 1].title} ➡</Link>
+          <Link to={`/trilha/${trailId}/capitulo/${currentIndex + 1}`} style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>{trail.chapters[currentIndex + 1].title + ' >'}</Link>
         ) : <span />}
       </nav>
     </div>

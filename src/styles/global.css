@@ -1,24 +1,101 @@
-/* --- RESET BÁSICO --- */
 * {
   box-sizing: border-box;
 }
 
 /* VARIÁVEIS PADRÃO (Fallback caso a trilha não tenha tema) */
 :root {
-  --bg-principal: #121212;
-  --bg-secundario: #1e1e1e;
-  --cor-texto: #ffffff;
-  --cor-texto-mutado: #aaaaaa;
-  --cor-destaque: #646cff; /* Roxo/Azul padrão do Vite */
-  --cor-borda: #333333;
+  --bg-principal: #161026;
+  --bg-secundario: #060709;
+  --cor-texto: #f6f0ff;
+  --cor-texto-mutado: #a399ff;
+  --cor-destaque: #fdff99;
+  --cor-borda: #f20548;
+  --cor-borda: #30363d;
+  --cor-url: #99ffe6;
+  --sh-keyword: #ff7b72;
+  --sh-string: #a5d6ff;
+  --sh-comment: #8b949e;
+  --sh-function: #d2a8ff;
+  --sh-number: #79c0ff;
+  --sh-punctuation: #c9d1d9;
 }
 
 /* ESTRUTURA GLOBAL USANDO AS VARIÁVEIS */
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
   background-color: var(--bg-principal);
+  font-family: "Cutive Mono", monospace;
+  font-weight: 500;
+  font-size: 1.1rem;
+  font-style: normal;
   color: var(--cor-texto);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.home-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.trails-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.card-trilha {
+  background: #0f0a1a;
+  border: 0px solid var(--cor-borda);
+  box-shadow: rgba(0, 0, 15, 0.1) 0px 1px 1px 0px inset, rgba(0, 0, 15, 0.25) 0px 2rem 4rem -1rem, rgba(0, 0, 0, 0.3) 0px 1.5rem 3rem -1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  
+  /* Animação suave de elevação e borda */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* O "Pulo do Gato": Ao passar o mouse, a borda pega a cor de destaque da trilha */
+.card-trilha:hover {
+  transform: translateY(-4px);
+  box-shadow: rgba(0, 0, 15, 0.1) 0px 1px 1px 0px inset, rgba(0, 0, 15, 0.25) 0px 3rem 6rem -20px, rgba(0, 0, 0, 0.3) 0px 2rem 4rem -2rem;
+}
+
+.card-trilha img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-trilha-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-trilha h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--cor-texto);
+}
+
+.card-trilha p {
+  color: var(--cor-texto-mutado);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
 }
 
 .trail-page {
@@ -28,26 +105,27 @@ body {
   width: 100%;
 }
 
-.card-trilha {
-  background: var(--bg-secundario);
-  border: 1px solid var(--cor-borda);
-}
-
 /* O container do Markdown consome as cores do tema */
 .markdown-container h1, 
 .markdown-container h2, 
 .markdown-container h3 {
   color: var(--cor-destaque);
+  border-bottom: 2px solid var(--cor-borda);
 }
 
 .markdown-container a {
-  color: var(--cor-destaque);
+  color: var(--cor-url);
 }
 
 .markdown-container code {
   background-color: var(--bg-secundario);
-  padding: 0.2em 0.4em;
+  padding: 0.0em 0.2em;
   border-radius: 4px;
+}
+
+pre:has(> .inline-code) {
+  background-color: var(--bg-secundario);
+  border-radius: 0.5rem;
 }
 
 /* --- CLASSES DE ESTRUTURA --- */
@@ -78,7 +156,7 @@ body {
 .nav-bar-footer {
   margin-top: 3rem;
   padding-top: 1rem;
-  border-top: 1px solid #333;
+  border-top: 1px solid var(--cor-borda);
 }
 
 /* O container do Markdown para garantir que o texto não vaze */
@@ -91,15 +169,31 @@ body {
 .markdown-container img, 
 .markdown-container pre {
   max-width: 100%;
+  height: auto !important;
+  display: block;
+  margin: 1rem auto;
   overflow-x: auto;
+}
+
+.markdown-container .inline-code {
+    font-family: inherit;
+    font-weight: 600;
+    background-color: var(--bg-secundario);
+    color: var(--sh-keyword);
+}
+
+.markdown-container blockquote {
+    border-left-color: var(--sh-keyword) !important;
+    padding-left: 1rem;
+    margin: 1rem auto;
 }
 
 /* --- ESTRUTURA DOS BLOCOS DE CÓDIGO --- */
 .code-block-wrapper {
   margin: 1.5rem 0;
-  border-radius: 8px;
+  border-radius: 0.3rem;
   overflow: hidden;
-  border: 1px solid var(--cor-borda);
+  border: 0.1rem solid var(--cor-borda);
 }
 
 .code-block-header {
@@ -110,8 +204,8 @@ body {
   padding: 0.4rem 1rem;
   font-size: 0.8rem;
   color: var(--cor-texto-mutado);
-  font-family: monospace;
-  border-bottom: 1px solid var(--cor-borda);
+  font-family: inherit;
+  border-bottom: 0px solid var(--cor-borda);
 }
 
 .code-block-header button {
@@ -141,7 +235,6 @@ body {
   text-shadow: none !important;
 }
 
-/* Garante que absolutamente nenhum token/palavra receba a sombra fantasma */
 .code-block-content code,
 .code-block-content span {
   text-shadow: none !important;

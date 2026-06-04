@@ -17,7 +17,7 @@ export function TrilhaIndexView() {
   return (
     <div className={`trail-page ${trail.themeClass}`}>
     <div className='container-reading'>
-      <Link to="/" style={{ textDecoration: 'none', color: 'var(--cor-destaque)' }}>⬅ Voltar para o Início</Link>
+      <Link to="/" style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>Voltar para o Início</Link>
       
       <h1 style={{ marginTop: '1.5rem', marginBottom: '0.5rem' }}>{trail.name}</h1>
       <p style={{ color: 'var(--cor-texto-mutado)', marginBottom: '2.5rem' }}>{trail.description}</p>
@@ -28,14 +28,14 @@ export function TrilhaIndexView() {
           <Link 
             key={chapter.id} 
             to={`/trilha/${trailId}/capitulo/${index}`}
-            style={{ 
+            style={{
               padding: '1.2rem', 
               background: 'var(--bg-secundario)', 
-              border: '1px solid var(--cor-borda)', 
-              borderRadius: '6px', 
+              borderLeft: '3px solid var(--cor-borda)', 
+              borderRadius: '0px 0.3px 0.3rem 0px', 
               color: 'var(--cor-texto)', 
               textDecoration: 'none',
-              display: 'block' // Transforma o link em um bloco que ocupa 100% da largura
+              display: 'block'
             }}
           >
             <strong style={{ display: 'block', fontSize: '1.1rem' }}>{chapter.title}</strong>

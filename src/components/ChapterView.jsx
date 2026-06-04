@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import rehypeRaw from 'rehype-raw';
 
 // essa é a visualização de um capítulo específico,
 // recebe como argumentos o URL base do repo e o caminho pro .md
@@ -21,6 +22,7 @@ export function ChapterView({ repoRootUrl, filepath }) {
   return (
     <div className="markdown-container">
       <ReactMarkdown
+        rehypePlugins={[rehypeRaw]}
         components={{
           // intercepta imagens para substituir o caminho relativo por um absoluto
           img: ({ node, src, alt, ...props }) => {
