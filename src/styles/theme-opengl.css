@@ -1,19 +1,19 @@
 .theme-opengl {
-  /* Fundo escuro levemente azulado, típico de editores/engines */
   --bg-principal: #0d1117; 
-  --bg-secundario: #161b22;
-  
-  /* Textos nítidos */
+  --bg-secundario: #0d1117;
   --cor-texto: #c9d1d9;
   --cor-texto-mutado: #8b949e;
-  
-  /* Azul ciano para destaques (lembrando shaders) */
   --cor-destaque: #58a6ff; 
-  
   --cor-borda: #30363d;
+  --sh-keyword: #ff7b72;
+  --sh-string: #a5d6ff;
+  --sh-comment: #8b949e;
+  --sh-function: #d2a8ff;
+  --sh-number: #79c0ff;
+  --sh-punctuation: #c9d1d9;
 }
 
-/* Se quiser ser muito específico, pode injetar regras isoladas aqui também */
+/* para sermos muito específicos, podemos injetar regras isoladas aqui */
 .theme-opengl .markdown-container blockquote {
   border-left: 4px solid var(--cor-destaque);
   background: var(--bg-secundario);

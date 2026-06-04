@@ -3,7 +3,7 @@
     "name": "Estado da Arte",
     "description": "Aprenda os conceitos de pipeline de renderização, shaders e matrizes de projeção do zero.",
     "thumbnail": "https://godotshaders.com/wp-content/uploads/2025/08/Skull-Upload2.png",
-    "theme": "theme-opengl",
+    "themeClass": "theme-opengl",
     "repoRootUrl": "https://raw.githubusercontent.com/ConwayUSP/Estado-da-Arte/main/",
     "chapters": [
       {
