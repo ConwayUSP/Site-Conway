@@ -15,7 +15,7 @@ export function ChapterRouteWrapper() {
   const hasNext = currentIndex < trail.chapters.length - 1;
 
   return (
-    <div className={`trail-page ${trail.themeClass}`} style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
+    <div className={`trail-page ${trail.themeClass} container-reading`}>
       <nav style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2rem' }}>
         <Link to={`/trilha/${trailId}`} style={{ textDecoration: 'none', color: '#646cff' }}>⬅ Voltar para a Trilha</Link>
         <div style={{ display: 'flex', gap: '1rem' }}>

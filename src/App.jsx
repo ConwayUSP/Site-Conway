@@ -3,6 +3,12 @@ import { Home } from './pages/Home';
 import { TrilhaIndexView } from './pages/TrilhaIndexView';
 import { ChapterRouteWrapper } from './pages/ChapterRouteWrapper';
 
+// estilo geral do site, define principalmente a "forma"
+import './styles/global.css';
+
+// paletas de cor de cada trilha
+import './styles/theme-opengl.css';
+
 export default function App() {
   return (
     <HashRouter>

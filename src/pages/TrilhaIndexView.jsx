@@ -15,7 +15,7 @@ export function TrilhaIndexView() {
   }
 
   return (
-    <div className={`trail-page ${trail.themeClass}`} style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
+    <div className='container-reading'>
       <Link to="/" style={{ textDecoration: 'none', color: '#646cff' }}>⬅ Voltar para o Início</Link>
       
       <h1 style={{ marginTop: '1.5rem', marginBottom: '0.5rem' }}>{trail.name}</h1>

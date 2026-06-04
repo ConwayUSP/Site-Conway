@@ -3,7 +3,7 @@ import trilhasConfig from '../trilhasConfig.json';
 
 export function Home() {
   return (
-    <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '2rem' }}>
+    <div className='container'>
       <header style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>Portal de Trilhas</h1>
         <p style={{ color: '#aaa' }}>Selecione uma trilha para começar a estudar</p>

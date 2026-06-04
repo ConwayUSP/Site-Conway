@@ -1,0 +1,123 @@
+/* --- RESET BÁSICO --- */
+* {
+  box-sizing: border-box;
+}
+
+/* VARIÁVEIS PADRÃO (Fallback caso a trilha não tenha tema) */
+:root {
+  --bg-principal: #121212;
+  --bg-secundario: #1e1e1e;
+  --cor-texto: #ffffff;
+  --cor-texto-mutado: #aaaaaa;
+  --cor-destaque: #646cff; /* Roxo/Azul padrão do Vite */
+  --cor-borda: #333333;
+}
+
+/* ESTRUTURA GLOBAL USANDO AS VARIÁVEIS */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-principal);
+  color: var(--cor-texto);
+}
+
+/* Aplicando as variáveis nos componentes que já criamos */
+.trail-page {
+  /* A classe base que envelopa a página inteira */
+  background-color: var(--bg-principal);
+  min-height: 100vh;
+}
+
+.card-trilha {
+  background: var(--bg-secundario);
+  border: 1px solid var(--cor-borda);
+}
+
+/* O container do Markdown consome as cores do tema */
+.markdown-container h1, 
+.markdown-container h2, 
+.markdown-container h3 {
+  color: var(--cor-destaque);
+}
+
+.markdown-container a {
+  color: var(--cor-destaque);
+}
+
+.markdown-container code {
+  background-color: var(--bg-secundario);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+/* --- CLASSES DE ESTRUTURA --- */
+
+/* Container principal para limitar a largura e dar respiro */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Container mais estreito para leitura de texto (Capítulos) */
+.container-reading {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Barra de navegação flexível */
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.nav-bar-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #333;
+}
+
+/* O container do Markdown para garantir que o texto não vaze */
+.markdown-container {
+  line-height: 1.6;
+  overflow-wrap: break-word; /* Evita que palavras gigantes quebrem a tela */
+}
+
+/* Garante que imagens e blocos de código não quebrem o mobile */
+.markdown-container img, 
+.markdown-container pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+
+/* --- MEDIA QUERIES (A Mágica do Mobile) --- */
+@media (max-width: 768px) {
+  /* Reduz o padding lateral em telas pequenas para aproveitar o espaço */
+  .container, 
+  .container-reading {
+    padding: 1rem;
+  }
+
+  /* Faz a barra de navegação quebrar de linha se os botões não couberem */
+  .nav-bar {
+    flex-wrap: wrap;
+    flex-direction: column; 
+    align-items: flex-start;
+  }
+
+  /* No rodapé, se espremer muito, coloca um embaixo do outro */
+  .nav-bar-footer {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* Diminui um pouco os títulos para não ocuparem a tela toda */
+  h1 {
+    font-size: 1.8rem;
+  }
+}
