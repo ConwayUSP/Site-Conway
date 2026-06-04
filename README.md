@@ -1,16 +1,11 @@
-# React + Vite
+# Nucleo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um PoC de uma seção do site da [Conway](https://github.com/ConwayUSP).
 
-Currently, two official plugins are available:
+Este PoC tem como objetivo reunir todas as trilhas da Conway em um único lugar, com navegação fácil e responsiva. A ideia é que o site sirva como um Hub de materiais didáticos, ou um content agregator de todas as nossas queridas trilhas.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Além disso, ele possibilita que estilizemos cada trilha de acordo com nossas vontades, utilizando um arquivo CSS específico para cada uma delas.
 
-## React Compiler
+## Como executar
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+É só dar um `npm run dev`...
