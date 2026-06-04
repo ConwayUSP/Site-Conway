@@ -1,6 +1,6 @@
 .theme-opengl {
-  --bg-principal: #0d1117; 
-  --bg-secundario: #0d1117;
+  --bg-principal: #1d1117; 
+  --bg-secundario: #0d1030;
   --cor-texto: #c9d1d9;
   --cor-texto-mutado: #8b949e;
   --cor-destaque: #58a6ff; 
@@ -16,5 +16,4 @@
 /* para sermos muito específicos, podemos injetar regras isoladas aqui */
 .theme-opengl .markdown-container blockquote {
   border-left: 4px solid var(--cor-destaque);
-  background: var(--bg-secundario);
 }

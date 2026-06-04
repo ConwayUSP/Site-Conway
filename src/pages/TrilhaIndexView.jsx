@@ -15,11 +15,12 @@ export function TrilhaIndexView() {
   }
 
   return (
+    <div className={`trail-page ${trail.themeClass}`}>
     <div className='container-reading'>
-      <Link to="/" style={{ textDecoration: 'none', color: '#646cff' }}>⬅ Voltar para o Início</Link>
+      <Link to="/" style={{ textDecoration: 'none', color: 'var(--cor-destaque)' }}>⬅ Voltar para o Início</Link>
       
       <h1 style={{ marginTop: '1.5rem', marginBottom: '0.5rem' }}>{trail.name}</h1>
-      <p style={{ color: '#aaa', marginBottom: '2.5rem' }}>{trail.description}</p>
+      <p style={{ color: 'var(--cor-texto-mutado)', marginBottom: '2.5rem' }}>{trail.description}</p>
 
       <h2>Conteúdos da Trilha</h2>
       <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -29,10 +30,10 @@ export function TrilhaIndexView() {
             to={`/trilha/${trailId}/capitulo/${index}`}
             style={{ 
               padding: '1.2rem', 
-              background: '#1a1a1a', 
-              border: '1px solid #333', 
+              background: 'var(--bg-secundario)', 
+              border: '1px solid var(--cor-borda)', 
               borderRadius: '6px', 
-              color: '#fff', 
+              color: 'var(--cor-texto)', 
               textDecoration: 'none',
               display: 'block' // Transforma o link em um bloco que ocupa 100% da largura
             }}
@@ -41,6 +42,7 @@ export function TrilhaIndexView() {
           </Link>
         ))}
       </div>
+    </div>
     </div>
   );
 }

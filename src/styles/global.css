@@ -21,11 +21,11 @@ body {
   color: var(--cor-texto);
 }
 
-/* Aplicando as variáveis nos componentes que já criamos */
 .trail-page {
-  /* A classe base que envelopa a página inteira */
   background-color: var(--bg-principal);
+  color: var(--cor-texto);
   min-height: 100vh;
+  width: 100%;
 }
 
 .card-trilha {
@@ -132,7 +132,7 @@ body {
 }
 
 .code-block-content {
-  background-color: #0d0d0d !important;
+  background-color: var(--bg-secundario);
   margin: 0 !important;
   padding: 1rem !important;
   overflow-x: auto;
@@ -145,7 +145,7 @@ body {
 .code-block-content code,
 .code-block-content span {
   text-shadow: none !important;
-  background-color: var(--bg-principal);
+  background-color: var(--bg-secundario);
 }
 /* --- CORES BASE DO SYNTAX HIGHLIGHTING (FALLBACK) --- */
 .token.keyword, .token.selector, .token.changed { color: var(--sh-keyword); }
