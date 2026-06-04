@@ -38,6 +38,11 @@ h1, h2, h3, h4, h5, h6 {
     font-style: normal;
 }
 
+a {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+}
+
 .home-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -92,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card-trilha p {
-  color: var(--cor-texto-mutado);
+  color: var(--cor-texto);
   font-size: 0.9rem;
   line-height: 1.4;
   margin: 0;
@@ -105,12 +110,15 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-/* O container do Markdown consome as cores do tema */
 .markdown-container h1, 
 .markdown-container h2, 
 .markdown-container h3 {
   color: var(--cor-destaque);
-  border-bottom: 2px solid var(--cor-borda);
+}
+
+.markdown-container h1,
+.markdown-container h2 {
+  border-bottom: 2px solid var(--cor-destaque);
 }
 
 .markdown-container a {

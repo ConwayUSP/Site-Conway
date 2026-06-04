@@ -8,6 +8,7 @@ import './styles/global.css';
 
 // paletas de cor de cada trilha
 import './styles/theme-opengl.css';
+import './styles/theme-github.css';
 
 export default function App() {
   return (

@@ -1,7 +1,7 @@
 {
   "opengl": {
     "name": "Estado da Arte",
-    "description": "Aprenda os conceitos de pipeline de renderização, shaders e matrizes de projeção do zero.",
+    "description": "Aprenda os conceitos fundamentais da computação gráfica - como transformar matemática em arte!",
     "thumbnail": "https://godotshaders.com/wp-content/uploads/2025/08/Skull-Upload2.png",
     "themeClass": "theme-opengl",
     "repoRootUrl": "https://raw.githubusercontent.com/ConwayUSP/Estado-da-Arte/main/",
@@ -22,5 +22,30 @@
         "filepath": "capitulos/02%20-%20Shaders.md"
       }
     ]
+  },
+  "github": {
+    "name": "Introdução ao Git(Hub)",
+    "description": "Aprenda como fazer um bom versionamento de código e trabalhar em equipes remotamente",
+    "thumbnail": "https://www.rocketseat.com.br/blog/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fstar-lab%2Fblog%2FOGs%2Fgit.png&w=3840&q=75",
+    "themeClass": "theme-github",
+    "repoRootUrl": "https://raw.githubusercontent.com/ConwayUSP/Git_GitHub/main/",
+    "chapters": [
+      {
+        "id": "cap-0",
+        "title": "Configuração Inicial",
+        "filepath": "guia_pratico/00_configuracao_inicial.md"
+      },
+      {
+        "id": "cap-1",
+        "title": "Por Trás dos Panos",
+        "filepath": "guia_pratico/01_por_tras_dos_panos.md"
+      },
+      {
+        "id": "cap-2",
+        "title": "Criando Repositórios",
+        "filepath": "guia_pratico/02_criando_repositorio.md"
+      }
+    ]
+
   }
 }
