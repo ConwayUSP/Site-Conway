@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import isSmallScreen from '@utils/isSmallScreen'
 import './Mapa.css'
 import CursoCard from '@components/mapa/CursoCard'
-import HomeButton from '@components/mapa/HomeButton'
 import TrilhaCard from '@components/mapa/TrilhaCard'
 import Tracejado from '@components/Tracejado'
 
@@ -23,9 +22,6 @@ function Mapa() {
 
   return (
     <main className="mapa">
-      
-      <HomeButton id="home-button" />
-
       <section className="trilha-membros">
         {/* Início da trilha */}
         <TrilhaCard id="membros-card" line1="Trilha de" line2="Membros" icon="connie" type=""/>

@@ -1,10 +1,8 @@
-import { Outlet, useNavigate } from 'react-router-dom'
+import AppLayout from '@layouts/AppLayout'
 
 function App() {
   return (
-    <>
-      <Outlet />
-    </>
+    <AppLayout />
   )
 }
 

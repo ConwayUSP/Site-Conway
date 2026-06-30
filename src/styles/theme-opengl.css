@@ -1,0 +1,20 @@
+.theme-opengl {
+  --bg-principal: #010616; 
+  --bg-secundario: #06081F;
+  --cor-texto: #FFE6FF;
+  --cor-texto-mutado: #DAC0DD;
+  --cor-destaque: #F2ED9C; 
+  --cor-url: #A5D6FF;
+  --cor-borda: rgba(220, 200, 255, 0.75);
+  --sh-keyword: #D94179;
+  --sh-string: #a5d6ff;
+  --sh-comment: #8b949e;
+  --sh-function: #d2a8ff;
+  --sh-number: #79c0ff;
+  --sh-punctuation: #c9d1d9;
+}
+
+/* para sermos muito específicos, podemos injetar regras isoladas aqui */
+.theme-opengl .markdown-container blockquote {
+  border-left: 4px solid var(--cor-destaque);
+}

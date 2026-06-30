@@ -1,0 +1,22 @@
+.app-header {
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: color-mix(in srgb, var(--bg-primary) 70%, transparent);
+  backdrop-filter: blur(4px);
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.nav-links > a {
+  font-size: 1.4em;
+}
