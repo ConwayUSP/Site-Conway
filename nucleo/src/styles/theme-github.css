@@ -1,0 +1,15 @@
+.theme-github {
+  --bg-principal: #08080f; 
+  --bg-secundario: #0c0c17;
+  --cor-texto: #fff0f0;
+  --cor-texto-mutado: #faa393;
+  --cor-destaque: #f57567; 
+  --cor-url: #ff3d6a;
+  --cor-borda: #de9076;
+  --sh-keyword: #D94179;
+  --sh-string: #a5d6ff;
+  --sh-comment: #8b949e;
+  --sh-function: #d2a8ff;
+  --sh-number: #79c0ff;
+  --sh-punctuation: #c9d1d9;
+}

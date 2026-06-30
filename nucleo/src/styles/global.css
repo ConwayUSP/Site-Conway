@@ -1,0 +1,287 @@
+* {
+  box-sizing: border-box;
+}
+
+/* VARIÁVEIS PADRÃO (Fallback caso a trilha não tenha tema) */
+:root {
+  --bg-principal: #161026;
+  --bg-secundario: #060709;
+  --cor-texto: #f6f0ff;
+  --cor-texto-mutado: #a399ff;
+  --cor-destaque: #fdff99;
+  --cor-borda: #f20548;
+  --cor-borda: #30363d;
+  --cor-url: #99ffe6;
+  --sh-keyword: #ff7b72;
+  --sh-string: #a5d6ff;
+  --sh-comment: #8b949e;
+  --sh-function: #d2a8ff;
+  --sh-number: #79c0ff;
+  --sh-punctuation: #c9d1d9;
+}
+
+/* ESTRUTURA GLOBAL USANDO AS VARIÁVEIS */
+body {
+  margin: 0;
+  background-color: var(--bg-principal);
+  font-family: "Cutive Mono", monospace;
+  font-weight: 500;
+  font-size: 1.1rem;
+  font-style: normal;
+  color: var(--cor-texto);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+a {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+}
+
+.home-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.trails-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.card-trilha {
+  background: #0f0a1a;
+  border: 0px solid var(--cor-borda);
+  box-shadow: rgba(0, 0, 15, 0.1) 0px 1px 1px 0px inset, rgba(0, 0, 15, 0.25) 0px 2rem 4rem -1rem, rgba(0, 0, 0, 0.3) 0px 1.5rem 3rem -1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  
+  /* Animação suave de elevação e borda */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* O "Pulo do Gato": Ao passar o mouse, a borda pega a cor de destaque da trilha */
+.card-trilha:hover {
+  transform: translateY(-4px);
+  box-shadow: rgba(0, 0, 15, 0.1) 0px 1px 1px 0px inset, rgba(0, 0, 15, 0.25) 0px 3rem 6rem -20px, rgba(0, 0, 0, 0.3) 0px 2rem 4rem -2rem;
+}
+
+.card-trilha img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-trilha-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-trilha h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--cor-texto);
+}
+
+.card-trilha p {
+  color: var(--cor-texto);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.trail-page {
+  background-color: var(--bg-principal);
+  color: var(--cor-texto);
+  min-height: 100vh;
+  width: 100%;
+}
+
+.markdown-container h1, 
+.markdown-container h2, 
+.markdown-container h3 {
+  color: var(--cor-destaque);
+}
+
+.markdown-container h1,
+.markdown-container h2 {
+  border-bottom: 2px solid var(--cor-destaque);
+}
+
+.markdown-container a {
+  color: var(--cor-url);
+}
+
+.markdown-container code {
+  background-color: var(--bg-secundario);
+  padding: 0.0em 0.2em;
+  border-radius: 4px;
+}
+
+pre:has(> .inline-code) {
+  background-color: var(--bg-secundario);
+  border-radius: 0.5rem;
+}
+
+/* --- CLASSES DE ESTRUTURA --- */
+
+/* Container principal para limitar a largura e dar respiro */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Container mais estreito para leitura de texto (Capítulos) */
+.container-reading {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Barra de navegação flexível */
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.nav-bar-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--cor-borda);
+}
+
+/* O container do Markdown para garantir que o texto não vaze */
+.markdown-container {
+  line-height: 1.6;
+  overflow-wrap: break-word; /* Evita que palavras gigantes quebrem a tela */
+}
+
+/* Garante que imagens e blocos de código não quebrem o mobile */
+.markdown-container img, 
+.markdown-container pre {
+  max-width: 100%;
+  height: auto !important;
+  display: block;
+  margin: 1rem auto;
+  overflow-x: auto;
+}
+
+.markdown-container .inline-code {
+    font-family: inherit;
+    font-weight: 600;
+    background-color: var(--bg-secundario);
+    color: var(--sh-keyword);
+}
+
+.markdown-container blockquote {
+    border-left-color: var(--sh-keyword) !important;
+    padding-left: 1rem;
+    margin: 1rem auto;
+}
+
+/* --- ESTRUTURA DOS BLOCOS DE CÓDIGO --- */
+.code-block-wrapper {
+  margin: 1.5rem 0;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  border: 0.1rem solid var(--cor-borda);
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-secundario);
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  color: var(--cor-texto-mutado);
+  font-family: inherit;
+  border-bottom: 0px solid var(--cor-borda);
+}
+
+.code-block-header button {
+  background: none;
+  border: none;
+  color: var(--cor-texto-mutado);
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.2s;
+}
+
+.code-block-header button:hover {
+  color: var(--cor-texto);
+}
+
+.code-block-header button.copied {
+  color: #4ade80; /* Verde de sucesso */
+}
+
+.code-block-content {
+  background-color: var(--bg-secundario);
+  margin: 0 !important;
+  padding: 1rem !important;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  color: var(--cor-texto) !important;
+  text-shadow: none !important;
+}
+
+.code-block-content code,
+.code-block-content span {
+  text-shadow: none !important;
+  background-color: var(--bg-secundario);
+}
+/* --- CORES BASE DO SYNTAX HIGHLIGHTING (FALLBACK) --- */
+.token.keyword, .token.selector, .token.changed { color: var(--sh-keyword); }
+.token.string, .token.char, .token.attr-value { color: var(--sh-string); }
+.token.comment { color: var(--sh-comment); font-style: italic; }
+.token.function, .token.attr-name, .token.namespace { color: var(--sh-function); }
+.token.class-name, .token.type { color: var(--sh-type); }
+.token.number, .token.boolean, .token.constant { color: var(--sh-number); }
+.token.punctuation { color: var(--sh-punctuation); }
+.token.operator { color: var(--sh-operator); }
+
+
+/* --- MEDIA QUERIES (A Mágica do Mobile) --- */
+@media (max-width: 768px) {
+  /* Reduz o padding lateral em telas pequenas para aproveitar o espaço */
+  .container, 
+  .container-reading {
+    padding: 1rem;
+  }
+
+  /* Faz a barra de navegação quebrar de linha se os botões não couberem */
+  .nav-bar {
+    flex-wrap: wrap;
+    flex-direction: column; 
+    align-items: flex-start;
+  }
+
+  /* No rodapé, se espremer muito, coloca um embaixo do outro */
+  .nav-bar-footer {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* Diminui um pouco os títulos para não ocuparem a tela toda */
+  h1 {
+    font-size: 1.8rem;
+  }
+}
