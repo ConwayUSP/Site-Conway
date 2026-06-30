@@ -7,6 +7,8 @@
   top: 0;
   width: 100%;
   padding: 0.5rem 1rem;
+  background-color: color-mix(in srgb, var(--bg-primary) 70%, transparent);
+  backdrop-filter: blur(4px);
 }
 
 .nav-links {

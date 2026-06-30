@@ -1,11 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './index.css'
+import '@styles/index.css'
 import App from './App.jsx'
 import Mapa from './pages/Mapa.jsx'
 import Home from './pages/Home.jsx'
 import Nucleo from './pages/Nucleo.jsx'
+import TrilhaIndexView from './pages/TrilhaIndexView.jsx'
+import ChapterRouteWrapper from './pages/ChapterRouteWrapper.jsx'
 
 const router = createBrowserRouter([
   {
@@ -14,7 +16,11 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'mapa', element: <Mapa /> },
-      { path: 'nucleo', element: <Nucleo /> },
+      { path: 'nucleo', children: [
+        { index: true, element: <Nucleo />} ,
+        { path: "trilha/:trailId", element: <TrilhaIndexView /> },
+        { path: "trilha/:trailId/capitulo/:chapterIndex", element: <ChapterRouteWrapper /> }
+      ]},
     ]
   }
 ])  

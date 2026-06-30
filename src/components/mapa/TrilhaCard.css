@@ -26,7 +26,7 @@
     line-height: 1rem;
 }
 
-h4 {
+.trilha-card  h4 {
     font-family: 'EB Garamond', serif;
     font-weight: 600;
     font-size: 1.8rem;
@@ -40,7 +40,7 @@ h4 {
     }
 }
 
-h5 {
+.trilha-card  h5 {
     font-family: 'EB Garamond', serif;
     font-weight: 400;
     font-size: 1.2rem;

@@ -1,8 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
-import { ChapterView } from '../components/ChapterView';
-import trilhasConfig from '../trilhasConfig.json';
+import { ChapterView } from '@components/ChapterView';
+import trilhasConfig from '@data/trilhasConfig.json';
 
-export function ChapterRouteWrapper() {
+function ChapterRouteWrapper() {
   const { trailId, chapterIndex } = useParams();
   const currentIndex = parseInt(chapterIndex, 10);
   const trail = trilhasConfig[trailId];
@@ -18,11 +18,11 @@ export function ChapterRouteWrapper() {
     <div className={`trail-page ${trail.themeClass}`}>
     <div className='container-reading'>
       <nav style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2rem' }}>
-        <Link to={`/trilha/${trailId}`} style={{textDecoration: 'none', color: 'var(--cor-url)'}}>Voltar para a Trilha</Link>
+        <Link to={`../trilha/${trailId}`} style={{textDecoration: 'none', color: 'var(--cor-url)'}}>Voltar para a Trilha</Link>
         <div style={{ display: 'flex', gap: '1rem' }}>
-          {hasPrev && <Link to={`/trilha/${trailId}/capitulo/${currentIndex - 1}`} style={{ textDecoration: 'none',color: 'var(--cor-url)' }}>Anterior</Link>}
+          {hasPrev && <Link to={`../trilha/${trailId}/capitulo/${currentIndex - 1}`} style={{ textDecoration: 'none',color: 'var(--cor-url)' }}>Anterior</Link>}
           {hasPrev && hasNext && <span style={{color: 'var(--cor-url)'}}> | </span>}
-          {hasNext && <Link to={`/trilha/${trailId}/capitulo/${currentIndex + 1}`} style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>Próximo</Link>}
+          {hasNext && <Link to={`../trilha/${trailId}/capitulo/${currentIndex + 1}`} style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>Próximo</Link>}
         </div>
       </nav>
 
@@ -30,13 +30,15 @@ export function ChapterRouteWrapper() {
 
       <nav className='nav-bar nav-bar-footer'>
         {hasPrev ? (
-          <Link to={`/trilha/${trailId}/capitulo/${currentIndex - 1}`} style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>{'< ' + trail.chapters[currentIndex - 1].title}</Link>
+          <Link to={`../trilha/${trailId}/capitulo/${currentIndex - 1}`} style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>{'< ' + trail.chapters[currentIndex - 1].title}</Link>
         ) : <span />}
         {hasNext ? (
-          <Link to={`/trilha/${trailId}/capitulo/${currentIndex + 1}`} style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>{trail.chapters[currentIndex + 1].title + ' >'}</Link>
+          <Link to={`../trilha/${trailId}/capitulo/${currentIndex + 1}`} style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>{trail.chapters[currentIndex + 1].title + ' >'}</Link>
         ) : <span />}
       </nav>
     </div>
     </div>
   );
 }
+
+export default ChapterRouteWrapper

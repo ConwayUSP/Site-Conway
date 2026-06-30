@@ -19,7 +19,7 @@ function Header() {
 
         <nav className="nav-links">
           <NavLink to="/mapa" className="nav-link">Mapa</NavLink>
-          <NavLink to="/nucleo" className="nav-link">Nucleo</NavLink>
+          <NavLink to="/nucleo" className="nav-link">Núcleo</NavLink>
         </nav>
       </header>
     </>

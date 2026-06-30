@@ -40,6 +40,21 @@
   --red-light: #FF9595;
   --purple-light: #B385E7;
   --blue-light: #67BDE7;
+
+  --bg-principal: #161026;
+  --bg-secundario: #060709;
+  --cor-texto: #f6f0ff;
+  --cor-texto-mutado: #a399ff;
+  --cor-destaque: #fdff99;
+  --cor-borda: #f20548;
+  --cor-borda: #30363d;
+  --cor-url: #99ffe6;
+  --sh-keyword: #ff7b72;
+  --sh-string: #a5d6ff;
+  --sh-comment: #8b949e;
+  --sh-function: #d2a8ff;
+  --sh-number: #79c0ff;
+  --sh-punctuation: #c9d1d9;
 }
 
 html, body {

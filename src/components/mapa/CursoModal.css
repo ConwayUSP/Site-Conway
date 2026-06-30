@@ -26,7 +26,7 @@
     gap: 0.4rem;
 }
 
-h2 {
+.curso-modal h2 {
     font-family: 'EB Garamond', serif;
     font-weight: 600;
     font-size: 1rem;
@@ -37,7 +37,7 @@ h2 {
     text-transform: uppercase;
 }
 
-h3 {
+.curso-modal h3 {
     font-family: 'EB Garamond', serif;
     font-weight: 500;
     font-size: 1rem;
@@ -46,7 +46,7 @@ h3 {
     margin: 0;
 }
 
-button {
+.curso-modal button {
     display: flex;
     flex-direction: row;
     align-items: center;
