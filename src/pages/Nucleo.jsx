@@ -4,7 +4,7 @@ import './Nucleo.css';
 
 function Nucleo() {
   return (
-    <main className="home-container">
+    <main className="nucleo">
       <header style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', color: 'var(--cor-texto)' }}>Portal de Trilhas</h1>
         <p style={{ color: 'var(--cor-texto-mutado)' }}>Selecione uma trilha para começar a estudar</p>
