@@ -40,29 +40,51 @@
   --red-light: #FF9595;
   --purple-light: #B385E7;
   --blue-light: #67BDE7;
+
+  --bg-principal: #161026;
+  --bg-secundario: #060709;
+  --cor-texto: #f6f0ff;
+  --cor-texto-mutado: #a399ff;
+  --cor-destaque: #fdff99;
+  --cor-borda: #f20548;
+  --cor-borda: #30363d;
+  --cor-url: #99ffe6;
+  --sh-keyword: #ff7b72;
+  --sh-string: #a5d6ff;
+  --sh-comment: #8b949e;
+  --sh-function: #d2a8ff;
+  --sh-number: #79c0ff;
+  --sh-punctuation: #c9d1d9;
 }
 
-body {
+html, body {
+  box-sizing: border-box;
   margin: 0;
-  display: flex;
-  place-items: start;
-  justify-content: center;
-  min-width: 100dvw;
-  min-height: 100dvh;
+  padding: 0;
   overscroll-behavior: none;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+#root {
+  min-height: 100dvh;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "EB Garamond", serif;
 }
 
-p {
+p, a {
   margin: 0;
   font-family: "Roca Two";
+  color: var(--content-primary);
   font-weight: 200;
   font-size: 1rem;
   line-height: 1.25rem;
   white-space: pre-wrap;
+  text-decoration: none;
 }
 
 @font-face {
@@ -77,4 +99,4 @@ p {
   src: url('/fonts/roca-two-bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
-} 
+}

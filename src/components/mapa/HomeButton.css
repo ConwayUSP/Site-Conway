@@ -1,8 +1,5 @@
 .home-button {
     display: inline-flex;
-    width: min-content;
-    height: min-content;
-    background-color: var(--bg-primary);
     padding: 0.75rem;
     border-radius: 1.5rem;
     cursor: pointer;
