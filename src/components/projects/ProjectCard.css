@@ -1,0 +1,46 @@
+.projects-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.project-card {
+  border-radius: 8px;
+  background-color: var(--brand-purple);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.project-card > img {
+  width: 100%;
+  object-fit: cover;
+  height: 180px;
+}
+
+.project-card-content {
+  padding: 0.3rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  gap: 0.2rem;
+}
+
+.project-card-content > h2 {
+  font-size: 0.8em;
+}
+
+.project-card-content > h2::before {
+  content: var(--icon);
+  margin-right: 0.2rem;
+}

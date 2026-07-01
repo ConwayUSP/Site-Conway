@@ -8,6 +8,7 @@ import Home from './pages/Home.jsx'
 import Nucleo from './pages/Nucleo.jsx'
 import TrilhaIndexView from './pages/TrilhaIndexView.jsx'
 import ChapterRouteWrapper from './pages/ChapterRouteWrapper.jsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const router = createBrowserRouter([
   {
@@ -23,10 +24,12 @@ const router = createBrowserRouter([
       ]},
     ]
   }
-])  
+])
+
+const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
-  // <StrictMode>
+  <QueryClientProvider client={queryClient}>
     <RouterProvider router={router} />
-  // </StrictMode>,
+  </QueryClientProvider>
 )
