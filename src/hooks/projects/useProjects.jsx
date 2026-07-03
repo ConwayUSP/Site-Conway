@@ -1,14 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
+import { getProjects } from "@services/projects";
 
 export function useProjects() {
   const query = useQuery({
     queryKey: ['projects'],
-    queryFn: async () => {
-      const response = await fetch('/api/projects')
-      const data = await response.json()
-      
-      return data
-    }
+    queryFn: getProjects
   })
 
   return {

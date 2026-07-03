@@ -1,0 +1,55 @@
+.project {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.project-photo {
+  @media (min-width: 768px) {
+    flex: 500px 0 0;
+  }
+}
+
+.project-photo > img {
+  border-radius: 0.5em;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    aspect-ratio: 3/3;
+  }
+}
+
+.project-content h2::before {
+  content: var(--icon);
+  margin-right: 0.2rem;
+}
+
+.project-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.project-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: var(--brand-violet);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--brand-purple);
+  }
+}

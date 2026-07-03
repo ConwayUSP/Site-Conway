@@ -2,14 +2,12 @@ import { useEffect } from 'react'
 import './Projects.css'
 
 // Hooks
-import { useProjects } from '../hooks/useProjects'
+import { useProjects } from '@hooks/projects/useProjects'
 
-import { ProjectsCards } from '../components/projects/ProjectCard'
+import { ProjectsCards } from '@components/projects/ProjectCard'
 
 function Projects() {
   const { data: projects, isLoading: isLoadingProjects, isFetching: isFetchingProjects } = useProjects()
-
-  console.log('Projects:', projects)
   
   return (
     <main className="projects">

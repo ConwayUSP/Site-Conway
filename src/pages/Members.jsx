@@ -2,14 +2,12 @@ import { useEffect } from 'react'
 import './Members.css'
 
 // Hooks
-import { useMembers } from '../hooks/useMembers'
+import { useMembers } from '../hooks/members/useMembers'
 
 import { MemberCards } from '../components/members/MemberCard'
 
 function Members() {
   const { data: members, isLoading: isLoadingMembers, isFetching: isFetchingMembers } = useMembers()
-
-  console.log('Members:', members)
   
   return (
     <main className="members">

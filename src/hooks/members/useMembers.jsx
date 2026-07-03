@@ -1,14 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
+import { getMembers } from "@services/members";
 
 export function useMembers() {
   const query = useQuery({
     queryKey: ['members'],
-    queryFn: async () => {
-      const response = await fetch('/api/members')
-      const data = await response.json()
-      
-      return data
-    }
+    queryFn: getMembers
   })
 
   return {

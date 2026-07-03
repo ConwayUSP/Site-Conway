@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import './ProjectCard.css'
 
 export function ProjectsCards({ projects }) {
@@ -5,7 +6,8 @@ export function ProjectsCards({ projects }) {
     <div className="projects-cards">
       {projects && projects.map((project) => (
         <ProjectCard 
-          key={project.id} 
+          key={project.id}
+          id={project.id}
           cover={project.cover} 
           properties={project.properties} 
           icon={project.icon}
@@ -15,11 +17,14 @@ export function ProjectsCards({ projects }) {
   )
 }
 
-export function ProjectCard({ cover, properties, icon }) {
+export function ProjectCard({ cover, properties, icon, id }) {
+  const navigate = useNavigate()
   const projectName = properties?.["Nome do Projeto"]?.title?.[0]?.text?.content
+
   return (
     <div 
       className="project-card"
+      onClick={() => navigate(`./${id}`)}
     >
       <img src={cover} alt={properties?.Nome?.title[0]?.text?.content || 'Project Cover'} />
       <div 

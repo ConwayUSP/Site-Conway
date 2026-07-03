@@ -1,0 +1,17 @@
+.projects-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-label {
+  background-color: var(--brand-violet);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+}
+
+.project-label:hover {
+  background-color: var(--brand-purple);
+  cursor: pointer;
+}
