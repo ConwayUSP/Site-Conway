@@ -18,11 +18,21 @@ function Header() {
         <HomeButton id="home-button" />
 
         <nav className="nav-links">
+          <NavLink to="/projects" className="nav-link">Projetos</NavLink>
+          <NavLink to="/members" className="nav-link">Membros</NavLink>
           <NavLink to="/mapa" className="nav-link">Mapa</NavLink>
           <NavLink to="/nucleo" className="nav-link">Núcleo</NavLink>
         </nav>
       </header>
     </>
+  )
+}
+
+function NavItem({ to, children }) {
+  return (
+    <NavLink to={to} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+      {children}
+    </NavLink>
   )
 }
 
