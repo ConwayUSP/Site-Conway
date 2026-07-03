@@ -9,6 +9,7 @@
   padding: 0.5rem 1rem;
   background-color: color-mix(in srgb, var(--bg-primary) 70%, transparent);
   backdrop-filter: blur(4px);
+  z-index: 1000;
 }
 
 .nav-links {
@@ -19,4 +20,9 @@
 
 .nav-links > a {
   font-size: 1.4em;
+}
+
+.active {
+  opacity: 0.5;
+  /* text-decoration: underline; */
 }
