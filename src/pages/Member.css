@@ -1,0 +1,35 @@
+.member {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.member-photo {
+  @media (min-width: 768px) {
+    flex: 400px 0 0;
+  }
+}
+
+.member-photo > img {
+  border-radius: 0.5em;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    aspect-ratio: 3/4;
+  }
+}
+
+.member-content h2::before {
+  content: var(--icon);
+  margin-right: 0.2rem;
+}

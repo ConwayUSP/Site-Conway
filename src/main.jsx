@@ -10,6 +10,7 @@ import Mapa from './pages/Mapa.jsx'
 import Home from './pages/Home.jsx'
 import Nucleo from './pages/Nucleo.jsx'
 import Projects from './pages/Projects.jsx'
+import Member from './pages/Member.jsx'
 import Members from './pages/Members.jsx'
 import TrilhaIndexView from './pages/TrilhaIndexView.jsx'
 import ChapterRouteWrapper from './pages/ChapterRouteWrapper.jsx'
@@ -22,7 +23,10 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'projects', element: <Projects /> },
-      { path: 'members', element: <Members /> },
+      { path: 'members', children: [
+        { index: true, element: <Members/> },
+        { path: ":id", element: <Member/> }
+      ]},
       { path: 'mapa', element: <Mapa /> },
       { path: 'nucleo', children: [
         { index: true, element: <Nucleo />} ,
