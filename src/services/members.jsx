@@ -4,3 +4,10 @@ export async function getMember(id) {
   
   return data
 }
+
+export async function getMembers() {
+  const response = await fetch('/api/members')
+  const data = await response.json()
+  
+  return data
+}
