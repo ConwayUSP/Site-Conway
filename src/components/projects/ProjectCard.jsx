@@ -1,10 +1,15 @@
 import { useNavigate } from 'react-router-dom'
+import { VirtuosoGrid } from 'react-virtuoso'
 import './ProjectCard.css'
 
 export function ProjectsCards({ projects }) {
   return (
-    <div className="projects-cards">
-      {projects && projects.map((project) => (
+    <VirtuosoGrid
+      style={{ height: '100dvh' }}
+      data={projects}
+      useWindowScroll
+      listClassName='projects-cards'
+      itemContent={(index, project) => (
         <ProjectCard 
           key={project.id}
           id={project.id}
@@ -12,8 +17,8 @@ export function ProjectsCards({ projects }) {
           properties={project.properties} 
           icon={project.icon}
         />
-      ))}
-    </div>
+      )}
+    />
   )
 }
 

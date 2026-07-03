@@ -1,18 +1,22 @@
-import { useNavigate } from 'react-router-dom'
+import { VirtuosoGrid } from 'react-virtuoso'
 import './MemberCard.css'
 
 export function MemberCards({ members }) {
   return (
-    <div className="members-cards">
-      {members && members.map((member) => (
+    <VirtuosoGrid
+      style={{ height: '100dvh' }}
+      data={members}
+      useWindowScroll
+      listClassName='members-cards'
+      itemContent={(index, member) => (
         <MemberCard 
           key={member.id} 
           properties={member.properties} 
           id={member.id}
           icon={member.icon}
         />
-      ))}
-    </div>
+      )}
+    />
   )
 }
 
@@ -26,7 +30,11 @@ export function MemberCard({ properties, icon, id }) {
       className="member-card"
       onClick={() => navigate(`./${id}`)}
     >
-      <img src={photo} alt={memberName || 'Member Photo'} />
+      <img 
+        src={photo} 
+        alt={memberName || 'Member Photo'} 
+        loading="lazy"
+      />
       <div 
         className="member-card-content"
         {...(icon && { style: { "--icon": `"${icon}"` } })}
