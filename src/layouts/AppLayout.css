@@ -7,6 +7,7 @@
   top: 0;
   width: 100%;
   padding: 0.5rem 1rem;
+  gap: 0.5rem;
   background-color: color-mix(in srgb, var(--bg-primary) 70%, transparent);
   backdrop-filter: blur(4px);
   z-index: 1000;
@@ -15,7 +16,8 @@
 .nav-links {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  margin: 0 0.5rem;
+  gap: 1rem;
 }
 
 .nav-links > a {
@@ -23,6 +25,6 @@
 }
 
 .active {
-  opacity: 0.5;
+  color: var(--brand-violet)
   /* text-decoration: underline; */
 }
