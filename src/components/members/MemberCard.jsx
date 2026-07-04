@@ -1,7 +1,20 @@
 import { VirtuosoGrid } from 'react-virtuoso'
+import { useNavigate } from 'react-router-dom'
 import './MemberCard.css'
+import Skeleton from 'react-loading-skeleton'
 
 export function MemberCards({ members }) {
+  if (!members || members.length === 0) {
+    const skeletons = Array.from({ length: 12 }, (_, index) => (
+      <MemberCardSkeleton key={index} />
+    ))
+    return (
+      <div className="members-cards">
+        {skeletons}
+      </div>
+    )
+  }
+
   return (
     <VirtuosoGrid
       style={{ height: '100dvh' }}
@@ -42,5 +55,13 @@ export function MemberCard({ properties, icon, id }) {
         <h2>{memberName}</h2>
       </div>
     </div>
+  )
+}
+
+function MemberCardSkeleton() {
+  return (
+    <Skeleton 
+      style={{ borderRadius: '8px', aspectRatio: '4 / 3' }}
+    />
   )
 }

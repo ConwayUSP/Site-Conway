@@ -13,20 +13,32 @@
 }
 
 .member-photo {
+  width: 100%;
+  
   @media (min-width: 768px) {
     flex: 400px 0 0;
   }
 }
 
-.member-photo > img {
+.member-photo-container {
   border-radius: 0.5em;
-  object-fit: cover;
   aspect-ratio: 4/3;
   width: 100%;
+  overflow: hidden;
 
   @media (min-width: 768px) {
     aspect-ratio: 3/4;
   }
+}
+
+.member-photo img {
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.5em;
+}
+
+.member-content {
+  flex: 1;
 }
 
 .member-content h2::before {

@@ -13,20 +13,25 @@
 }
 
 .project-photo {
+  width: 100%;
+
   @media (min-width: 768px) {
     flex: 500px 0 0;
   }
 }
 
-.project-photo > img {
+.project-photo-container {
   border-radius: 0.5em;
-  object-fit: cover;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/3;
   width: 100%;
+  overflow: hidden;
+}
 
-  @media (min-width: 768px) {
-    aspect-ratio: 3/3;
-  }
+.project-photo img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.5em;
 }
 
 .project-content h2::before {

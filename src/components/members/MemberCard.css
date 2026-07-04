@@ -24,9 +24,9 @@
 }
 
 .member-card > img {
+  aspect-ratio: 4 / 3;
   width: 100%;
   object-fit: cover;
-  height: 180px;
 }
 
 .member-card-content {
@@ -38,7 +38,11 @@
 }
 
 .member-card-content > h2 {
-  font-size: 0.8em;
+  font-size: 1em;
+
+  @media (max-width: 768px) {
+    font-size: 1.5em;
+  }
 }
 
 .member-card-content > h2::before {
