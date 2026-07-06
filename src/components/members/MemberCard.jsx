@@ -53,7 +53,7 @@ export function MemberCard({ properties, icon, id }) {
 
   // Color to department ID dictionary
   const colorToDepID = {
-    'white' : 'DPS',
+    'gray' : 'DPS',
     'red' : 'DLC',
     'yellow' : 'GG',
     'blue' : 'OP'
