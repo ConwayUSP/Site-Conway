@@ -6,8 +6,9 @@
 }
 
 .member-card {
+  position: relative;
   border-radius: 8px;
-  background-color: var(--brand-purple);
+  background-color: #261B58;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -23,14 +24,33 @@
   box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
 }
 
+.member-card-texture {
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  bottom: 0;
+  width: 35%;
+  height: 3.5rem;
+  overflow: hidden;
+  
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.75), transparent);
+  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.75), transparent);
+}
+
+.member-card-texture > img {
+  height: 130%;
+  object-fit: cover;
+}
+
 .member-card > img {
+  z-index: 1;
   aspect-ratio: 4 / 3;
   width: 100%;
   object-fit: cover;
 }
 
 .member-card-content {
-  padding: 0.3rem 0.5rem;
+  padding: 0 0.75rem;
   display: flex;
   flex-direction: row;
   align-items: start;
@@ -38,10 +58,10 @@
 }
 
 .member-card-content > h2 {
-  font-size: 1em;
+  font-size: 0.9em;
 
   @media (max-width: 768px) {
-    font-size: 1.5em;
+    font-size: 1.1em;
   }
 }
 
