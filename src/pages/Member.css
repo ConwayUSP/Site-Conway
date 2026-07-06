@@ -38,7 +38,57 @@
 }
 
 .member-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.member-content-about {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  
+  & h2 {
+    width: 100%;
+  }
+
+  & .bg-img {
+    position: absolute;
+    z-index: -1;
+    right: -2rem;
+    top: -2rem;
+    width: 15rem;
+    opacity: 0.15;
+  }
+  
+  & .icon {
+    width: 2.75rem;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.member-badges-display {
   flex: 1;
+  width: min-content;
+  border: solid var(--brand-purple) 2px;
+  border-radius: 0.5rem;
+}
+
+.member-projects-display {
+  flex: 1;
+  width: 100%;
+  max-height: fit-content;
+  border: solid var(--bg-secondary);
+  border-radius: 1rem;
+  overflow: hidden;
+
+  & h3 {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    background: var(--bg-secondary);
+  }
 }
 
 .member-content h2::before {
