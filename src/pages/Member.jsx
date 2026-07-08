@@ -70,20 +70,30 @@ function Member() {
           <img className='icon' src={icons[`${depID}icon`]} alt={depID} />
         </div>
         <div className='member-content-involviment'>
-            {memberBadges?.length > 0 && (
-            <div className='member-badges-display'>
-              <img src={memberBadges.icon} />
+          {memberBadges?.length > 0 && (
+            <MemberBadges badges={memberBadges || []} />
+          )}
+          {memberProjects?.length > 0 && (
+            <div className='member-projects-display'>
+              <h3>Projetos</h3>
+              <ProjectsLabels projects={memberProjects || []} />
             </div>
           )}
-            {memberProjects?.length > 0 && (
-              <div className='member-projects-display'>
-                <h3>Projetos</h3>
-                <ProjectsLabels projects={memberProjects || []} />
-              </div>
-            )}
         </div>
       </section>
     </main>
+  )
+}
+
+function MemberBadges({ badges }) {
+  return (
+    <div className='member-badges-display'>
+      {badges.map(badge => (
+        <div className='member-badge' key={badge.id} data-tooltip={badge.name}>
+          <img src={badge.icon} />
+        </div>
+      ))}
+    </div>
   )
 }
 

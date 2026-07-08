@@ -6,7 +6,7 @@
 }
 
 .project-label {
-  background-color: color-mix(srgb, var(--brand-purple) 25%, var(--brand-violet));
+  background-color: color-mix(in srgb, var(--brand-purple) 25%, var(--brand-violet) 75%);
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   transition: background-color 0.3s ease;
