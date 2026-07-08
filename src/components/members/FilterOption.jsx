@@ -11,14 +11,20 @@ const colors = {"DPS":"gray", "DLC":"red", "GG":"yellow", "OP":"blue", "Todos":"
 
 export default function ({tag, isSelected, clickAction}) {
     if (isSelected) return (
-        <div className={`selectedOption ${tag == "Todos"? "todos" : ""}`}>
+        <button 
+            className={`filterOption selectedOption ${tag == "Todos"? "todos" : ""}`}
+            aria-label={`Filtro ${tag}`}
+        >
             <h1 style={{"color": `var(--brand-${colors[tag]})`}}>{tag}</h1>
-                <img src={textures[tag]}/>
-        </div>
+            <img src={textures[tag]}/>
+        </button>
     )
     else return (
-        <div className="unselectedOption" onClick={clickAction}>
+        <button 
+            className="filterOption unselectedOption" onClick={clickAction}
+            aria-label={`Filtro ${tag}`}
+        >
             <h2>{tag}</h2>
-        </div>
+        </button>
     )
 }

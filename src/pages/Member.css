@@ -40,6 +40,7 @@
 .member-content {
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 2rem;
 }
 
@@ -49,7 +50,7 @@
   flex-direction: column;
   align-items: end;
   
-  & h2 {
+  & h2, p {
     width: 100%;
   }
 

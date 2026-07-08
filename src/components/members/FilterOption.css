@@ -12,10 +12,12 @@
     border-radius: 10rem;
     overflow: hidden;
 }
+
 .todos {
     width: 16rem;
     background-color: #7163CA;
 }
+
 .selectedOption h1 {
     font-weight: 600;
     text-transform: uppercase;
@@ -26,6 +28,7 @@
         0 0 4rem var(--bg-primary),
         0 0 4rem var(--bg-primary);
 }
+
 .selectedOption img {
     position: absolute;
     z-index: -1;
@@ -35,6 +38,7 @@
     left: 0;
     opacity: 0.95;
 }
+
 .selectedOption:hover {
     cursor: pointer;
 }

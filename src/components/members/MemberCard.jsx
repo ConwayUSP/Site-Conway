@@ -37,6 +37,7 @@ export function MemberCards({ members }) {
       data={members}
       useWindowScroll
       listClassName='members-cards'
+      itemClassName='member-card-wrapper'
       itemContent={(index, member) => (
         <MemberCard 
           key={member.id} 
@@ -66,7 +67,7 @@ export function MemberCard({ properties, icon, id }) {
   const depID = colorToDepID[depColor] || "estrelinhas"
 
   return (
-    <div 
+    <button 
       className="member-card" 
       // Gradient (50% alpha depColor) to #261B58
       style={{"background" : `linear-gradient(
@@ -75,6 +76,7 @@ export function MemberCard({ properties, icon, id }) {
         #261B58
       )`}}
       onClick={() => navigate(`./${id}`)}
+      aria-label={`Membro ${memberName || 'Sem Nome'}`}
     >
       <div className="member-card-texture">
         <img
@@ -92,7 +94,7 @@ export function MemberCard({ properties, icon, id }) {
       >
         <h2>{memberName}</h2>
       </div>
-    </div>
+    </button>
   )
 }
 

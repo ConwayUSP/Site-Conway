@@ -10,19 +10,26 @@ import arrowNext from "@assets/icons/arrow_next.svg";
 
 // Hooks
 import { useMembers } from '../hooks/members/useMembers'
+import { useWindowWidth } from '../hooks/useWindowWidth'
+import { useMembersBySetor } from '../hooks/members/useMembersBySetor'
 
+const filterOptions = ["DPS", "DLC", "Todos", "GG", "OP"]
 
 function Members() {
-  const { data: members, isLoading: isLoadingMembers, isFetching: isFetchingMembers } = useMembers()
   const [selectedFilter, setSelectedFilter] = useState("Todos")
-  const filterOptions = ["DPS", "DLC", "Todos", "GG", "OP"]
+
+  const { data: membersPre, isLoading: isLoadingMembers, isFetching: isFetchingMembers } = useMembers()
+  const members = useMembersBySetor(membersPre, selectedFilter === "Todos" ? undefined : selectedFilter)
+
+  const windowInnerWidth = useWindowWidth()
   
   return (
     <main className="members">
-      { isSmallScreen()? 
+      { isSmallScreen(windowInnerWidth)? 
         <div className="members-filter">
-          <div
+          <button
             className="filter-arrow"
+            aria-label="Filtro Anterior"
             onClick={() => {
               const n = filterOptions.indexOf(selectedFilter);
               setSelectedFilter(
@@ -31,15 +38,16 @@ function Members() {
             }}
           >
             <img src={arrowBack} alt="Anterior" width={36} height={36} />
-          </div>
+          </button>
 
           <FilterOption
             tag={selectedFilter}
             isSelected={true}
           />
 
-          <div
+          <button
             className="filter-arrow"
+            aria-label="Filtro Posterior"
             onClick={() => {
               const n = filterOptions.indexOf(selectedFilter);
               setSelectedFilter(
@@ -48,7 +56,7 @@ function Members() {
             }}
           >
             <img src={arrowNext} alt="Próximo" width={36} height={36} />
-          </div>
+          </button>
         </div>
       :
         <div className="members-filter">

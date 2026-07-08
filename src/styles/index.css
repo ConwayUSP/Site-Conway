@@ -89,6 +89,16 @@ p, a {
   text-decoration: none;
 }
 
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
 @font-face {
   font-family: 'Roca Two';
   src: url('/fonts/roca-two-thin.ttf') format('truetype');
