@@ -1,5 +1,5 @@
-function isSmallScreen() {
-    return window.innerWidth < 1024
+function isSmallScreen(actualWidth) {
+    return actualWidth < 1024
 }
 
 export default isSmallScreen

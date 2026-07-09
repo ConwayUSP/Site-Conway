@@ -17,6 +17,7 @@
 
   /* Fundo */
   --bg-primary: #161026;
+  --bg-secondary: #312A3F;
 
   /* Cores da marca */
   --brand-blue: #99ffe6;
@@ -26,6 +27,7 @@
   --brand-black: #161026;
   --brand-purple: #583df2;
   --brand-violet: #a399ff;
+  --brand-gray: #ffffff;
 
   /* Cores gerais */
   --red: #F20548;
@@ -85,6 +87,22 @@ p, a {
   line-height: 1.25rem;
   white-space: pre-wrap;
   text-decoration: none;
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 @font-face {

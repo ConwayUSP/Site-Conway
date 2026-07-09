@@ -1,10 +1,27 @@
 import { useNavigate } from 'react-router-dom'
+import { VirtuosoGrid } from 'react-virtuoso'
+import Skeleton from 'react-loading-skeleton'
 import './ProjectCard.css'
 
 export function ProjectsCards({ projects }) {
+  if (!projects || projects.length === 0) {
+    const skeletons = Array.from({ length: 12 }, (_, index) => (
+      <ProjectCardSkeleton key={index} />
+    ))
+    return (
+      <div className="projects-cards">
+        {skeletons}
+      </div>
+    )
+  }
+
   return (
-    <div className="projects-cards">
-      {projects && projects.map((project) => (
+    <VirtuosoGrid
+      style={{ height: '100dvh' }}
+      data={projects}
+      useWindowScroll
+      listClassName='projects-cards'
+      itemContent={(index, project) => (
         <ProjectCard 
           key={project.id}
           id={project.id}
@@ -12,8 +29,8 @@ export function ProjectsCards({ projects }) {
           properties={project.properties} 
           icon={project.icon}
         />
-      ))}
-    </div>
+      )}
+    />
   )
 }
 
@@ -34,5 +51,13 @@ export function ProjectCard({ cover, properties, icon, id }) {
         <h2>{projectName}</h2>
       </div>
     </div>
+  )
+}
+
+function ProjectCardSkeleton() {
+  return (
+    <Skeleton 
+      style={{ borderRadius: '8px', aspectRatio: '4 / 3' }}
+    />
   )
 }
