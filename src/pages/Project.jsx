@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
 import './Project.css'
 
 // Hooks
 import { useProject } from '@hooks/projects/useProject';
-import Skeleton from 'react-loading-skeleton';
+import { useMembersByIds } from '@hooks/members/useMembersByIds';
 
 function Project() {
   const { id } = useParams()
@@ -14,10 +15,17 @@ function Project() {
   const projectName = project?.properties?.["Nome do Projeto"]?.title?.[0]?.text?.content
   const icon = project?.icon
   const repo = project?.properties?.["Repositório"]?.url
-  const description = project ? "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae totam minima, vitae consequuntur ad nemo voluptatem? Delectus in facere voluptatibus quas debitis, alias odio sit accusamus eum atque optio veritatis." : ""
+  const description = project?.properties?.["Descrição"]?.rich_text?.[0]?.text?.content || "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae totam minima, vitae consequuntur ad nemo voluptatem? Delectus in facere voluptatibus quas debitis, alias odio sit accusamus eum atque optio veritatis."
+  const lider = useMembersByIds(project?.properties?.["Líder do Projeto"]?.relation)
+  const acompanhantes = useMembersByIds(project?.properties?.["Acompanhantes"]?.relation)
+  const projectMembers = useMembersByIds(project?.properties?.["Envolvidos"]?.relation)
+  const projectTypes = project?.properties?.["Tipo"]?.multi_select
 
   console.log('Project:', project)
-  
+  console.log('Líder:', lider)
+  console.log('Acompanhantes:', acompanhantes)
+  console.log('Membros do Projeto:', projectMembers)
+
   return (
     <main className="project">
       <section className='project-photo'>
