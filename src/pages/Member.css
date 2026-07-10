@@ -109,6 +109,8 @@
   left: 50%;
   transform: translate(-50%, 0) rotate(25deg);
 
+  user-select: none;
+  pointer-events: none;
   opacity: 0;
   transition: opacity .2s ease, transform .1s cubic-bezier(0.48, 0.07, 0.45, 1.58);
 }
@@ -126,6 +128,8 @@
   left: 50%;
   transform: translate(-50%, 0) rotate(25deg);
 
+  user-select: none;
+  pointer-events: none;
   opacity: 0;
   transition: opacity .2s ease, transform .1s cubic-bezier(0.48, 0.07, 0.45, 1.58);
 }

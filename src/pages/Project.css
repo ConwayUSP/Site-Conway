@@ -2,7 +2,6 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 2em;
@@ -12,26 +11,49 @@
   }
 }
 
-.project-photo {
+.project-left {
   width: 100%;
 
   @media (min-width: 768px) {
-    flex: 500px 0 0;
+    flex: 512px 0 0;
   }
 }
 
-.project-photo-container {
+.project-photo {
   border-radius: 0.5em;
-  aspect-ratio: 3/3;
+  aspect-ratio: 16/9;
   width: 100%;
   overflow: hidden;
 }
 
 .project-photo img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
   border-radius: 0.5em;
+}
+
+.project-types-container h2 {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.project-types-display {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.project-type {
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--brand-violet);
+  /* TODO: usar propriedade COLOR para dar um cor diferente para o project-type */
 }
 
 .project-content h2::before {
@@ -45,16 +67,143 @@
   margin-top: 1rem;
 }
 
-.project-btn {
+.project-repo-btn {
   display: inline-block;
+  flex: 1;
   padding: 0.5rem 1rem;
   background-color: var(--brand-violet);
   color: #fff;
   text-decoration: none;
+  text-align: center;
   border-radius: 0.25rem;
   transition: background-color 0.3s ease;
 
   &:hover {
     background-color: var(--brand-purple);
   }
+}
+
+.project-link-btn {
+  display: inline-block;
+  flex: 1;
+  padding: 0.5rem 1rem;
+  background-color: var(--purple-light);
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--brand-pink);
+  }
+}
+
+.project-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.project-right * {
+  margin: 0;
+}
+
+.project-members {
+  display: flex;
+  padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+  gap: 3rem;
+  background-color: #9082FB1A;
+  border-radius: 0.5rem;
+
+  @media (min-width: 768px) {
+    gap: 0.75rem;
+  }
+}
+
+.project-members h3 {
+  display: inline-block;
+  width: 100%;
+  padding: 0.25rem 0;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #9082FBBF;
+}
+
+.project-acompanhantes-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.project-integrants {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  border: 1px solid #9082FBBF;
+  overflow: hidden;
+}
+
+.project-integrants-header {
+  display: inline-block;
+  background-color: #9082FB1A;
+  padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #9082FBBF;
+}
+
+.project-integrants-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 0.5rem;
+}
+
+.screenshots {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.screenshots-viewport {
+    overflow: hidden;
+}
+
+.screenshots-content {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem; 
+}
+
+.screenshots-content img {
+  height: 12rem;
+}
+
+.screenshots-navigation {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.screenshots-navigation-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #FF999B40;
+  padding: 1rem 1.6rem;
+  border-radius: 1rem;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--brand-pink);
+    cursor: pointer;
+  }
+}
+
+.screenshots-navigation-btn img {
+  height: 1.5rem;
 }

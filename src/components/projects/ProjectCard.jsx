@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { VirtuosoGrid } from 'react-virtuoso'
 import Skeleton from 'react-loading-skeleton'
 import './ProjectCard.css'
+import enfeitinho from '@assets/icons/enfeitinho.svg'
 
 export function ProjectsCards({ projects }) {
   if (!projects || projects.length === 0) {
@@ -46,8 +47,13 @@ export function ProjectCard({ cover, properties, icon, id }) {
       <img src={cover} alt={properties?.Nome?.title[0]?.text?.content || 'Project Cover'} />
       <div 
         className="project-card-content" 
-        style={{ "--icon": `"${icon}"` }}
+        style={{
+          "--icon": `"${icon}"`,
+           "backgroundColor" : "color-mix(in srgb, var(--bg-primary) 65%, transparent)",
+           "backdropFilter" : "blur(4px)"
+        }}
       >
+        <img src={enfeitinho} />
         <h2>{projectName}</h2>
       </div>
     </div>
