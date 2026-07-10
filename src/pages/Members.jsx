@@ -19,7 +19,7 @@ function Members() {
   const [selectedFilter, setSelectedFilter] = useState("Todos")
 
   const { data: membersPre, isLoading: isLoadingMembers, isFetching: isFetchingMembers } = useMembers()
-  const members = useMembersBySetor(membersPre, selectedFilter === "Todos" ? undefined : selectedFilter)
+  const members = useMembersBySetor(membersPre, selectedFilter)
 
   const windowInnerWidth = useWindowWidth()
   
