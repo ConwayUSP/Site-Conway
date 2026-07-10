@@ -31,7 +31,7 @@
   right: 0;
   bottom: 0;
   width: 35%;
-  height: 3.5rem;
+  height: 3.75rem;
   overflow: hidden;
   
   mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.75), transparent);
@@ -51,7 +51,7 @@
 }
 
 .member-card-content {
-  padding: 0 0.75rem;
+  padding: 0.25rem 0.75rem;
   display: flex;
   flex-direction: row;
   align-items: start;
