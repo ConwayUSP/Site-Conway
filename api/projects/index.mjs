@@ -23,12 +23,12 @@ export default async function handler(req, res) {
                 does_not_equal: 'Morto'
               }
             },
-            {
-              property: 'Tipo',
-              multi_select: {
-                does_not_contain: 'Palestra'
-              }
-            }
+            // {
+            //   property: 'Tipo',
+            //   multi_select: {
+            //     does_not_contain: 'Palestra'
+            //   }
+            // }
           ]
         }
       })
