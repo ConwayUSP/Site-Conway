@@ -11,7 +11,10 @@ function Projects() {
   
   return (
     <main className="projects">
-      <h1>Projetos</h1>
+      <header style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', color: 'var(--cor-texto)' }}>Painel de projetos</h1>
+        <p style={{ color: 'var(--cor-texto-mutado)' }}>Confira os projetos da Conway</p>
+      </header>
       <ProjectsCards projects={projects || []} />
     </main>
   )
