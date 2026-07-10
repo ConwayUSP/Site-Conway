@@ -98,12 +98,12 @@ function Project() {
         )}
         <div className="project-buttons">
           {repo && (
-            <a className="project-btn" href={repo} target="_blank" rel="noopener noreferrer">
+            <a className="project-repo-btn" href={repo} target="_blank" rel="noopener noreferrer">
               Ver o Repositório
             </a>
           )}
           {link && (
-            <a className="project-btn" href={link} target="_blank" rel="noopener noreferrer">
+            <a className="project-link-btn" href={link} target="_blank" rel="noopener noreferrer">
               Acessar o Projeto
             </a>
           )}

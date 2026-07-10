@@ -16,7 +16,7 @@
   width: 100%;
 
   @media (min-width: 768px) {
-    flex: 500px 0 0;
+    flex: 512px 0 0;
   }
 }
 
@@ -37,13 +37,14 @@
 
 .project-types-container h2 {
   font-size: 1.2rem;
+  margin-top: 1.5rem;
 }
 
 .project-types-display {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 }
 
 .project-type {
@@ -67,7 +68,7 @@
   margin-top: 1rem;
 }
 
-.project-btn {
+.project-repo-btn {
   display: inline-block;
   flex: 1;
   padding: 0.5rem 1rem;
@@ -83,10 +84,26 @@
   }
 }
 
+.project-link-btn {
+  display: inline-block;
+  flex: 1;
+  padding: 0.5rem 1rem;
+  background-color: var(--purple-light);
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--brand-pink);
+  }
+}
+
 .project-right {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   flex: 1;
 }
 
@@ -96,51 +113,49 @@
 
 .project-members {
   display: flex;
-  padding: 1rem;
-  gap: 1.5rem;
-  background-color: var(--bg-secondary);
+  padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+  gap: 3rem;
+  background-color: #9082FB1A;
   border-radius: 0.5rem;
+
+  @media (min-width: 768px) {
+    gap: 0.75rem;
+  }
 }
 
 .project-members h3 {
   display: inline-block;
   width: 100%;
-  font-weight: normal;
-  margin-bottom: 0.5rem;
-  border-bottom: 1px solid var(--brand-violet);
+  padding: 0.25rem 0;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #9082FBBF;
 }
 
 .project-acompanhantes-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
 }
 
 .project-integrants {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
   border-radius: 0.5rem;
-  padding: 1rem;
-  border: 1px solid var(--bg-secondary);
+  border: 1px solid #9082FBBF;
   overflow: hidden;
 }
 
 .project-integrants-header {
   display: inline-block;
-  font-weight: normal;
-  margin-bottom: 0.5rem;
-  border-bottom: 1px solid var(--bg-secondary);
-  margin: -1rem -1rem 0.5rem -1rem;
-}
-
-.project-integrants-header h3 {
-  margin: 0;
-  padding: 0.5rem 1rem;
+  background-color: #9082FB1A;
+  padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #9082FBBF;
 }
 
 .project-integrants-list {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  align-items: flex-start;
+  padding: 0.5rem;
 }
