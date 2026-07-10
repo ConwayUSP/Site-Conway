@@ -19,7 +19,7 @@ function Members() {
   const [selectedFilter, setSelectedFilter] = useState("Todos")
 
   const { data: membersPre, isLoading: isLoadingMembers, isFetching: isFetchingMembers } = useMembers()
-  const members = useMembersBySetor(membersPre, selectedFilter === "Todos" ? undefined : selectedFilter)
+  const members = useMembersBySetor(membersPre, selectedFilter)
 
   const windowInnerWidth = useWindowWidth()
   
@@ -27,7 +27,7 @@ function Members() {
     <main className="members">
       <header style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', color: 'var(--cor-texto)' }}>Nossos membros</h1>
-        <p style={{ color: 'var(--cor-texto-mutado)' }}>Filtre por setor todos os membros da entidade</p>
+        <p style={{ color: 'var(--cor-texto-mutado)' }}>Filtre por setor todos os membros atuais da entidade</p>
       </header>
       { isSmallScreen(windowInnerWidth)? 
         <div className="members-filter">
