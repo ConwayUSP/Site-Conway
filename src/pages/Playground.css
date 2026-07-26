@@ -1,4 +1,3 @@
-/* src/pages/Playground.css */
 .playground-page {
   display: flex;
   width: 100vw;
@@ -7,10 +6,42 @@
   overflow: hidden;
 }
 
+/* Flex layout para o Split Container */
+.split-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* O "gutter" é a barra divisória criada pelo react-split */
+.gutter {
+  background-color: #2a2a2a;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transition: background-color 0.2s ease;
+  z-index: 10;
+}
+
+.gutter.gutter-horizontal {
+  /* Ícone texturizado para indicar ao utilizador que é possível arrastar */
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjbd5MgKJBAAWxg0Fxm1xJQAAAABJRU5ErkJggg==');
+  cursor: col-resize;
+}
+
+.gutter:hover {
+  background-color: #3a3a3a;
+}
+
 .playground-left {
-  flex: 1;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.playground-right {
+  height: 100%;
+  overflow: hidden;
 }
 
 .playground-controls {
@@ -49,11 +80,6 @@
 .canvas-wrapper {
   flex: 1;
   width: 100%;
-  height: 100%;
-}
-
-.playground-right {
-  flex: 1;
   height: 100%;
 }
 

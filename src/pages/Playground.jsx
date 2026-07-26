@@ -1,6 +1,7 @@
 // src/pages/Playground.jsx
 import { useState, useEffect } from "react";
 import LZString from "lz-string";
+import Split from "react-split";
 import ShaderCanvas from "../components/playground/ShaderCanvas";
 import ShaderEditor from "../components/playground/ShaderEditor";
 import "./Playground.css";
@@ -49,34 +50,47 @@ export default function Playground() {
 
   return (
     <div className="playground-page">
-      <div className="playground-left">
-        <div className="playground-controls">
-          <label>Modelo 3D:</label>
-          <select value={modelType} onChange={(e) => setModelType(e.target.value)}>
-            <option value="plane">Sem Modelo (Plano 2D)</option>
-            <option value="cube">Cubo</option>
-            <option value="sphere">Esfera</option>
-            <option value="icosahedron">Icosaedro</option>
-            <option value="torus">Torus</option>
-          </select>
+      <Split 
+        className="split-container" 
+        sizes={[50, 50]}        // Começa dividido a 50% / 50%
+        minSize={300}           // Nenhuma das abas pode ter menos de 300px
+        expandToMin={false} 
+        gutterSize={8}          // A espessura da barra divisória
+        gutterAlign="center" 
+        snapOffset={30} 
+        dragInterval={1} 
+        direction="horizontal" 
+        cursor="col-resize"
+      >
+        <div className="playground-left">
+          <div className="playground-controls">
+            <label>Modelo 3D:</label>
+            <select value={modelType} onChange={(e) => setModelType(e.target.value)}>
+              <option value="plane">Sem Modelo (Plano 2D)</option>
+              <option value="cube">Cubo</option>
+              <option value="sphere">Esfera</option>
+              <option value="icosahedron">Icosaedro</option>
+              <option value="torus">Torus</option>
+            </select>
 
-          <button onClick={handleShare} className="share-btn">
-            {copied ? "Link Copiado!" : "Compartilhar"}
-          </button>
+            <button onClick={handleShare} className="share-btn">
+              {copied ? "Link Copiado!" : "Compartilhar Shader"}
+            </button>
+          </div>
+          <div className="canvas-wrapper">
+            <ShaderCanvas code={code} modelType={modelType} />
+          </div>
         </div>
-        <div className="canvas-wrapper">
-          <ShaderCanvas code={code} modelType={modelType} />
-        </div>
-      </div>
 
-      <div className="playground-right">
-        <ShaderEditor
-          code={code}
-          onChange={setCode}
-          vimEnabled={vimEnabled}
-          onToggleVim={setVimEnabled}
-        />
-      </div>
+        <div className="playground-right">
+          <ShaderEditor
+            code={code}
+            onChange={setCode}
+            vimEnabled={vimEnabled}
+            onToggleVim={setVimEnabled}
+          />
+        </div>
+      </Split>
     </div>
   );
 }
