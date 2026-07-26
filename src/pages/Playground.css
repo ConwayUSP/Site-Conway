@@ -1,0 +1,69 @@
+/* src/pages/Playground.css */
+.playground-page {
+  display: flex;
+  width: 100vw;
+  height: calc(100vh - 3.67rem); /* O 3.67 é por causa do tamanho da navbar */
+  background-color: #121212;
+  overflow: hidden;
+}
+
+.playground-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #2a2a2a;
+}
+
+.playground-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background-color: #1e1e1e;
+  border-bottom: 1px solid #2a2a2a;
+  color: #fff;
+}
+
+.playground-controls select {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.share-btn {
+  margin-left: auto;
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.share-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.canvas-wrapper {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.playground-right {
+  flex: 1;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .playground-page {
+    flex-direction: column;
+  }
+  .playground-left, .playground-right {
+    height: 50%;
+  }
+}
