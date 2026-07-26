@@ -1,12 +1,29 @@
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useLoader, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { useRef, useMemo, useEffect } from "react";
+import { useRef, useMemo, useEffect, Suspense } from "react";
 import * as THREE from "three";
 import WebGPURenderer from "three/src/renderers/webgpu/WebGPURenderer.js";
 import { NodeMaterial } from "three/webgpu";
 import { wgslFn, time, uv, vec4 } from "three/tsl";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
-function ShaderMesh({ code, modelType }) {
+function CustomModelMesh({ url, material }) {
+  const gltf = useLoader(GLTFLoader, url);
+
+  const clonedScene = useMemo(() => {
+    const clone = gltf.scene.clone(true);
+    clone.traverse((child) => {
+      if (child.isMesh) {
+        child.material = material;
+      }
+    });
+    return clone;
+  }, [gltf, material]);
+
+  return <primitive object={clonedScene} scale={1.2} />;
+}
+
+function ShaderMesh({ code, modelType, customModelUrl }) {
     const material = useMemo(() => {
     const mat = new NodeMaterial();
     mat.side = THREE.DoubleSide;
@@ -30,6 +47,14 @@ function ShaderMesh({ code, modelType }) {
     return mat;
     }, [code]);
 
+  if (modelType === "custom" && customModelUrl) {
+    return (
+      <Suspense fallback={null}>
+        <CustomModelMesh url={customModelUrl} material={material} />
+      </Suspense>
+    );
+  }
+
   return (
     <mesh material={material}>
       {modelType === "plane" && <planeGeometry args={[4, 4]} />}
@@ -41,7 +66,7 @@ function ShaderMesh({ code, modelType }) {
   );
 }
 
-export default function ShaderCanvas({ code, modelType }) {
+export default function ShaderCanvas({ code, modelType, customModelUrl, bgColor }) {
   return (
     <div style={{ width: "100%", height: "100%", position: "relative", background: "#0a0a0a" }}>
       <Canvas
@@ -52,7 +77,7 @@ export default function ShaderCanvas({ code, modelType }) {
         }}
         camera={{ position: [0, 0, 4.5], fov: 60 }}
       >
-        <ShaderMesh code={code} modelType={modelType} />
+        <ShaderMesh code={code} modelType={modelType} customModelUrl={customModelUrl}/>
         <OrbitControls enableDamping />
       </Canvas>
     </div>
