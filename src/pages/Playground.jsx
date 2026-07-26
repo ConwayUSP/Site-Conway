@@ -6,7 +6,6 @@ import ShaderEditor from "../components/playground/ShaderEditor";
 import "./Playground.css";
 
 const DEFAULT_SHADER = `fn niam(u_time: f32, vUv: vec2<f32>) -> vec4<f32> {
-  // A sintaxe do WGSL é estritamente tipada e usa declarações matemáticas similares a Rust
   let r = 0.5 + 0.5 * cos(u_time + vUv.x + 0.0);
   let g = 0.5 + 0.5 * cos(u_time + vUv.y + 2.0);
   let b = 0.5 + 0.5 * cos(u_time + vUv.x + 4.0);
@@ -62,7 +61,7 @@ export default function Playground() {
           </select>
 
           <button onClick={handleShare} className="share-btn">
-            {copied ? "Link Copiado!" : "Compartilhar Shader"}
+            {copied ? "Link Copiado!" : "Compartilhar"}
           </button>
         </div>
         <div className="canvas-wrapper">
