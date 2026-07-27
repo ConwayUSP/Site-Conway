@@ -1,0 +1,113 @@
+.playground-page {
+  display: flex;
+  width: 100vw;
+  height: calc(100vh - 3.67rem); /* O 3.67 é por causa do tamanho da navbar */
+  background-color: var(--bg-secundario);
+  overflow: hidden;
+}
+
+/* Flex layout para o Split Container */
+.split-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* O "gutter" é a barra divisória criada pelo react-split */
+.gutter {
+  background-color: #2a2a2a;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transition: background-color 0.2s ease;
+  z-index: 10;
+}
+
+.gutter.gutter-horizontal {
+  /* Ícone texturizado para indicar ao utilizador que é possível arrastar */
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjbd5MgKJBAAWxg0Fxm1xJQAAAABJRU5ErkJggg==');
+  cursor: col-resize;
+}
+
+.gutter:hover {
+  background-color: #3a3a3a;
+}
+
+.playground-left {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.playground-right {
+  height: 100%;
+  overflow: hidden;
+}
+
+.playground-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background-color: var(--bg-secundario);
+  color: #fff;
+}
+
+.playground-controls select {
+  background-color: var(--bg-secundario);
+  color: #fff;
+  border: 2px solid var(--bg-principal);
+  padding: 6px 18px 6px 10px;
+  border-radius: 5px;
+}
+
+.share-btn {
+  margin-left: auto;
+  background-color: var(--brand-yellow);
+  color: var(--bg-secundario);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 400;
+  transition: background-color 0.2s;
+}
+
+.share-btn:hover {
+  background-color: var(--brand-blue);
+}
+
+.canvas-wrapper {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.upload-btn {
+  padding: 5px 10px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.2s;
+}
+
+.upload-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .playground-page {
+    flex-direction: column;
+  }
+  .playground-left, .playground-right {
+    height: 50%;
+  }
+}
