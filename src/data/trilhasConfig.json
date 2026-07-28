@@ -20,6 +20,46 @@
         "id": "cap-2",
         "title": "Shaders",
         "filepath": "capitulos/02%20-%20Shaders.md"
+      },
+      {
+        "id": "cap-3",
+        "title": "Texturas",
+        "filepath": "capitulos/03%20-%20Texturas.md"
+      },
+      {
+        "id": "cap-4",
+        "title": "Matemática",
+        "filepath": "capitulos/04%20-%20Matematica.md"
+      },
+      {
+        "id": "cap-5",
+        "title": "Transformações e Espaços",
+        "filepath": "capitulos/05%20-%20Transformações%20e%20Espaços.md"
+      },
+      {
+        "id": "cap-6",
+        "title": "Camera",
+        "filepath": "capitulos/06%20-%20Camera.md"
+      },
+      {
+        "id": "cap-7",
+        "title": "Iluminação Básica",
+        "filepath": "capitulos/07%20-%20Iluminação%20Básica.md"
+      },
+      {
+        "id": "cap-8",
+        "title": "Mapas de Iluminação",
+        "filepath": "capitulos/08%20-%20Mapas%20de%20Iluminacao.md"
+      },
+      {
+        "id": "cap-9",
+        "title": "Emissores de Luz",
+        "filepath": "capitulos/09%20-%20Emissores%20de%20Luz.md"
+      },
+      {
+        "id": "cap-10",
+        "title": "Modelos 3D",
+        "filepath": "capitulos/10%20-%20Modelos%203D.md"
       }
     ]
   },
@@ -44,8 +84,477 @@
         "id": "cap-2",
         "title": "Criando Repositórios",
         "filepath": "guia_pratico/02_criando_repositorio.md"
+      },
+      {
+        "id": "cap-3",
+        "title": "Fazendo Commits",
+        "filepath": "guia_pratico/03_fazendo_commits.md"
+      },
+      {
+        "id": "cap-4",
+        "title": "Manipulando Branches",
+        "filepath": "guia_pratico/04_manipulando_branchs.md"
+      },
+      {
+        "id": "cap-5",
+        "title": "Navegando no Repositório",
+        "filepath": "guia_pratico/05_navegando_repositorio.md"
+      },
+      {
+        "id": "cap-6",
+        "title": "Unindo Branchs",
+        "filepath": "guia_pratico/06_unindo_branchs.md"
+      },
+      {
+        "id": "cap-7",
+        "title": "Alterando Histórico",
+        "filepath": "guia_pratico/07_alterando_historico.md"
+      },
+      {
+        "id": "cap-8",
+        "title": "Trabalhando Remotamente",
+        "filepath": "guia_pratico/08_trabalhando_remotamente.md"
+      },
+      {
+        "id": "cap-9",
+        "title": "Colaborando com Outros",
+        "filepath": "guia_pratico/09_colaborando_com_outros.md"
+      },
+      {
+        "id": "cap-10",
+        "title": "Workflow",
+        "filepath": "guia_pratico/10_workflow.md"
+      },
+      {
+        "id": "cap-11",
+        "title": "Desfazendo Caquinhas",
+        "filepath": "guia_pratico/11_desfazendo_caquinhas.md"
+      },
+      {
+        "id": "cap-12",
+        "title": "Desafio Final",
+        "filepath": "guia_pratico/12_desafio_final.md"
       }
     ]
 
+  },
+  "craylib": {
+    "name": "Sea of C",
+    "description": "Aprenda a programar em C e desenvolver jogos com a biblioteca Raylib",
+    "thumbnail": "https://camo.githubusercontent.com/bc63597baefd2a594bd1b889da98f51372d9538112766d51722b9507be856cf3/68747470733a2f2f6173736574732e6e696e74656e646f2e636f6d2f696d6167652f75706c6f61642f61725f31363a392c625f6175746f3a626f726465722c635f6c7061642f625f77686974652f665f6175746f2f715f6175746f2f6470725f312e352f635f7363616c652c775f3530302f73746f72652f736f6674776172652f7377697463682f37303031303030303034393236372f31656261303762363663376363303939303035343261336366633666393037333839353564323336353032356632396439343262313233623336383765653031",
+    "themeClass": "theme-craylib",
+    "repoRootUrl": "https://raw.githubusercontent.com/ConwayUSP/Sea-of-C/main/",
+    "chapters": [
+      {
+        "id": "cap-0",
+        "title": "Antes de Zarparmos",
+        "filepath": "capitulos/00%20-%20Antes%20de%20Zarparmos.md"
+      },
+      {
+        "id": "cap-1",
+        "title": "Conhecendo o Terreno",
+        "filepath": "capitulos/01%20-%20Conhecendo%20o%20Terreno.md"
+      },
+      {
+        "id": "cap-2",
+        "title": "Olá, Oceano!",
+        "filepath": "capitulos/02%20-%20Olá,%20Oceano!.md"
+      },
+      {
+        "id": "cap-3",
+        "title": "Mergulhando mais Fundo",
+        "filepath": "capitulos/03%20-%20Mergulhando%20Mais%20Fundo.md"
+      },
+      {
+        "id": "cap-4",
+        "title": "Um Arquipélago Chamado Raylib",
+        "filepath": "capitulos/04%20-%20Um%20arquipélago%20chamado%20Raylib.md"
+      },
+      {
+        "id": "cap-5",
+        "title": "O Jogo da Vida de um Marinheiro",
+        "filepath": "capitulos/05%20-%20O%20Jogo%20da%20Vida%20de%20um%20Marinheiro.md"
+      }
+    ]
+  },
+  "cpp": {
+    "name": "Sapphiron",
+    "description": "Aprenda os conceitos principais e orientação a objetos na linguagem C++",
+    "thumbnail": "https://github.com/ConwayUSP/Sapphiron/blob/main/Media/sapphiron.jpg?raw=true",
+    "themeClass": "theme-cpp",
+    "repoRootUrl": "https://raw.githubusercontent.com/ConwayUSP/Sapphiron/main/",
+    "chapters": [
+      {
+        "id": "intro-cap-0-p-1",
+        "title": "Preparativos!",
+        "filepath": "Introducao-Cpp/Capítulo%2000%20-%20Parte%201:%20Preparativos!.md"
+      },
+      {
+        "id": "intro-cap-0-p-2",
+        "title": "Hello, World!",
+        "filepath": "Introducao-Cpp/Capítulo%2000%20-%20Parte%202:%20Hello,%20World!.md"
+      },
+      {
+        "id": "intro-cap-1-p-1",
+        "title": "Estrutura de um Programa, Objetos e Variáveis",
+        "filepath": "Introducao-Cpp/Capítulo%2001%20-%20Parte%201:%20Estrutura%20de%20um%20Programa,%20Objetos%20e%20Variáveis.md"
+      },
+      {
+        "id": "intro-cap-1-p-2",
+        "title": "Biblioteca 'iostream'",
+        "filepath": "Introducao-Cpp/Capítulo%2001%20-%20Parte%202:%20Biblioteca%20'iostream'.md"
+      },
+      {
+        "id": "intro-cap-1-p-3",
+        "title": "Literais, Operadores e Expressões",
+        "filepath": "Introducao-Cpp/Capítulo%2001%20-%20Parte%203:%20Literais,%20operadores%20e%20expressões.md"
+      },
+      {
+        "id": "intro-cap-2-p-1",
+        "title": "Tipos Fundamentais de Dados",
+        "filepath": "Introducao-Cpp/Capítulo%2002%20-%20Parte%201%3A%20Tipos%20Fundamentais%20de%20Dados%20.md"
+      },
+      {
+        "id": "intro-cap-2-p-2",
+        "title": "Trabalhando com os Tipos de Dados",
+        "filepath": "Introducao-Cpp/Capítulo%2002%20-%20Parte%202:%20Trabalhando%20com%20os%20Tipos%20de%20Dados.md"
+      },
+      {
+        "id": "intro-cap-3-p-1",
+        "title": "Funções",
+        "filepath": "Introducao-Cpp/Capítulo%2003%20-%20Parte%201:%20Funções.md"
+      },
+      {
+        "id": "intro-cap-3-p-2",
+        "title": "Vários Arquivos",
+        "filepath": "Introducao-Cpp/Capítulo%2003%20-%20Parte%202:%20Vários%20Arquivos.md"
+      },
+      {
+        "id": "intro-cap-3-p-3",
+        "title": "Headers",
+        "filepath": "Introducao-Cpp/Capítulo%2003%20-%20Parte%203:%20Headers.md"
+      },
+      {
+        "id": "intro-cap-4-p-1",
+        "title": "Variáveis e Expressões Constantes",
+        "filepath": "Introducao-Cpp/Capítulo%2004%20-%20Parte%201:%20Variáveis%20e%20expressões%20constantes.md"
+      },
+      {
+        "id": "intro-cap-4-p-2",
+        "title": "Introdução à std::string",
+        "filepath": "Introducao-Cpp/Capítulo%2004%20-%20Parte%202:%20Introdução%20à%20std::string.md"
+      },
+      {
+        "id": "intro-cap-5-p-1",
+        "title": "Controle de Fluxo",
+        "filepath": "Introducao-Cpp/Capítulo%2005%20-%20Parte%201:%20Controle%20de%20Fluxo.md"
+      },
+      {
+        "id": "intro-cap-5-p-2",
+        "title": "Continuação de Controle de Fluxo",
+        "filepath": "Introducao-Cpp/Capítulo%2005%20-%20Parte%202:%20Continuação%20de%20Controle%20de%20Fluxo.md"
+      },
+      {
+        "id": "intro-cap-6-p-1",
+        "title": "Namespaces",
+        "filepath": "Introducao-Cpp/Capítulo%2006%20-%20Parte%201:%20Namespaces.md"
+      },
+      {
+        "id": "intro-cap-6-p-2",
+        "title": "Variáveis Locais Estáticas",
+        "filepath": "Introducao-Cpp/Capítulo%2006%20-%20Parte%202:%20Variáveis%20Locais%20Estáticas.md"
+      },
+      {
+        "id": "intro-cap-7-p-1",
+        "title": "Sobrecarga de Função e Templates de Função",
+        "filepath": "Introducao-Cpp/Capítulo%2007%20-%20Sobrecarga%20de%20função%20e%20templates%20de%20função.md"
+      },
+      {
+        "id": "intro-cap-8-p-1",
+        "title": "Referências e Ponteiros",
+        "filepath": "Introducao-Cpp/Capítulo%2008%20-%20Referências%20e%20Ponteiros.md"
+      },
+      {
+        "id": "intro-cap-9-p-1",
+        "title": "Structs",
+        "filepath": "Introducao-Cpp/Capítulo%2009%20-%20Parte%201:%20Structs.md"
+      },
+      {
+        "id": "intro-cap-9-p-2",
+        "title": "Enums",
+        "filepath": "Introducao-Cpp/Capítulo%2009%20-%20Parte%202:%20Enums.md"
+      },
+      {
+        "id": "intro-cap-10-p-1",
+        "title": "Introdução a std::vector",
+        "filepath": "Introducao-Cpp/Capítulo%2010%20-%20Introdução%20a%20std::vector.md"
+      },
+      {
+        "id": "intro-cap-11-p-1",
+        "title": "Alocação Dinâmica de Memória",
+        "filepath": "Introducao-Cpp/Capítulo%2011%20-%20%20Alocação%20dinâmica%20de%20memória.md"
+      },
+      {
+        "id": "oop-cap-0-p-1",
+        "title": "Objetos e Classes",
+        "filepath": "OOP-Cpp/Capítulo%2000%20-%20Parte%201:%20Objetos%20e%20Classes.md"
+      },
+      {
+        "id": "oop-cap-0-p-2",
+        "title": "Construtores e Sobrecarga de Operadores",
+        "filepath": "OOP-Cpp/Capítulo%2000%20-%20Parte%202:%20Construtores%20e%20Sobrecarga%20de%20Operadores.md"
+      },
+      {
+        "id": "oop-cap-1-p-1",
+        "title": "Modificadores de Acesso e Encapsulamento",
+        "filepath": "OOP-Cpp/Capítulo%2001%20%3A%20%20Modificadores%20de%20Acesso%20e%20Encapsulamento.md"
+      },
+      {
+        "id": "oop-cap-2-p-1",
+        "title": "Herança",
+        "filepath": "OOP-Cpp/Capítulo%2002%20-%20Parte%201:%20Herança.md"
+      },
+      {
+        "id": "oop-cap-2-p-2",
+        "title": "Polimorfismo",
+        "filepath": "OOP-Cpp/Capítulo%2002%20-%20Parte%202:%20Polimorfismo.md"
+      },
+      {
+        "id": "oop-cap-3-p-1",
+        "title": "Interfaces e Composição",
+        "filepath": "OOP-Cpp/Capítulo%2003%20-%20Parte%201:%20Interfaces%20e%20Composição.md"
+      },
+      {
+        "id": "oop-cap-3-p-2",
+        "title": "Herança <-> Composição",
+        "filepath": "OOP-Cpp/Capítulo%2003%20-%20Parte%202%3A%20Herança%20<->%20Composição.md"
+      }
+    ]
+  },
+  "lualove": {
+    "name": "Hiten Hagoromo",
+    "description": "Aprenda a programar em Lua e a fazer jogos usando o framework de desenvolvimento de jogos LÖVE",
+    "thumbnail": "https://github.com/ConwayUSP/Hiten_Hagoromo/blob/main/assets/Hiten_Hagoromo.jpg?raw=true",
+    "themeClass": "theme-lualove",
+    "repoRootUrl": "https://raw.githubusercontent.com/ConwayUSP/Hiten_Hagoromo/main/",
+    "chapters": [
+      {
+        "id": "lua-cap-1",
+        "title": "Introdução a Lua",
+        "filepath": "lua/1-introducao/introducao.md"
+      },
+      {
+        "id": "lua-cap-2",
+        "title": "Aprofundamento em Lua",
+        "filepath": "lua/2-aprofundamento/aprofundamento.md"
+      },
+      {
+        "id": "lua-cap-3",
+        "title": "Projeto Final",
+        "filepath": "lua/3-projeto_final/projeto_final.md"
+      },
+      {
+        "id": "love2d-cap-1",
+        "title": "Introdução a LÖVE",
+        "filepath": "love2d/1-introducao/introducao.md"
+      },
+      {
+        "id": "love2d-cap-2",
+        "title": "Aprofundamento em LÖVE",
+        "filepath": "love2d/2-aprofundamento/aprofundamento.md"
+      }
+    ]
+  },
+  "jogos2d": {
+    "name": "Introdução a Game Dev 2D",
+    "description": "Aprenda a desenvolver jogos 2D clássicos com o framework LÖVE",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Pong.png",
+    "themeClass": "theme-jogos2d",
+    "repoRootUrl": "https://raw.githubusercontent.com/ConwayUSP/Intro_Games2D/main/",
+    "chapters": [
+      {
+        "id": "cap-0",
+        "title": "Aula 00 - Pong",
+        "filepath": "Aula%2000/README.md"
+      },
+      {
+        "id": "cap-1",
+        "title": "Aula 01 - Flappy Bird",
+        "filepath": "Aula%2001/README.md"
+      },
+      {
+        "id": "cap-2",
+        "title": "Aula 02- Breakout",
+        "filepath": "Aula%2002/README.md"
+      },
+      {
+        "id": "cap-3",
+        "title": "Aula 03 - Match 3",
+        "filepath": "Aula%2003/README.md"
+      },
+      {
+        "id": "cap-4",
+        "title": "Aula 04 - Super Mario Bros - O Mundo dos Plataformas",
+        "filepath": "Aula%2004/README.md"
+      },
+      {
+        "id": "cap-5",
+        "title": "Aula 05 - The Legend of Zelda",
+        "filepath": "Aula%2005/README.md"
+      },
+      {
+        "id": "cap-6",
+        "title": "Aula 06 - Angry Birds",
+        "filepath": "Aula%2006/README.md"
+      },
+      {
+        "id": "cap-7",
+        "title": "Projeto Final",
+        "filepath": "Projeto%20Final/README.md"
+      }
+    ]
+  },
+  "jogos3d": {
+    "name": "Introdução a Game Dev 3D",
+    "description": "Aprenda a desenvolver jogos 3D usando o Godot Game Engine",
+    "thumbnail": "https://github.com/ConwayUSP/Intro_Games3D/blob/main/Aula%2002/assets/portal-showcase.png?raw=true",
+    "themeClass": "theme-jogos3d",
+    "repoRootUrl": "https://raw.githubusercontent.com/ConwayUSP/Intro_Games3D/main/",
+    "chapters": [
+      {
+        "id": "cap-0",
+        "title": "Aula 00 - Helicopter Game 3D",
+        "filepath": "Aula%2000/README.md"
+      },
+      {
+        "id": "cap-1",
+        "title": "Aula 01 - Dreadhalls",
+        "filepath": "Aula%2001/README.md"
+      },
+      {
+        "id": "cap-2",
+        "title": "Aula 02- Portal",
+        "filepath": "Aula%2002/README.md"
+      },
+      {
+        "id": "cap-3",
+        "title": "Projeto Final",
+        "filepath": "Projeto%20Final/README.md"
+      }
+    ]
+  },
+  "rustgodot": {
+    "name": "Lucky Crab",
+    "description": "Aprenda a utilizar o motor Godot Game Engine e a linguagem Rust para desenvolver jogos",
+    "thumbnail": "https://github.com/godot-rust/gdext/blob/master/misc/assets/godot-rust-ferris.png?raw=true",
+    "themeClass": "theme-rustgodot",
+    "repoRootUrl": "https://raw.githubusercontent.com/ConwayUSP/Lucky_Crab/main/",
+    "chapters": [
+      {
+        "id": "rust-cap-1",
+        "title": "Instalação do Rust",
+        "filepath": "01%20-%20Uma%20introduçao%20a%20Rust/01.%20Instalação.md"
+      },
+      {
+        "id": "rust-cap-2",
+        "title": "Olá, Mundo!",
+        "filepath": "01%20-%20Uma%20introduçao%20a%20Rust/02.%20Olá,%20Mundo!.md"
+      },
+      {
+        "id": "rust-cap-3",
+        "title": "Tipos e Variáveis",
+        "filepath": "01%20-%20Uma%20introduçao%20a%20Rust/03.%20Tipos%20e%20Variáveis.md"
+      },
+      {
+        "id": "rust-cap-4",
+        "title": "Funções e Controle de Fluxo",
+        "filepath": "01%20-%20Uma%20introduçao%20a%20Rust/04.%20Funções%20e%20Controle%20de%20Fluxo.md"
+      },
+      {
+        "id": "rust-cap-5",
+        "title": "Sistema de Ownership-Borrowing",
+        "filepath": "01%20-%20Uma%20introduçao%20a%20Rust/05.%20Sistema%20de%20Ownership-Borrowing.md"
+      },
+      {
+        "id": "rust-cap-6.1",
+        "title": "Structs: Criando Novos Tipos",
+        "filepath": "01%20-%20Uma%20introduçao%20a%20Rust/06.1.%20Structs:%20Criando%20Novos%20Tipos.md"
+      },
+      {
+        "id": "rust-cap-6.2",
+        "title": "Enums",
+        "filepath": "01%20-%20Uma%20introduçao%20a%20Rust/06.2.%20Enums.md"
+      },
+      {
+        "id": "rust-cap-7",
+        "title": "O Básico de Orientação a Objetos",
+        "filepath": "01%20-%20Uma%20introduçao%20a%20Rust/07.%20O%20básico%20de%20Orientação%20a%20Objetos.md"
+      },
+      {
+        "id": "rust-cap-8",
+        "title": "Tratamento de Erros e Opcionais",
+        "filepath": "01%20-%20Uma%20introduçao%20a%20Rust/08.%20Tratamento%20de%20Erros%20e%20Opcionais.md"
+      },
+      {
+        "id": "rust-cap-9",
+        "title": "Explorando a std",
+        "filepath": "01%20-%20Uma%20introduçao%20a%20Rust/09.%20Explorando%20a%20std.md"
+      },
+      {
+        "id": "rust-cap-10",
+        "title": "Módulos e Organizando seu Projeto",
+        "filepath": "01%20-%20Uma%20introduçao%20a%20Rust/10.%20Módulos%20e%20Organizando%20seu%20projeto.md"
+      },
+      {
+        "id": "godot-cap-1",
+        "title": "Instalação do Godot",
+        "filepath": "02%20-%20Uma%20introdução%20a%20Godot/01.%20Instalação.md"
+      },
+      {
+        "id": "godot-cap-2",
+        "title": "Conceitos Iniciais",
+        "filepath": "02%20-%20Uma%20introdução%20a%20Godot/02.%20Conceitos%20iniciais.md"
+      },
+      {
+        "id": "godot-cap-3",
+        "title": "Interface Gráfica",
+        "filepath": "02%20-%20Uma%20introdução%20a%20Godot/03.%20Interface%20gráfica.md"
+      },
+      {
+        "id": "godot-cap-4",
+        "title": "Criando Cenas e Nós",
+        "filepath": "02%20-%20Uma%20introdução%20a%20Godot/04.%20Criando%20Cenas%20e%20Nós.md"
+      },
+      {
+        "id": "godot-cap-5",
+        "title": "Scripts",
+        "filepath": "02%20-%20Uma%20introdução%20a%20Godot/05.%20Scripts.md"
+      },
+      {
+        "id": "godot-cap-6",
+        "title": "API Godot no Rust",
+        "filepath": "02%20-%20Uma%20introdução%20a%20Godot/06.%20API%20Godot%20no%20Rust.md"
+      },
+      {
+        "id": "godot-cap-7",
+        "title": "Usando Rust no Godot",
+        "filepath": "02%20-%20Uma%20introdução%20a%20Godot/07.%20Usando%20Rust%20no%20Godot.md"
+      },
+      {
+        "id": "godot-cap-8",
+        "title": "Sinais",
+        "filepath": "02%20-%20Uma%20introdução%20a%20Godot/08.%20Sinais.md"
+      },
+      {
+        "id": "godot-cap-9",
+        "title": "Projeto Final - Um Jogo 2D",
+        "filepath": "02%20-%20Uma%20introdução%20a%20Godot/09.%20Projeto%20Final%20-%20Um%20jogo%202D.md"
+      },
+      {
+        "id": "godot-cap-10",
+        "title": "Projeto Final - Pt. 2",
+        "filepath": "02%20-%20Uma%20introdução%20a%20Godot/10.%20Projeto%20Final%20-%20Pt.%202.md"
+      }
+    ]
   }
 }
