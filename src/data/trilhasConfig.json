@@ -556,5 +556,54 @@
         "filepath": "02%20-%20Uma%20introdução%20a%20Godot/10.%20Projeto%20Final%20-%20Pt.%202.md"
       }
     ]
+  },
+  "phaser": {
+    "name": "Phaser",
+    "description": "Aprenda a desenvolver jogos para a web utilizando o framework Phaser",
+    "thumbnail": "https://miro.medium.com/v2/resize:fit:3840/format:webp/1*RB520cxYvLXcwE2E9U5P2Q.jpeg",
+    "themeClass": "theme-phaser",
+    "repoRootUrl": "https://raw.githubusercontent.com/ConwayUSP/IntroPhaser/main/",
+    "chapters": [
+      {
+        "id": "cap-js",
+        "title": "Resumão JavaScript",
+        "filepath": "Intro-JS/Resumão-JS.md"
+      },
+      {
+        "id": "cap-0",
+        "title": "Apresentação",
+        "filepath": "Intro-Phaser/Capítulo%2000%20-%20%20Apresentação.md"
+      },
+      {
+        "id": "cap-1",
+        "title": "Conceitos Básicos",
+        "filepath": "Intro-Phaser/Capítulo%2001%20-%20Conceitos%20Básicos.md"
+      },
+      {
+        "id": "cap-2",
+        "title": "Game Objects",
+        "filepath": "Intro-Phaser/Capítulo%2002%20-%20Game%20Objects.md"
+      },
+      {
+        "id": "cap-3",
+        "title": "Animations",
+        "filepath": "Intro-Phaser/Capítulo%2003%20-%20Animations.md"
+      },
+      {
+        "id": "cap-4",
+        "title": "Arcade Physics",
+        "filepath": "Intro-Phaser/Capítulo%2004%20-%20Arcade%20Physics.md"
+      },
+      {
+        "id": "cap-5",
+        "title": "Data e Scene Managers",
+        "filepath": "Intro-Phaser/Capítulo%2005%20-%20Data%20e%20Scene%20Managers.md"
+      },
+      {
+        "id": "cap-6",
+        "title": "Aúdio, Câmera e Eventos",
+        "filepath": "Intro-Phaser/Capítulo%2006%20-%20Áudio%2C%20Câmera%20e%20Eventos.md"
+      }
+    ]
   }
 }
