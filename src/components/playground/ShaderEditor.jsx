@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { cpp } from "@codemirror/lang-cpp";
 import { vim } from "@replit/codemirror-vim";
+import { EditorView, keymap } from "@codemirror/view";
 
-export default function ShaderEditor({ code, onChange, vimEnabled, onToggleVim, currentTheme }) {
+export default function ShaderEditor({ code, onChange, vimEnabled, onToggleVim, currentTheme, fontSize,
+  onFontSizeChange }) {
   const [internalCode, setInternalCode] = useState(code);
 
   useEffect(() => {
@@ -18,7 +20,34 @@ export default function ShaderEditor({ code, onChange, vimEnabled, onToggleVim, 
     return () => clearTimeout(handler);
   }, [internalCode, onChange]);
 
-  const extensions = [cpp(), currentTheme.editorTheme];
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.ctrlKey || e.metaKey) {
+        if (e.key === "=" || e.key === "+") {
+          e.preventDefault();
+          onFontSizeChange((prev) => Math.min(prev + 1, 64));
+        } else if (e.key === "-") {
+          e.preventDefault();
+          onFontSizeChange((prev) => Math.max(prev - 1, 10));
+        } else if (e.key === "0") {
+          e.preventDefault();
+          onFontSizeChange(14);
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onFontSizeChange]);
+
+  const fontSizeTheme = useMemo(() => {
+    return EditorView.theme({
+      "&": { fontSize: `${fontSize}px` },
+      ".cm-gutters": { fontSize: `${fontSize}px` }
+    });
+  }, [fontSize]);
+
+  const extensions = [cpp(), currentTheme.editorTheme, fontSizeTheme];
   if (vimEnabled) {
     extensions.push(vim());
   }
