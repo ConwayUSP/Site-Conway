@@ -6,6 +6,7 @@ import './Member.css'
 import { useMember } from '@hooks/members/useMember'
 import { useProjectsByIds } from '@hooks/projects/useProjectsByIds';
 import { useBadgesByIds } from '@hooks/badges/useBadgesByIds';
+import { useMemberXP } from '@hooks/members/useMemberXP';
 
 // Components
 import { ProjectsLabels } from '@components/projects/ProjectLabel';
@@ -39,6 +40,7 @@ function Member() {
   const { data: member, isLoading: isLoadingMember, isFetching: isFetchingMember } = useMember(id)
   const { data: memberProjects } = useProjectsByIds(member?.properties?.["Projetos"]?.relation)
   const { data: memberBadges } = useBadgesByIds(member?.properties?.["Selos"]?.relation)
+  const { xp, level } = useMemberXP(member, memberProjects)
 
   const photo = member?.properties?.["Fotinha"]?.files?.[0]?.file?.url || member?.properties?.["Foto"]?.files?.[0]?.external?.url
   const memberName = member?.properties?.["Nome"]?.title?.[0]?.text?.content
