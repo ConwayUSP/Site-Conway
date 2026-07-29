@@ -58,9 +58,10 @@ export default function ShaderEditor({ code, onChange, vimEnabled, onToggleVim, 
       style={{ 
         display: "flex", 
         flexDirection: "column", 
-        height: "100%", 
+        height: "98%", 
         backgroundColor: currentTheme.panelBg,
-        color: currentTheme.text 
+        color: currentTheme.text, 
+        borderRadius: "0.5rem",
       }}
     >
       <div 
@@ -70,18 +71,21 @@ export default function ShaderEditor({ code, onChange, vimEnabled, onToggleVim, 
           justifyContent: "space-between", 
           padding: "8px 12px", 
           backgroundColor: currentTheme.panelBg, 
-          borderBottom: `1px solid ${currentTheme.border}`, 
-          color: currentTheme.text 
+          color: currentTheme.text,
+        borderRadius: "0.5rem",
         }}
       >
-        <span>Editor de Shader (WGSL)</span>
-        <label style={{ cursor: "pointer", fontSize: "0.85rem", display: "flex", alignItems: "center", gap: "6px" }}>
-          <input
-            type="checkbox"
-            checked={vimEnabled}
-            onChange={(e) => onToggleVim(e.target.checked)}
-          />
-          Vim Motions
+        <span>Editor de Shader</span>
+        <label className="vim-switch-label" style={{ color: currentTheme.text }}>
+          <div className="vim-switch">
+            <input
+              type="checkbox"
+              checked={vimEnabled}
+              onChange={(e) => onToggleVim(e.target.checked)}
+            />
+            <span className="vim-slider"></span>
+          </div>
+          <span>Vim Motions</span>
         </label>
       </div>
       <div style={{ flex: 1, overflow: "auto" }}>

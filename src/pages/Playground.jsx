@@ -41,7 +41,7 @@ export default function Playground() {
   const [customModelUrl, setCustomModelUrl] = useState(null);
   
   const [themeKey, setThemeKey] = useState(() => {
-    return localStorage.getItem("playground_theme") || "dark";
+    return localStorage.getItem("playground_theme") || "catjump";
   });
 
   const [fontSize, setFontSize] = useState(() => {
@@ -51,6 +51,10 @@ export default function Playground() {
 
   const [vimEnabled, setVimEnabled] = useState(() => {
     return localStorage.getItem("playground_vim_mode") === "true";
+  });
+
+  const [isControlsCollapsed, setIsControlsCollapsed] = useState(() => {
+    return localStorage.getItem("playground_controls_collapsed") === "true";
   });
 
   const [copied, setCopied] = useState(false);
@@ -73,6 +77,10 @@ export default function Playground() {
     localStorage.setItem("playground_vim_mode", vimEnabled)
   }, [vimEnabled])
 
+  useEffect(() => {
+    localStorage.setItem("playground_controls_collapsed", isControlsCollapsed.toString());
+  }, [isControlsCollapsed]);
+
   const handleShare = () => {
     const compressed = LZString.compressToEncodedURIComponent(code);
     const shareModel = modelType === "custom" ? "plane" : modelType;
@@ -94,7 +102,7 @@ export default function Playground() {
   };
 
   return (
-    <div className="playground-page" style={{ backgroundColor: currentTheme.bg }}>
+    <div className="playground-page" >
       <Split 
         className="split-container" 
         sizes={[50, 50]} 
@@ -105,36 +113,52 @@ export default function Playground() {
         cursor="col-resize"
       >
         {/* Painel do Canvas 3D */}
-        <div className="playground-left" style={{ borderRight: `1px solid ${currentTheme.border}` }}>
-          <div className="playground-controls" style={{ backgroundColor: currentTheme.panelBg, borderBottom: `1px solid ${currentTheme.border}`, color: currentTheme.text }}>
-            <div className="control-group">
-              <label>Modelo 3D:</label>
-              <select value={modelType} onChange={(e) => setModelType(e.target.value)} style={{ backgroundColor: currentTheme.bg, color: currentTheme.text, borderColor: currentTheme.border }}>
-                <option value="plane">Plano 2D</option>
-                <option value="cube">Cubo</option>
-                <option value="sphere">Esfera</option>
-                <option value="torus">Torus</option>
-                {customModelUrl && <option value="custom">Ficheiro Personalizado</option>}
-              </select>
-            </div>
-
-            <label className="upload-btn" style={{ borderColor: currentTheme.border, color: currentTheme.text }}>
-              Subir .gltf/.glb
-              <input type="file" accept=".gltf,.glb" onChange={handleFileUpload} style={{ display: "none" }} />
-            </label>
-
-            <div className="control-group">
-              <label>Tema:</label>
-              <select value={themeKey} onChange={(e) => setThemeKey(e.target.value)} style={{ backgroundColor: currentTheme.bg, color: currentTheme.text, borderColor: currentTheme.border }}>
-                {Object.keys(THEMES).map((key) => (
-                  <option key={key} value={key}>{THEMES[key].name}</option>
-                ))}
-              </select>
-            </div>
-
-            <button onClick={handleShare} className="share-btn">
-              {copied ? "Link Copiado!" : "Compartilhar"}
+        <div className="playground-left" >
+          <div className={`playground-controls ${isControlsCollapsed ? "collapsed" : ""}`} style={{
+              backgroundColor: currentTheme.panelBg,
+              color: currentTheme.text
+            }}>
+            <button 
+              className="toggle-controls-btn"
+              onClick={() => setIsControlsCollapsed(!isControlsCollapsed)}
+              title={isControlsCollapsed ? "Expandir Controles" : "Minimizar Controles"}
+              style={{ color: currentTheme.text }}
+            >
+              {isControlsCollapsed ? "›" : "‹"}
             </button>
+
+            {!isControlsCollapsed && (
+            <div className="controls-content">
+              <div className="control-group">
+                <label>Modelo 3D:</label>
+                <select value={modelType} onChange={(e) => setModelType(e.target.value)} style={{ backgroundColor: currentTheme.bg, color: currentTheme.text, borderColor: currentTheme.border }}>
+                    <option value="plane">Plano 2D</option>
+                    <option value="cube">Cubo</option>
+                    <option value="sphere">Esfera</option>
+                    <option value="torus">Torus</option>
+                    {customModelUrl && <option value="custom">Personalizado</option>}
+                  </select>
+              </div>
+
+              <label className="upload-btn" style={{ borderColor: currentTheme.border, color: currentTheme.text }}>
+                Subir .gltf/.glb
+                <input type="file" accept=".gltf,.glb" onChange={handleFileUpload} style={{ display: "none" }} />
+              </label>
+
+              <div className="control-group">
+                <label>Tema:</label>
+                <select value={themeKey} onChange={(e) => setThemeKey(e.target.value)} style={{ backgroundColor: currentTheme.bg, color: currentTheme.text, borderColor: currentTheme.border }}>
+                  {Object.keys(THEMES).map((key) => (
+                    <option key={key} value={key}>{THEMES[key].name}</option>
+                  ))}
+                </select>
+              </div>
+
+              <button onClick={handleShare} className="share-btn">
+                {copied ? "Link Copiado!" : "Compartilhar"}
+              </button>
+            </div>
+          )}
           </div>
 
           <div className="canvas-wrapper">
