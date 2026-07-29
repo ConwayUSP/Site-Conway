@@ -7,45 +7,75 @@ import ShaderEditor from "../components/playground/ShaderEditor";
 import { THEMES } from "../components/playground/themes";
 import "./Playground.css";
 
-const DEFAULT_SHADER = `fn niam(u_time: f32, vUv: vec2<f32>) -> vec4<f32> {
-  let r = 0.5 + 0.5 * cos(u_time + vUv.x + 0.0);
-  let g = 0.5 + 0.5 * cos(u_time + vUv.y + 2.0);
-  let b = 0.5 + 0.5 * cos(u_time + vUv.x + 4.0);
-  
-  return vec4<f32>(r, g, b, 1.0);
+const DEFAULT_SHADER = `
+  fn niam(time: f32, uv: vec2<f32>, mouse_pos: vec2<f32>) -> vec4<f32> {
+  let dist = distance(uv, mouse_pos);
+  let circle = smoothstep(0.15, 0.05, dist);
+
+  let r = 0.5 + 0.5 * cos(time + uv.x + 0.0);
+  let g = 0.5 + 0.5 * cos(time + uv.y + 2.0);
+  let b = 0.5 + 0.5 * cos(time + uv.x + 4.0);
+
+  let baseColor = vec3<f32>(r, g, b);
+  let finalColor = mix(baseColor, vec3<f32>(1.0-r, 1.0-g, 1.0-b), circle);
+
+  return vec4<f32>(finalColor, 1.0);
 }`;
 
 export default function Playground() {
-  const [code, setCode] = useState(DEFAULT_SHADER);
+  // Pegamos o código ou da URL ou do localStorage, se não usamos o default
+  const [code, setCode] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    const compressedCode = params.get("code");
+    if (compressedCode) {
+      const decompressed = LZString.decompressFromEncodedURIComponent(compressedCode);
+      if (decompressed) return decompressed;
+    }
+    const savedCode = localStorage.getItem("playground_shader_code");
+    if (savedCode) return savedCode;
+
+    return DEFAULT_SHADER;
+  });
+
   const [modelType, setModelType] = useState("plane");
   const [customModelUrl, setCustomModelUrl] = useState(null);
-  const [themeKey, setThemeKey] = useState("dark");
-  const [vimEnabled, setVimEnabled] = useState(false);
+  
+  const [themeKey, setThemeKey] = useState(() => {
+    return localStorage.getItem("playground_theme") || "dark";
+  });
+
+  const [fontSize, setFontSize] = useState(() => {
+    const savedSize = localStorage.getItem("playground_font_size");
+    return savedSize ? parseInt(savedSize, 10) : 14;
+  });
+
+  const [vimEnabled, setVimEnabled] = useState(() => {
+    return localStorage.getItem("playground_vim_mode") === "true";
+  });
+
   const [copied, setCopied] = useState(false);
 
   const currentTheme = THEMES[themeKey] || THEMES.dark;
 
-  // Carregar estado inicial da URL se existir
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const compressedCode = params.get("code");
-    const urlModel = params.get("model");
+    localStorage.setItem("playground_shader_code", code);
+  }, [code]);
 
-    if (compressedCode) {
-      const decompressed = LZString.decompressFromEncodedURIComponent(compressedCode);
-      if (decompressed) {
-        setCode(decompressed);
-      }
-    }
-    if (urlModel && urlModel !== "custom") {
-      setModelType(urlModel);
-    }
-  }, []);
+  useEffect(() => {
+    localStorage.setItem("playground_theme", themeKey);
+  }, [themeKey]);
 
-  // Gerar e copiar URL compartilhável
+  useEffect(() => {
+    localStorage.setItem("playground_font_size", fontSize.toString());
+  }, [fontSize]);
+
+  useEffect(() => {
+    localStorage.setItem("playground_vim_mode", vimEnabled)
+  }, [vimEnabled])
+
   const handleShare = () => {
     const compressed = LZString.compressToEncodedURIComponent(code);
-    const shareModel = modelType === "custom" ? "plane" : modelType; // fallback caso use modelo local
+    const shareModel = modelType === "custom" ? "plane" : modelType;
     const newUrl = `${window.location.origin}${window.location.pathname}?model=${shareModel}&code=${compressed}`;
     
     navigator.clipboard.writeText(newUrl).then(() => {
@@ -74,6 +104,7 @@ export default function Playground() {
         direction="horizontal" 
         cursor="col-resize"
       >
+        {/* Painel do Canvas 3D */}
         <div className="playground-left" style={{ borderRight: `1px solid ${currentTheme.border}` }}>
           <div className="playground-controls" style={{ backgroundColor: currentTheme.panelBg, borderBottom: `1px solid ${currentTheme.border}`, color: currentTheme.text }}>
             <div className="control-group">
@@ -82,7 +113,6 @@ export default function Playground() {
                 <option value="plane">Plano 2D</option>
                 <option value="cube">Cubo</option>
                 <option value="sphere">Esfera</option>
-                <option value="icosahedron">Icosaedro</option>
                 <option value="torus">Torus</option>
                 {customModelUrl && <option value="custom">Ficheiro Personalizado</option>}
               </select>
@@ -117,6 +147,7 @@ export default function Playground() {
           </div>
         </div>
 
+        {/* Painel do editor de código */}
         <div className="playground-right">
           <ShaderEditor
             code={code}
@@ -124,6 +155,8 @@ export default function Playground() {
             vimEnabled={vimEnabled}
             onToggleVim={setVimEnabled}
             currentTheme={currentTheme}
+            fontSize={fontSize}
+            onFontSizeChange={setFontSize}
           />
         </div>
       </Split>

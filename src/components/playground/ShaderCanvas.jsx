@@ -4,7 +4,7 @@ import { useRef, useMemo, useEffect, Suspense } from "react";
 import * as THREE from "three";
 import WebGPURenderer from "three/src/renderers/webgpu/WebGPURenderer.js";
 import { NodeMaterial } from "three/webgpu";
-import { wgslFn, time, uv, vec4 } from "three/tsl";
+import { wgslFn, time, uv, vec4, uniform } from "three/tsl";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 function CustomModelMesh({ url, material }) {
@@ -23,7 +23,7 @@ function CustomModelMesh({ url, material }) {
   return <primitive object={clonedScene} scale={1.2} />;
 }
 
-function ShaderMesh({ code, modelType, customModelUrl }) {
+function ShaderMesh({ code, modelType, customModelUrl, mouseVec }) {
     const material = useMemo(() => {
     const mat = new NodeMaterial();
     mat.side = THREE.DoubleSide;
@@ -31,10 +31,10 @@ function ShaderMesh({ code, modelType, customModelUrl }) {
     try {
       const userShader = wgslFn(code);
       
-      // Injetamos o output diretamente, ignorando cálculos paralelos do Three.js
       mat.fragmentNode = userShader({ 
-        u_time: time, 
-        vUv: uv() 
+        time: time, 
+        uv: uv(),
+        mouse_pos: uniform(mouseVec)
       });
       
     } catch (error) {
@@ -45,7 +45,7 @@ function ShaderMesh({ code, modelType, customModelUrl }) {
     }
 
     return mat;
-    }, [code]);
+    }, [code, mouseVec]);
 
   if (modelType === "custom" && customModelUrl) {
     return (
@@ -67,17 +67,31 @@ function ShaderMesh({ code, modelType, customModelUrl }) {
 }
 
 export default function ShaderCanvas({ code, modelType, customModelUrl, bgColor }) {
+  const mouseVec = useRef(new THREE.Vector2(0.5, 0.5)).current;
+
+  const handlePointerMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = 1.0 - (e.clientY - rect.top) / rect.height; // Inverte o eixo Y para bater com UV
+    mouseVec.set(x, y);
+  };
+
   return (
-    <div style={{ width: "100%", height: "100%", position: "relative", background: "#0a0a0a" }}>
+    <div 
+      onPointerMove={handlePointerMove}
+      style={{ width: "100%", height: "100%", position: "relative", background: bgColor || "#0a0a0a" }}
+    >
       <Canvas
         gl={async (props) => {
           const renderer = new WebGPURenderer({ ...props, antialias: true });
           await renderer.init();
           return renderer;
         }}
-        camera={{ position: [0, 0, 4.5], fov: 60 }}
+        camera={{ position: [0, 0, 3.5], fov: 60 }}
       >
-        <ShaderMesh code={code} modelType={modelType} customModelUrl={customModelUrl}/>
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[5, 5, 5]} />
+        <ShaderMesh code={code} modelType={modelType} customModelUrl={customModelUrl} mouseVec={mouseVec} />
         <OrbitControls enableDamping />
       </Canvas>
     </div>
