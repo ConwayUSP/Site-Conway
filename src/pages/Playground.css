@@ -2,20 +2,18 @@
   display: flex;
   width: 100vw;
   height: calc(100vh - 3.67rem); /* O 3.67 é por causa do tamanho da navbar */
-  background-color: var(--bg-secundario);
+  background-color: var(--bg-principal);
   overflow: hidden;
 }
 
-/* Flex layout para o Split Container */
 .split-container {
   display: flex;
   width: 100%;
   height: 100%;
 }
 
-/* O "gutter" é a barra divisória criada pelo react-split */
 .gutter {
-  background-color: #2a2a2a;
+  background-color: var(--bg-principal);
   background-repeat: no-repeat;
   background-position: 50%;
   transition: background-color 0.2s ease;
@@ -23,13 +21,11 @@
 }
 
 .gutter.gutter-horizontal {
-  /* Ícone texturizado para indicar ao utilizador que é possível arrastar */
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjbd5MgKJBAAWxg0Fxm1xJQAAAABJRU5ErkJggg==');
   cursor: col-resize;
 }
 
 .gutter:hover {
-  background-color: #3a3a3a;
+  background-color: #2a2a3a;
 }
 
 .playground-left {
@@ -49,8 +45,43 @@
   align-items: center;
   gap: 12px;
   padding: 10px 16px;
+  z-index: 20;
   background-color: var(--bg-secundario);
   color: #fff;
+  border-radius: 0px 0.5rem 0.5rem 0px;
+  width: 98%;
+  margin-right: 2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.controls-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  width: max-content;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.toggle-controls-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 4px 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.toggle-controls-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .playground-controls select {
@@ -61,8 +92,17 @@
   border-radius: 5px;
 }
 
+.playground-controls.collapsed {
+  left: 0;
+  top: 16px;
+  padding: 8px 6px 8px 4px;
+  border-radius: 0 20px 20px 0;
+  border-left: none;
+  width: 2rem;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.4);
+}
+
 .share-btn {
-  margin-left: auto;
   background-color: var(--brand-yellow);
   color: var(--bg-secundario);
   border: none;
@@ -110,4 +150,72 @@
   .playground-left, .playground-right {
     height: 50%;
   }
+}
+
+/* MUITO CSS PARA UM BOTÃOZINHO MINÚSCULO */
+
+.vim-switch-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.85rem;
+}
+
+/* O invólucro do switch */
+.vim-switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+}
+
+/* Esconde o checkbox nativo */
+.vim-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Trilho do Switch (Pílula) */
+.vim-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2a2a32;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+  border-radius: 20px;
+}
+
+/* Bolinha/Knob do Switch */
+.vim-slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #a0a0ab;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.vim-switch input:checked + .vim-slider {
+  background-color: var(--brand-red);
+  border-color: var(--brand-red);
+}
+
+.vim-switch input:checked + .vim-slider:before {
+  transform: translateX(18px);
+  background-color: #ffffff;
+}
+
+.vim-switch input:focus-visible + .vim-slider {
+  box-shadow: 0 0 0 2px rgba(250, 50, 80, 0.8);
 }

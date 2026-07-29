@@ -129,6 +129,36 @@ export const THEMES = {
       ]
     })
   },
+  catjump: {
+    name: "Pulo do Gato",
+    bg: "#15152b",
+    panelBg: "#1a1a2f",
+    border: "#2c2c4f",
+    text: "#d6efff",
+    editorTheme: createTheme({
+      dark: true,
+      bg: "#15152b",
+      panelBg: "#1a1a2f",
+      border: "#2c2c4f",
+      text: "#d6efff",
+      cursor: "#fb719f",
+      selection: "#15152b",
+      guttersBg: "#15152b",
+      guttersText: "#2c2c4f",
+      tokenStyles: [
+        { tag: t.keyword, color: "#fb719f", fontWeight: "bold" },
+        { tag: [t.typeName, t.className], color: "#89d4ec" },
+        { tag: [t.number, t.bool, t.null], color: "#fff5bf" },
+        { tag: [t.string, t.character], color: "#fff5bf" },
+        { tag: t.propertyName, color: "#bbffb7" },
+        { tag: t.variableName, color: "#fffade" },
+        { tag: t.operator, color: "#1c7eac" },
+        { tag: t.comment, color: "#00576a" },
+        { tag: t.punctuation, color: "#d6efff" },
+        { tag: t.name, color: "#9294ff" }
+      ]
+    })
+  },
   light: {
     name: "GitHub Light",
     bg: "#ffffff",

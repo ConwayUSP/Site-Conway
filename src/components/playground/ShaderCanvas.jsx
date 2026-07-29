@@ -79,7 +79,7 @@ export default function ShaderCanvas({ code, modelType, customModelUrl, bgColor 
   return (
     <div 
       onPointerMove={handlePointerMove}
-      style={{ width: "100%", height: "100%", position: "relative", background: bgColor || "#0a0a0a" }}
+      style={{ width: "100%", height: "100%", position: "relative", background: `var(--bg-principal)` }}
     >
       <Canvas
         gl={async (props) => {
