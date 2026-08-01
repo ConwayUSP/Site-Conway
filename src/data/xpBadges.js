@@ -1,15 +1,13 @@
-import lvl1 from '../assets/xpBadges/1.png';
-import lvl2 from '../assets/xpBadges/2.png';
-import lvl3 from '../assets/xpBadges/3.png';
-import lvl4 from '../assets/xpBadges/4.png';
-import lvl5 from '../assets/xpBadges/5.png';
-import lvl6 from '../assets/xpBadges/6.png';
-import lvl7 from '../assets/xpBadges/7.png';
-import lvl8 from '../assets/xpBadges/8.png';
-import lvl9 from '../assets/xpBadges/9.png';
-import lvl10 from '../assets/xpBadges/10.png';
+import lvl1 from '/badges/xp/1.svg';
+import lvl2 from '/badges/xp/2.svg';
+import lvl3 from '/badges/xp/3.svg';
+import lvl4 from '/badges/xp/4.svg';
+import lvl5 from '/badges/xp/5.svg';
+import lvl6 from '/badges/xp/6.svg';
+import lvl7 from '/badges/xp/7.svg';
+import lvl8 from '/badges/xp/8.svg';
 
-const xpBadges = {
+export const xpBadges = {
     1: {
         level: 1,
         requiredXP: 100,
@@ -17,37 +15,37 @@ const xpBadges = {
     },
     2: {
         level: 2,
-        requiredXP: 125,
+        requiredXP: 133,
         badge: lvl2,
     },
     3: {
         level: 3,
-        requiredXP: 150,
+        requiredXP: 177,
         badge: lvl3,
     },
     4: {
         level: 4,
-        requiredXP: 175,
+        requiredXP: 235,
         badge: lvl4,
     },
     5: {
         level: 5,
-        requiredXP: 200,
+        requiredXP: 312,
         badge: lvl5,
     },
     6: {
         level: 6,
-        requiredXP: 225,
+        requiredXP: 416,
         badge: lvl6,
     },
     7: {
         level: 7,
-        requiredXP: 250,
+        requiredXP: 553,
         badge: lvl7,
     },
     8: {
-        level: "MAX",
-        requiredXP: 275,
+        level: 8,
+        requiredXP: 735,
         badge: lvl8,
     }
 }
