@@ -48,7 +48,7 @@ function Member() {
   const photo = member?.properties?.["Fotinha"]?.files?.[0]?.file?.url || member?.properties?.["Foto"]?.files?.[0]?.external?.url
   const memberName = member?.properties?.["Nome"]?.title?.[0]?.text?.content
   const icon = member?.icon
-  const description = member ? "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae totam minima, vitae consequuntur ad nemo voluptatem? Delectus in facere voluptatibus quas debitis, alias odio sit accusamus eum atque optio veritatis." : ""
+  const sentence = member?.properties?.["Frase do Dia"]?.rich_text?.[0]?.text?.content || "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae totam minima, vitae consequuntur ad nemo voluptatem? Delectus in facere voluptatibus quas debitis, alias odio sit accusamus eum atque optio veritatis."
   const depColor = member?.properties?.["Setor"]?.multi_select?.[0]?.color
   const depID = colorToDepID[depColor]
 
@@ -74,7 +74,7 @@ function Member() {
             <h2>{memberName || <Skeleton/>}</h2>
             <img className='icon' src={icons[`${depID}icon`]} alt={depID} />
           </div>
-          <p>{description || <Skeleton count={5}/>}</p>
+          <p className='sentence' >{sentence || <Skeleton count={5}/>}</p>
         </div>
         
         {xp && level && xpBadges && (

@@ -67,6 +67,28 @@
     width: 2.75rem;
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
   }
+
+  & .sentence {
+    font-family: 'EB Garamond';
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 0.5rem 0.75rem;
+    background-color: color-mix(in srgb, var(--bg-secondary), transparent 50%);
+    border-left: 0.25rem solid var(--brand-purple);
+    text-align: justify;
+  }
+
+  & .sentence::before {
+    content: '"';
+    margin-right: 0.2rem;
+  }
+
+  
+  & .sentence::after {
+    content: '"';
+    margin-right: 0.2rem;
+  }
 }
 
 .member-name-wrapper {
