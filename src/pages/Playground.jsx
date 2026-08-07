@@ -2,9 +2,15 @@
 import { useState, useEffect } from "react";
 import LZString from "lz-string";
 import Split from "react-split";
-import ShaderCanvas from "../components/playground/ShaderCanvas";
-import ShaderEditor from "../components/playground/ShaderEditor";
-import { THEMES } from "../components/playground/themes";
+
+// Components
+import ShaderCanvas from "@components/playground/ShaderCanvas";
+import ShaderEditor from "@components/playground/ShaderEditor";
+import { THEMES } from "@components/playground/themes";
+
+// Hooks
+import { useMediaQuery } from "@hooks/useMediaQuery";
+
 import "./Playground.css";
 
 const DEFAULT_SHADER = `
@@ -59,6 +65,8 @@ export default function Playground() {
 
   const [copied, setCopied] = useState(false);
 
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
   const currentTheme = THEMES[themeKey] || THEMES.dark;
 
   useEffect(() => {
@@ -105,12 +113,13 @@ export default function Playground() {
     <div className="playground-page" >
       <Split 
         className="split-container" 
-        sizes={[50, 50]} 
         minSize={300} 
         gutterSize={8} 
         gutterAlign="center" 
-        direction="horizontal" 
-        cursor="col-resize"
+        key={isMobile ? "vertical" : "horizontal"}
+        direction={isMobile ? "vertical" : "horizontal"} 
+        cursor={isMobile ? "row-resize" : "col-resize"}
+        sizes={isMobile ? [50, 50] : [60, 40]} 
       >
         {/* Painel do Canvas 3D */}
         <div className="playground-left" >
