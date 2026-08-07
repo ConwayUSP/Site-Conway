@@ -82,7 +82,7 @@ function Member() {
             <img className='xp-badge' src={xpBadges[level].badge} alt={`Level ${level}`} />
             <div className='xp-progress'>
               <div className="progressbar" style={{ background: `linear-gradient(var(--bg-primary), var(--bg-secondary)) padding-box, linear-gradient(to right, ${xpBadges[level].color}) border-box` }}>
-                <div className="progressbar-fill" style={{ width: `${(xp / xpBadges[level].requiredXP) * 100}%`, background: `linear-gradient(to right, ${xpBadges[level].color})` }}>&nbsp;</div>
+                <div className="progressbar-fill" style={{ '--width': `${(xp / xpBadges[level].requiredXP) * 100}%`, background: `linear-gradient(to right, ${xpBadges[level].color})` }}>&nbsp;</div>
               </div>
               <p>{xp}/{xpBadges[level].requiredXP} XP</p>
             </div>

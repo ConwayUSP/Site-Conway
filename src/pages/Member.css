@@ -210,3 +210,18 @@
   content: var(--icon);
   margin-right: 0.2rem;
 }
+
+.progressbar-fill {
+  width: 0;
+  animation: progressbar-fill-animation 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes progressbar-fill-animation {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--width);
+  }
+}
