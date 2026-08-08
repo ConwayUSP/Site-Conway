@@ -16,6 +16,7 @@ import Members from './pages/Members.jsx'
 import Member from './pages/Member.jsx'
 import TrilhaIndexView from './pages/TrilhaIndexView.jsx'
 import ChapterRouteWrapper from './pages/ChapterRouteWrapper.jsx'
+import Playground from "./pages/Playground";
 import { SkeletonTheme } from 'react-loading-skeleton'
 
 
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
         { path: "trilha/:trailId", element: <TrilhaIndexView /> },
         { path: "trilha/:trailId/capitulo/:chapterIndex", element: <ChapterRouteWrapper /> }
       ]},
+      { path: 'playground', element: <Playground /> }
     ]
   }
 ])
