@@ -65,8 +65,3 @@
     font-size: 1.1em;
   }
 }
-
-.member-card-content > h2::before {
-  content: var(--icon);
-  margin-right: 0.2rem;
-}

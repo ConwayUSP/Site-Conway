@@ -28,6 +28,7 @@ const icons = { DPSicon, DLCicon, GGicon, OPicon }
 
 // Badges
 import xpBadges from '@data/xpBadges'
+import TitleIconic from '../components/TitleIconic';
 
 
 function Member() {
@@ -66,12 +67,11 @@ function Member() {
       </section>
       <section 
         className='member-content'
-        {...(icon && { style: { "--icon": `"${icon}"` } })}
       >
         <div className='member-content-about'>
           <img className='bg-img' src={imagery[`${depID}img`]}/>
           <div className='member-name-wrapper'>
-            <h2>{memberName || <Skeleton/>}</h2>
+            <TitleIconic title={memberName} icon={icon}/>
             <img className='icon' src={icons[`${depID}icon`]} alt={depID} />
           </div>
           <p className='sentence' >{sentence || <Skeleton count={5}/>}</p>

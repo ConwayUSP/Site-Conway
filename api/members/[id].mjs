@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     
     res.status(200).json({
       id: data.id,
-      icon: data.icon?.emoji,
+      icon: data.icon,
       properties: data.properties 
     })
   } catch (error) {

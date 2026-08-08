@@ -1,0 +1,18 @@
+.title-iconic {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-emoji {
+  font-size: 1em;
+  line-height: 1;
+}
+
+.icon-file {
+  width: 1em;
+  height: 1em;
+  object-fit: contain;
+
+  flex-shrink: 0;
+}

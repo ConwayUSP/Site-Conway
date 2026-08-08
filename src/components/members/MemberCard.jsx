@@ -9,6 +9,7 @@ import DPS from '@assets/setores/textures/DPS.png'
 import DLC from '@assets/setores/textures/DLC.png'
 import GG from '@assets/setores/textures/GG.png'
 import OP from '@assets/setores/textures/OP.png'
+import TitleIconic from '../TitleIconic'
 
 const textures = {
   estrelinhas,
@@ -90,9 +91,8 @@ export function MemberCard({ properties, icon, id }) {
       />
       <div 
         className="member-card-content"
-        {...(icon && { style: { "--icon": `"${icon}"` } })}
       >
-        <h2>{memberName}</h2>
+        <TitleIconic title={memberName} icon={icon}/>
       </div>
     </button>
   )
