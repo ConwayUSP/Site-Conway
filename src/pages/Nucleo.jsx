@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import trilhasConfig from '@data/trilhasConfig.json';
 import './Nucleo.css';
+import { ProgressBar } from '@components/nucleo/progressBar.jsx';
 
 function Nucleo() {
   return (
@@ -25,6 +26,7 @@ function Nucleo() {
             <div className="card-trilha-content">
               <h3>{trail.name}</h3>
               <p>{trail.description}</p>
+              <ProgressBar id={id} />
             </div>
           </Link>
         ))}

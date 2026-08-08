@@ -1,6 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
 import trilhasConfig from '@data/trilhasConfig.json';
 import './TrilhaIndexView.css';
+import { ProgressBar } from '@components/nucleo/progressBar.jsx';
+import { isChapterRead } from '@utils/trailProgressFunctions.jsx';
 
 // paletas de cor de cada trilha
 import '@styles/theme-opengl.css';
@@ -27,6 +29,9 @@ function TrilhaIndexView() {
         <h1 style={{ marginTop: '1.5rem', marginBottom: '0.5rem' }}>{trail.name}</h1>
         <p style={{ color: 'var(--cor-texto-mutado)', marginBottom: '2.5rem' }}>{trail.description}</p>
 
+        <p style={{ marginBottom: '0.5rem' }}>Progresso na leitura:</p>
+        <ProgressBar id={trailId} />
+
         <h2>Conteúdos da Trilha</h2>
         <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {trail.chapters.map((chapter, index) => (
@@ -43,7 +48,9 @@ function TrilhaIndexView() {
                 display: 'block'
               }}
             >
-              <strong style={{ display: 'block', fontSize: '1.1rem' }}>{chapter.title}</strong>
+              <strong style={{ display: 'block', fontSize: '1.1rem' , textDecoration: (isChapterRead(trailId, index)) ? 'line-through' : 'none'}}>
+                {chapter.title}
+              </strong>
             </Link>
           ))}
         </div>
