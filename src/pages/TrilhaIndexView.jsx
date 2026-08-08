@@ -36,17 +36,9 @@ function TrilhaIndexView() {
         <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {trail.chapters.map((chapter, index) => (
             <Link 
+              className="chapter-link"
               key={chapter.id} 
               to={`/nucleo/trilha/${trailId}/capitulo/${index}`}
-              style={{
-                padding: '1.2rem', 
-                background: 'var(--bg-secundario)', 
-                borderLeft: '3px solid var(--cor-borda)', 
-                borderRadius: '0px 0.3px 0.3rem 0px', 
-                color: 'var(--cor-texto)', 
-                textDecoration: 'none',
-                display: 'block'
-              }}
             >
               <strong style={{ display: 'block', fontSize: '1.1rem' , textDecoration: (isChapterRead(trailId, index)) ? 'line-through' : 'none'}}>
                 {chapter.title}

@@ -1,0 +1,10 @@
+.trail-page {
+  & nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding: 1em;
+    /* position: sticky; */
+    /* top: 3.6em; */
+  }
+}
