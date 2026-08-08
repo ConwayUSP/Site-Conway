@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import rehypeRaw from 'rehype-raw';
@@ -19,20 +18,22 @@ export function ChapterView({ repoRootUrl, filepath }) {
         if (!res.ok) throw new Error("Erro");
         return res.text();
       })
-      .then(text => setContent(text))
-      .catch(err => setContent("# Erro\nNão foi possível carregar."));
-      
-      // pega o índice do capítulo no url
-      const pathSegments = window.location.pathname.split('/');
-      const trail = pathSegments[pathSegments.length - 3];
-      const index = pathSegments[pathSegments.length - 1];
+      .then(text => {
+        setContent(text)
+              
+        // pega o índice do capítulo no url
+        const pathSegments = window.location.pathname.split('/');
+        const trail = pathSegments[pathSegments.length - 3];
+        const index = pathSegments[pathSegments.length - 1];
 
-      // verifica se o usuário scrollou para o fim da página e se sim marca o capítulo como lido
-      window.addEventListener('scroll', function() {
-        if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
-          markAsRead(trail, index);
-        }
-      });
+        // verifica se o usuário scrollou para o fim da página e se sim marca o capítulo como lido
+        window.addEventListener('scroll', function() {
+          if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+            markAsRead(trail, index);
+          }
+        });
+      })
+      .catch(err => setContent("# Erro\nNão foi possível carregar."));
 
   }, [mdAbsoluteUrl]);
 
