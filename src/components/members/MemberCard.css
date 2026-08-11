@@ -5,6 +5,17 @@
   gap: 1rem;
 }
 
+.members-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.member-card-label {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
 .member-card {
   width: 100%;
   position: relative;

@@ -11,12 +11,12 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         filter: {
           and: [
-            {
-              property: 'Status',
-              status: {
-                equals: 'Ativo'
-              }
-            },
+            // {
+            //   property: 'Status',
+            //   status: {
+            //     equals: 'Ativo'
+            //   }
+            // },
             {
               property: 'Cargo',
               select: {
