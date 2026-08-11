@@ -2,6 +2,10 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .icon-emoji {
