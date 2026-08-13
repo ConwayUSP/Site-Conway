@@ -1,0 +1,17 @@
+.markButton {
+    background-color: var(--cor-destaque);
+    color: var(--bg-secondary);
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 32px;
+    margin-top: 12px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.markButton-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

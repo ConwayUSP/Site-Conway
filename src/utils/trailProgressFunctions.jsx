@@ -33,6 +33,15 @@ export function markAsRead(trailId, chapter) {
     localStorage.setItem(KEY, JSON.stringify(trailProgress));
 }
 
+export function markAllAsRead(trailId) {
+    const trailProgress = parseTrailProgress();
+    const totalChapters = trilhasConfig[trailId].chapters.length;
+    for (var i = 0; i < totalChapters; i++) {
+        trailProgress[trailId][i] = true;
+    }
+    localStorage.setItem(KEY, JSON.stringify(trailProgress));
+}
+
 export function isChapterRead(trailId, chapter) {
     const trailProgress = parseTrailProgress();
     return trailProgress[trailId][chapter];

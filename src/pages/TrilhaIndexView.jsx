@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import trilhasConfig from '@data/trilhasConfig.json';
 import './TrilhaIndexView.css';
 import { ProgressBar } from '@components/nucleo/progressBar.jsx';
+import { MarkAsReadButton } from '@components/nucleo/markAsReadButton.jsx';
 import { isChapterRead } from '@utils/trailProgressFunctions.jsx';
 
 // paletas de cor de cada trilha
@@ -31,6 +32,8 @@ function TrilhaIndexView() {
 
         <p style={{ marginBottom: '0.5rem' }}>Progresso na leitura:</p>
         <ProgressBar id={trailId} />
+        
+        <MarkAsReadButton id={trailId} />
 
         <h2>Conteúdos da Trilha</h2>
         <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>

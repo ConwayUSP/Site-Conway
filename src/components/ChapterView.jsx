@@ -28,7 +28,7 @@ export function ChapterView({ repoRootUrl, filepath }) {
 
         // verifica se o usuário scrollou para o fim da página e se sim marca o capítulo como lido
         window.addEventListener('scroll', function() {
-          if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+          if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 150) {
             markAsRead(trail, index);
           }
         });
