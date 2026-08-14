@@ -2,33 +2,65 @@ import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
+
+import { useNucleo } from '@hooks/useNucleo';
 
 // essa é a visualização de um capítulo específico,
 // recebe como argumentos o URL base do repo e o caminho pro .md
 export function ChapterView({ repoRootUrl, filepath }) {
   const [content, setContent] = useState('Carregando conteúdo...');
+  const { markAsRead } = useNucleo()
+
   const mdAbsoluteUrl = new URL(filepath, repoRootUrl).href;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+                  
+    // pega o índice do capítulo no url
+    const pathSegments = window.location.pathname.split('/');
+    const trail = pathSegments[pathSegments.length - 3];
+    const index = pathSegments[pathSegments.length - 1];
+
+    let alreadyMarked = false;
+
+    const onScroll = () => {
+      if (alreadyMarked) return;
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 100) {
+        markAsRead(trail, index);
+        alreadyMarked = true;
+      }
+    }
+
     fetch(mdAbsoluteUrl)
       .then(res => {
         if (!res.ok) throw new Error("Erro");
         return res.text();
       })
-      .then(text => setContent(text))
+      .then(text => {
+        setContent(text)
+        
+        // verifica se o usuário scrollou para o fim da página e se sim marca o capítulo como lido
+        window.addEventListener('scroll', onScroll);
+      })
       .catch(err => setContent("# Erro\nNão foi possível carregar."));
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    }
   }, [mdAbsoluteUrl]);
 
   return (
     <div className="markdown-container">
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
+        remarkPlugins={[remarkGfm]}
         components={{
           // intercepta imagens para substituir o caminho relativo por um absoluto
-          img: ({ node, src, alt, ...props }) => {
+          img: ({ node, src, alt, height, style, ...props }) => {
             const isAbsolute = src.startsWith('http://') || src.startsWith('https://');
             const resolvedSrc = isAbsolute ? src : new URL(src, mdAbsoluteUrl).href;
-            return <img src={resolvedSrc} alt={alt || 'Imagem'} style={{ maxWidth: '100%' }} {...props} />;
+            return <img src={resolvedSrc} alt={alt || 'Imagem'} style={{ maxWidth: '100%', height: height ? `${height}px` : "auto",...style }} {...props} />;
           },
           
           // intercepta blocos de código para usarmos o SyntaxHighlighter

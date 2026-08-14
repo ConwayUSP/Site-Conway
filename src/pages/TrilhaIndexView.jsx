@@ -1,6 +1,15 @@
 import { Link, useParams } from 'react-router-dom';
-import trilhasConfig from '@data/trilhasConfig.json';
+import { motion } from 'framer-motion';
+
 import './TrilhaIndexView.css';
+
+import { ProgressBar } from '@components/nucleo/progressBar.jsx';
+import { MarkAsReadButton } from '@components/nucleo/markAsReadButton.jsx';
+
+import { useLocalStorage } from '@hooks/useLocalStorage';
+import { useNucleo } from '@hooks/useNucleo';
+
+import trilhasConfig from '@data/trilhasConfig.json';
 
 // paletas de cor de cada trilha
 import '@styles/theme-opengl.css';
@@ -8,7 +17,10 @@ import '@styles/theme-github.css';
 
 function TrilhaIndexView() {
   const { trailId } = useParams();
-  const trail = trilhasConfig[trailId];
+
+  const { isChapterRead } = useNucleo()
+
+  const trail = trilhasConfig[trailId] || [];
 
   if (!trail) {
     return (
@@ -24,26 +36,44 @@ function TrilhaIndexView() {
       <div className='container-reading'>
         <Link to=".." style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>Voltar para o Núcleo</Link>
         
-        <h1 style={{ marginTop: '1.5rem', marginBottom: '0.5rem' }}>{trail.name}</h1>
+        <div style={{marginBottom: '1rem'}}>
+          <h1 className="trail-name">{trail.name}</h1>
+          <MarkAsReadButton id={trailId} />
+        </div>
         <p style={{ color: 'var(--cor-texto-mutado)', marginBottom: '2.5rem' }}>{trail.description}</p>
 
+        <p style={{ marginBottom: '0.5rem' }}>Progresso na leitura:</p>
+        <ProgressBar id={trailId} />
+        
         <h2>Conteúdos da Trilha</h2>
         <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {trail.chapters.map((chapter, index) => (
             <Link 
+              className="chapter-link"
               key={chapter.id} 
               to={`/nucleo/trilha/${trailId}/capitulo/${index}`}
-              style={{
-                padding: '1.2rem', 
-                background: 'var(--bg-secundario)', 
-                borderLeft: '3px solid var(--cor-borda)', 
-                borderRadius: '0px 0.3px 0.3rem 0px', 
-                color: 'var(--cor-texto)', 
-                textDecoration: 'none',
-                display: 'block'
-              }}
             >
-              <strong style={{ display: 'block', fontSize: '1.1rem' }}>{chapter.title}</strong>
+              <strong style={{ 
+                display: 'inline-block', 
+                fontSize: '1.1rem',
+                position: 'relative',
+              }}>
+                {chapter.title}
+                <motion.div
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: 0,
+                    right: 0,
+                    height: "1px",
+                    backgroundColor: "currentColor",
+                    originX: 0
+                  }}
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: isChapterRead(trailId, index) ? 1 : 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                />
+              </strong>
             </Link>
           ))}
         </div>
