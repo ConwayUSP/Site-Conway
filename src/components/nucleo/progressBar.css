@@ -32,7 +32,6 @@ progress::-moz-progress-value {
   align-items: center;
 }
 
-.progress-display p {
-  margin-bottom: 0rem;
+.progress-display span {
   padding-left: 0.5rem;
 }

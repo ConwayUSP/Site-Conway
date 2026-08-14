@@ -95,7 +95,7 @@ pre:has(> .inline-code) {
 .markdown-container img, 
 .markdown-container pre {
   max-width: 100%;
-  height: auto !important;
+  height: auto;
   display: block;
   margin: 1rem auto;
   overflow-x: auto;

@@ -10,7 +10,7 @@ export function ProgressBar({ id }) {
     return (
         <div className="progress-display">
             <progress value={percentage} max="100"/>
-            <p>{percentage}%</p>
+            <span>{percentage}%</span>
         </div>
     )
 }
