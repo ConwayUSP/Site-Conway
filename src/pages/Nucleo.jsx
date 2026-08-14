@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import trilhasConfig from '@data/trilhasConfig.json';
-import './Nucleo.css';
+
 import { ProgressBar } from '@components/nucleo/progressBar.jsx';
+import { NucleoProvider } from '../contexts/NucleoContext';
+
+import './Nucleo.css';
 
 function Nucleo() {
   return (

@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import rehypeRaw from 'rehype-raw';
-import { markAsRead } from '../utils/trailProgressFunctions';
+
+import { useNucleo } from '@hooks/useNucleo';
 
 // essa é a visualização de um capítulo específico,
 // recebe como argumentos o URL base do repo e o caminho pro .md
 export function ChapterView({ repoRootUrl, filepath }) {
   const [content, setContent] = useState('Carregando conteúdo...');
+  const { markAsRead } = useNucleo()
+
   const mdAbsoluteUrl = new URL(filepath, repoRootUrl).href;
 
   useEffect(() => {

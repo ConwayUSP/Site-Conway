@@ -6,6 +6,11 @@
   width: 100%;
 }
 
+.trail-name {
+  margin: 1.5rem 0.8rem 0.5rem 0;
+  display: inline-block;
+}
+
 .chapter-link {
   padding: 1.2rem;
   background: var(--bg-secundario);

@@ -12,6 +12,7 @@ progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
   background-color: var(--cor-destaque);
   border-radius: 50px;
+  transition: width .4s ease-out;
 }
 
 progress::-moz-progress-bar {

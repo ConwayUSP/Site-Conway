@@ -1,12 +1,12 @@
-import { useNavigate } from 'react-router-dom'
+import { useNucleo } from '@hooks/useNucleo';
 import './markAsReadButton.css'
-import { markAllAsRead } from '@utils/trailProgressFunctions.jsx'
 
 export function MarkAsReadButton({ id }) {
-    const navigate = useNavigate();
+    const { markAllAsRead } = useNucleo()
+
     return (
         <div className="markButton-display">
-            <button className="markButton" onClick={() => { markAllAsRead(id); navigate(0); }}>
+            <button className="markButton" onClick={() => { markAllAsRead(id); }}>
                 Marcar trilha como lida
             </button>
         </div>

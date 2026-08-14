@@ -1,17 +1,23 @@
 .markButton {
-    background-color: var(--cor-destaque);
-    color: var(--bg-secondary);
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 15px 32px;
-    margin-top: 12px;
-    border-radius: 50px;
-    cursor: pointer;
+  background-color: var(--cor-destaque);
+  color: var(--bg-secondary);
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 0.8em 1.1em;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 4px 4px 4px color-mix(in srgb, var(--cor-destaque), rgba(0, 0, 0, 0.1) 80%);
+}
+
+.markButton:hover {
+  background-color: color-mix(in srgb, var(--cor-destaque), #fff 10%);
+  color: var(--bg-secondary);
 }
 
 .markButton-display {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
 }
