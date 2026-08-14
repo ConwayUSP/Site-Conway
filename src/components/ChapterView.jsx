@@ -15,29 +15,36 @@ export function ChapterView({ repoRootUrl, filepath }) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+                  
+    // pega o índice do capítulo no url
+    const pathSegments = window.location.pathname.split('/');
+    const trail = pathSegments[pathSegments.length - 3];
+    const index = pathSegments[pathSegments.length - 1];
+
+    let alreadyMarked = false;
+
+    const onScroll = () => {
+      if (alreadyMarked) return;
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 100) {
+        markAsRead(trail, index);
+        alreadyMarked = true;
+      }
+    }
+
+    // verifica se o usuário scrollou para o fim da página e se sim marca o capítulo como lido
+    window.addEventListener('scroll', onScroll);
 
     fetch(mdAbsoluteUrl)
       .then(res => {
         if (!res.ok) throw new Error("Erro");
         return res.text();
       })
-      .then(text => {
-        setContent(text)
-              
-        // pega o índice do capítulo no url
-        const pathSegments = window.location.pathname.split('/');
-        const trail = pathSegments[pathSegments.length - 3];
-        const index = pathSegments[pathSegments.length - 1];
-
-        // verifica se o usuário scrollou para o fim da página e se sim marca o capítulo como lido
-        window.addEventListener('scroll', function() {
-          if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 150) {
-            markAsRead(trail, index);
-          }
-        });
-      })
+      .then(text => setContent(text))
       .catch(err => setContent("# Erro\nNão foi possível carregar."));
 
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    }
   }, [mdAbsoluteUrl]);
 
   return (
