@@ -32,15 +32,17 @@ export function ChapterView({ repoRootUrl, filepath }) {
       }
     }
 
-    // verifica se o usuário scrollou para o fim da página e se sim marca o capítulo como lido
-    window.addEventListener('scroll', onScroll);
-
     fetch(mdAbsoluteUrl)
       .then(res => {
         if (!res.ok) throw new Error("Erro");
         return res.text();
       })
-      .then(text => setContent(text))
+      .then(text => {
+        setContent(text)
+        
+        // verifica se o usuário scrollou para o fim da página e se sim marca o capítulo como lido
+        window.addEventListener('scroll', onScroll);
+      })
       .catch(err => setContent("# Erro\nNão foi possível carregar."));
 
     return () => {
