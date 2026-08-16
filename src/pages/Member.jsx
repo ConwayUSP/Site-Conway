@@ -74,7 +74,13 @@ function Member() {
             <TitleIconic title={memberName} icon={icon}/>
             <img className='icon' src={icons[`${depID}icon`]} alt={depID} />
           </div>
-          <p className='sentence' >{sentence || <Skeleton count={5}/>}</p>
+          {memberName ? (
+            <p className='sentence' >{sentence}</p>
+          ) : (
+            <p>
+              <Skeleton count={5}/>
+            </p>
+          )}
         </div>
         
         {xp && level && xpBadges && (
@@ -86,7 +92,7 @@ function Member() {
               </div>
               <p>{xp}/{xpBadges[level].requiredXP} XP</p>
             </div>
-            <h3 style={{ marginLeft: '0.75rem' }}>LVL {level}</h3>
+            <h3 style={{ marginLeft: '0.75rem', flexShrink: 0 }}>LVL {level}</h3>
           </div>
         )}
 

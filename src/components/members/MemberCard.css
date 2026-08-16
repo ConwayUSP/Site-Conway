@@ -70,9 +70,13 @@
 }
 
 .member-card-content > h2 {
-  font-size: 0.9em;
+  font-size: 0.7em;
 
   @media (max-width: 768px) {
     font-size: 1.1em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.4em;
   }
 }

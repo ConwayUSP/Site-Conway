@@ -6,7 +6,7 @@ export default function TitleIconic({title, icon, className}) {
   return (
     <h2 className="title-iconic">
       <Icon icon={icon}/>
-      {title || <Skeleton/>}
+      {title ? <span>{title}</span> : <Skeleton />}
     </h2>
   )
 }

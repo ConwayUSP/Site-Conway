@@ -6,6 +6,21 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  width: 100%;
+}
+
+.title-iconic :last-child {
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex: 1;
+
+  & span {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+  }
 }
 
 .icon-emoji {
