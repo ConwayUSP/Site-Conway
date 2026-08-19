@@ -45,6 +45,7 @@ function Member() {
   const { data: memberProjects } = useProjectsByIds(member?.properties?.["Projetos"]?.relation)
   const { data: memberBadges } = useBadgesByIds(member?.properties?.["Selos"]?.relation)
   const { xp, level, xpTotal } = useMemberXP(member, memberProjects)
+  const isXPLoaded = xp !== undefined && level !== undefined && xpTotal !== 0
 
   const photo = member?.properties?.["Fotinha"]?.files?.[0]?.file?.url || member?.properties?.["Foto"]?.files?.[0]?.external?.url
   const memberName = member?.properties?.["Nome"]?.title?.[0]?.text?.content
@@ -83,7 +84,7 @@ function Member() {
           )}
         </div>
         
-        {xp && level && xpBadges && (
+        {isXPLoaded && (
           <div className='member-content-xp'>
             <img className='xp-badge' src={xpBadges[level].badge} alt={`Level ${level}`} />
             <div className='xp-progress'>
