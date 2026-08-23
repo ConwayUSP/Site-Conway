@@ -51,7 +51,7 @@ function Member() {
   const memberName = member?.properties?.["Nome"]?.title?.[0]?.text?.content
   const icon = member?.icon
   const sentence = member?.properties?.["Frase do Dia"]?.rich_text?.[0]?.text?.content || "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae totam minima, vitae consequuntur ad nemo voluptatem? Delectus in facere voluptatibus quas debitis, alias odio sit accusamus eum atque optio veritatis."
-  const depColor = member?.properties?.["Setor"]?.multi_select?.[0]?.color
+  const depColor = member?.properties?.["Setor"]?.multi_select?.find(option => option.color === 'gray')?.color || member?.properties?.["Setor"]?.multi_select?.[0]?.color
   const depID = colorToDepID[depColor]
 
   return (
