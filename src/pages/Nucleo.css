@@ -18,7 +18,10 @@
 .card-trilha {
   background: #0f0a1a;
   border: 0px solid var(--cor-borda);
-  box-shadow: rgba(0, 0, 15, 0.1) 0px 1px 1px 0px inset, rgba(0, 0, 15, 0.25) 0px 2rem 4rem -1rem, rgba(0, 0, 0, 0.3) 0px 1.5rem 3rem -1.5rem;
+  box-shadow:
+    rgba(0, 0, 15, 0.1) 0px 1px 1px 0px inset,
+    rgba(0, 0, 15, 0.25) 0px 2rem 4rem -1rem,
+    rgba(0, 0, 0, 0.3) 0px 1.5rem 3rem -1.5rem;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -26,15 +29,20 @@
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  
+
   /* Animação suave de elevação e borda */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 /* O "Pulo do Gato": Ao passar o mouse, a borda pega a cor de destaque da trilha */
 .card-trilha:hover {
   transform: translateY(-4px);
-  box-shadow: rgba(0, 0, 15, 0.1) 0px 1px 1px 0px inset, rgba(0, 0, 15, 0.25) 0px 3rem 6rem -20px, rgba(0, 0, 0, 0.3) 0px 2rem 4rem -2rem;
+  box-shadow:
+    rgba(0, 0, 15, 0.1) 0px 1px 1px 0px inset,
+    rgba(0, 0, 15, 0.25) 0px 3rem 6rem -20px,
+    rgba(0, 0, 0, 0.3) 0px 2rem 4rem -2rem;
 }
 
 .card-trilha img {
@@ -61,4 +69,20 @@
   line-height: 1.4;
   margin: 0;
   margin-bottom: 1rem;
+}
+
+.open-quiz-modal {
+  cursor: pointer;
+  font-size: 16px;
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  background-color: var(--brand-violet);
+  border-radius: 20px;
+  padding: 10px 15px;
+  z-index: 2;
+}
+
+.open-quiz-modal:hover {
+  scale: 1.05
 }

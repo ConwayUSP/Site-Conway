@@ -1,0 +1,20 @@
+.button-quiz-modal {
+  all: unset;
+  color: var(--content-primary);
+  background-color: var(--brand-violet);
+  padding: 20px 12.5px;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  color: var(--cor-borda);
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-quiz-modal:hover {
+  cursor: pointer;
+}
