@@ -26,8 +26,8 @@ export function QuizResults({ resultados }) {
           </div>
         </div>
         <p>
-          *Recomendamos que aqueles que não tenham conhecimento de versionamento façam a trilhas de Git&GitHub
-          </p>
+          * Recomendamos que aqueles que não tenham conhecimento de versionamento façam a trilha de Git & GitHub paralelamente
+        </p>
       </div>
     </>
   );

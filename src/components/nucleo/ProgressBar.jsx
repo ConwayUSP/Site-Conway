@@ -1,7 +1,6 @@
-import { useNavigate } from 'react-router-dom'
 import { useNucleo } from '@hooks/useNucleo';
 
-import './progressBar.css'
+import './ProgressBar.css'
 
 export function ProgressBar({ id }) {
     const { getPercentage } = useNucleo()

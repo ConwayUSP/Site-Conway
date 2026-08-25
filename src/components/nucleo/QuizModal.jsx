@@ -1,19 +1,30 @@
-import { motion } from "framer-motion";
-import { Button } from "./Button";
-import "./QuizModal.css";
 import { useState, useMemo } from "react";
-import { compability } from "../../utils/compability";
-import { trilhas } from "../../assets/quiz/perguntas";
-import { QuizResults } from "./QuizResults";
+import { motion, AnimatePresence } from "framer-motion";
 import Confetti from 'react-confetti'
+
+// Components
+import { Button } from "./Button";
+import { QuizResults } from "./QuizResults";
+
+// Utils
+import { compability } from "@utils/compability";
+
+// Data
+import { trilhas } from "@data/perguntas";
+
+// Hooks
+import { useWindowSize } from "@hooks/useWindowSize";
+
+import "./QuizModal.css";
+import "./ProgressBar.css";
 
 export function QuizModal({ closeModal, perguntas }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [points, setPoints] = useState([]);
+  const { width, height } = useWindowSize();
 
   const resultados = useMemo(() => compability(trilhas, points), [points]);
-
-  let isFinal = currentQuestion === perguntas.length;
+  const isFinal = currentQuestion === perguntas.length;
 
   return (
     <div className="quiz-modal" onClick={closeModal}>
@@ -21,20 +32,26 @@ export function QuizModal({ closeModal, perguntas }) {
         className="quiz-modal-container"
         onClick={(e) => e.stopPropagation()}
       >
-        {isFinal && <Confetti />}
+        {isFinal && <Confetti width={width} height={height} />}
         <div className="quiz-modal-head">
           <p className="quiz-modal-head-texto">
             {!isFinal
               ? perguntas[currentQuestion].pergunta
-              : "Achamos que essas trilhas são as que mais combinam com seu perfil!"}
+              : "Trilhas  que mais combinam com seu perfil:"}
           </p>
           <div className="close-quiz-modal">
             <p onClick={closeModal}>X</p>
           </div>
         </div>
-        <motion.div className="quiz-modal-content">
+        <AnimatePresence mode="wait">
           {!isFinal ? (
-            <>
+            <motion.div className="quiz-modal-content"
+              key={currentQuestion}
+              initial={{ opacity: 0, x: 35 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -35 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            >
               <div
                 className="quiz-modal-meme"
                 style={{
@@ -43,7 +60,9 @@ export function QuizModal({ closeModal, perguntas }) {
               >
                 <img src={perguntas[currentQuestion].imagem} />
               </div>
-              <div className="quiz-modal-respostas">
+              <div 
+                className="quiz-modal-respostas"
+              >
                 <Button
                   onClick={() => {
                     setPoints((prev) => [...prev, 0]);
@@ -77,12 +96,32 @@ export function QuizModal({ closeModal, perguntas }) {
                   Concordo fortemente
                 </Button>
               </div>
-            </>
+            </motion.div>
           ) : (
-            <QuizResults closeModal={closeModal} resultados={resultados} />
+            <motion.div
+              key="results"
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <QuizResults closeModal={closeModal} resultados={resultados} />
+            </motion.div>
           )}
-        </motion.div>
+        </AnimatePresence>
+        {!isFinal && (
+          <QuizProgress question={currentQuestion} perguntas={perguntas} />
+        )}
       </div>
     </div>
   );
+}
+
+function QuizProgress({question, perguntas}) {
+  const percentage = Math.round((question / perguntas.length) * 100);
+  return (
+    <div className="progress-display">
+        <progress value={percentage} max="100"/>
+        <span>{percentage}%</span>
+    </div>
+  )
 }

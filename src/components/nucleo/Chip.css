@@ -1,7 +1,11 @@
 .chip-container {
-  width: 100%;
   text-align: center;
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 14px;
+  padding: 0.3em 0.9em;
+  border-radius: 1.5em;
+  font-size: 1.1em;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    font-size: 0.9em;
+  }
 }

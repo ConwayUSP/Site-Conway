@@ -1,15 +1,16 @@
-import { Link } from 'react-router-dom';
-import trilhasConfig from '@data/trilhasConfig.json';
-
-import { ProgressBar } from '@components/nucleo/progressBar.jsx';
-// s
-
-import './Nucleo.css';
-import { QuizModal } from "../components/nucleo/QuizModal";
 import { useState } from "react";
 import { createPortal } from "react-dom";
+import { Link } from 'react-router-dom';
+
+// Components
+import { QuizModal } from "@components/nucleo/QuizModal";
+import { ProgressBar } from '@components/nucleo/progressBar.jsx';
+
+// Data
+import trilhasConfig from '@data/trilhasConfig.json';
+import { perguntas } from "@data/perguntas";
+
 import "./Nucleo.css";
-import { perguntas } from "../assets/quiz/perguntas";
 
 function Nucleo() {
   const [isModalOpen, setIsModalOpen] = useState(false);

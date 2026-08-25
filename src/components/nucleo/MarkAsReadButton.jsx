@@ -1,5 +1,5 @@
 import { useNucleo } from '@hooks/useNucleo';
-import './markAsReadButton.css'
+import './MarkAsReadButton.css'
 
 export function MarkAsReadButton({ id }) {
     const { markAllAsRead } = useNucleo()

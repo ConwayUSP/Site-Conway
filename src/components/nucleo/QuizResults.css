@@ -10,12 +10,15 @@
 
 .quiz-results-podium {
   position: relative;
-  display: flex;
   width: 100%;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   padding: 50px 15% 0px 15%;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    padding: 50px 5% 0px 5%;
+  }
 }
 
 .quiz-results-first,
