@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
-import isSmallScreen from '@utils/isSmallScreen'
+import { useCallback, useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import './Members.css'
+
+// Components
 import FilterOption from '@components/members/FilterOption'
 import { MemberCards } from '@components/members/MemberCard'
 
@@ -9,19 +11,35 @@ import arrowBack from "@assets/icons/arrow_back.svg";
 import arrowNext from "@assets/icons/arrow_next.svg";
 
 // Hooks
-import { useMembers } from '../hooks/members/useMembers'
-import { useWindowWidth } from '../hooks/useWindowWidth'
-import { useMembersBySetor } from '../hooks/members/useMembersBySetor'
+import { useMembers } from '@hooks/members/useMembers'
+import { useWindowWidth } from '@hooks/useWindowWidth'
+import { useMembersBySetor } from '@hooks/members/useMembersBySetor'
+
+// Utils
+import isSmallScreen from '@utils/isSmallScreen'
 
 const filterOptions = ["DPS", "DLC", "Todos", "GG", "OP"]
 
 function Members() {
-  const [selectedFilter, setSelectedFilter] = useState("Todos")
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [selectedFilter, setSelectedFilter] = useState(searchParams.get("setor") || "Todos")
 
   const { data: membersPre, isLoading: isLoadingMembers, isFetching: isFetchingMembers } = useMembers()
   const members = useMembersBySetor(membersPre, selectedFilter)
 
   const windowInnerWidth = useWindowWidth()
+
+  const handleFilter = useCallback((option) => {
+    setSelectedFilter(option);
+    setSearchParams(prev => {
+      if (option === "Todos") {
+        prev.delete("setor");
+      } else {
+        prev.set("setor", option);
+      }
+      return prev;
+    })
+  }, [setSearchParams, setSelectedFilter]);
   
   return (
     <main className="members">
@@ -36,9 +54,8 @@ function Members() {
             aria-label="Filtro Anterior"
             onClick={() => {
               const n = filterOptions.indexOf(selectedFilter);
-              setSelectedFilter(
-                filterOptions[(n - 1 + filterOptions.length) % filterOptions.length]
-              );
+              const option = filterOptions[(n - 1 + filterOptions.length) % filterOptions.length];
+              handleFilter(option);
             }}
           >
             <img src={arrowBack} alt="Anterior" width={36} height={36} />
@@ -54,9 +71,8 @@ function Members() {
             aria-label="Filtro Posterior"
             onClick={() => {
               const n = filterOptions.indexOf(selectedFilter);
-              setSelectedFilter(
-                filterOptions[(n + 1) % filterOptions.length]
-              );
+              const option = filterOptions[(n + 1) % filterOptions.length];
+              handleFilter(option);
             }}
           >
             <img src={arrowNext} alt="Próximo" width={36} height={36} />
@@ -69,7 +85,7 @@ function Members() {
               key={option} 
               tag={option} 
               isSelected={option === selectedFilter} 
-              clickAction={() => setSelectedFilter(option)}
+              clickAction={() => handleFilter(option)}
             />
           ))}
         </div>
