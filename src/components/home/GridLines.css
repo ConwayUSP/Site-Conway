@@ -1,0 +1,6 @@
+.grid-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+}

@@ -1,13 +1,13 @@
-import { useEffect } from 'react'
-import './Home.css'
+// Components
+import Hero from '@components/home/Hero';
 
-// Hooks
+import './Home.css'
 
 function Home() {
  
   return (
     <main className="home">
-      <h1>Home do site da Conway!</h1>
+      <Hero />
     </main>
   )
 }
