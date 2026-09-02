@@ -8,6 +8,8 @@
   background-color: rgb(from var(--bg-secondary) r g b / 70%);
   width: 100vw;
   height: 100vh;
+
+  z-index: 9999999;
 }
 
 .quiz-modal-head {
@@ -23,6 +25,8 @@
   z-index: 1000;
   max-width: 900px;
   width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -48,7 +52,7 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .quiz-modal-meme {
