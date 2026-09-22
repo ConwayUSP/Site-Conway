@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 
 import './TrilhaIndexView.css';
 
-import { ProgressBar } from '@components/nucleo/progressBar.jsx';
-import { MarkAsReadButton } from '@components/nucleo/markAsReadButton.jsx';
+import { ProgressBar } from '@components/nucleo/ProgressBar';
+import { MarkAsReadButton } from '@components/nucleo/MarkAsReadButton';
 
 import { useLocalStorage } from '@hooks/useLocalStorage';
 import { useNucleo } from '@hooks/useNucleo';

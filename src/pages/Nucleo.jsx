@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 // Components
 import { QuizModal } from "@components/nucleo/QuizModal";
-import { ProgressBar } from '@components/nucleo/progressBar.jsx';
+import { ProgressBar } from '@components/nucleo/ProgressBar';
 
 // Data
 import trilhasConfig from '@data/trilhasConfig.json';
