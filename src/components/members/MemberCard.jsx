@@ -9,6 +9,8 @@ import DPS from '@assets/setores/textures/DPS.png'
 import DLC from '@assets/setores/textures/DLC.png'
 import GG from '@assets/setores/textures/GG.png'
 import OP from '@assets/setores/textures/OP.png'
+import TitleIconic from '../TitleIconic'
+import { use, useMemo } from 'react'
 
 const textures = {
   estrelinhas,
@@ -17,7 +19,6 @@ const textures = {
   GG,
   OP
 }
-
 
 export function MemberCards({ members }) {
   if (!members || members.length === 0) {
@@ -31,22 +32,48 @@ export function MemberCards({ members }) {
     )
   }
 
+  const membersAtivos = useMemo(() => members?.filter(member => member.properties.Status.status.name === 'Ativo') || [], [members]);
+  const membersAFK = useMemo(() => members?.filter(member => member.properties.Status.status.name === 'AFK') || [], [members]);
+
   return (
-    <VirtuosoGrid
-      style={{ height: '100dvh' }}
-      data={members}
-      useWindowScroll
-      listClassName='members-cards'
-      itemClassName='member-card-wrapper'
-      itemContent={(index, member) => (
-        <MemberCard 
-          key={member.id} 
-          properties={member.properties} 
-          id={member.id}
-          icon={member.icon}
+    <div className="members-cards-wrapper">
+      <div className='members-cards-section'>
+        <span className='member-card-label'>Ativos</span>
+        <VirtuosoGrid
+          // style={{ height: '100dvh' }}
+          data={membersAtivos}
+          useWindowScroll
+          listClassName='members-cards'
+          itemClassName='member-card-wrapper'
+          itemContent={(index, member) => (
+            <MemberCard
+              key={member.id}
+              properties={member.properties}
+              id={member.id}
+              icon={member.icon}
+            />
+          )}
         />
-      )}
-    />
+      </div>
+      <div className='members-cards-section'>
+        <span className='member-card-label'>AFK</span>
+        <VirtuosoGrid
+          // style={{ height: '100dvh' }}
+          data={membersAFK}
+          useWindowScroll
+          listClassName='members-cards'
+          itemClassName='member-card-wrapper'
+          itemContent={(index, member) => (
+            <MemberCard 
+              key={member.id} 
+              properties={member.properties} 
+              id={member.id}
+              icon={member.icon}
+            />
+          )}
+          />
+      </div>
+    </div>
   )
 }
 
@@ -63,7 +90,7 @@ export function MemberCard({ properties, icon, id }) {
   const navigate = useNavigate()
   const memberName = properties?.["Nome"]?.title?.[0]?.text?.content
   const photo = properties?.["Fotinha"]?.files?.[0]?.file?.url || properties?.["Foto"]?.files?.[0]?.external?.url
-  const depColor = properties?.["Setor"]?.multi_select?.[0]?.color || "violet"
+  const depColor = properties?.["Setor"]?.multi_select?.find(option => option.color === 'gray')?.color || properties?.["Setor"]?.multi_select?.[0]?.color || "violet"
   const depID = colorToDepID[depColor] || "estrelinhas"
 
   return (
@@ -90,9 +117,8 @@ export function MemberCard({ properties, icon, id }) {
       />
       <div 
         className="member-card-content"
-        {...(icon && { style: { "--icon": `"${icon}"` } })}
       >
-        <h2>{memberName}</h2>
+        <TitleIconic title={memberName} icon={icon}/>
       </div>
     </button>
   )

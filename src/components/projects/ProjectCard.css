@@ -5,6 +5,17 @@
   gap: 0.75rem;
 }
 
+.projects-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.project-card-label {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
 .project-card {
   width: 100%;
   position: relative;

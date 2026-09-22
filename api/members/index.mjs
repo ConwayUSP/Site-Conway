@@ -11,12 +11,12 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         filter: {
           and: [
-            {
-              property: 'Status',
-              status: {
-                equals: 'Ativo'
-              }
-            },
+            // {
+            //   property: 'Status',
+            //   status: {
+            //     equals: 'Ativo'
+            //   }
+            // },
             {
               property: 'Cargo',
               select: {
@@ -41,10 +41,11 @@ export default async function handler(req, res) {
     })
   
     const data = await resp.json()
+    
     res.status(200).json(data.results.map(r => {
       return { 
         id: r.id,
-        icon: r.icon?.emoji,
+        icon: r.icon,
         properties: r.properties 
       }
     }))

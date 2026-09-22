@@ -1,0 +1,11 @@
+.chip-container {
+  text-align: center;
+  padding: 0.3em 0.9em;
+  border-radius: 1.5em;
+  font-size: 1.1em;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    font-size: 0.9em;
+  }
+}

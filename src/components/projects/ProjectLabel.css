@@ -10,6 +10,8 @@
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   transition: background-color 0.3s ease;
+
+  font-size: 0.8rem;
 }
 
 .project-label:hover {

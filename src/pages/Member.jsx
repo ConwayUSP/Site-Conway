@@ -28,6 +28,7 @@ const icons = { DPSicon, DLCicon, GGicon, OPicon }
 
 // Badges
 import xpBadges from '@data/xpBadges'
+import TitleIconic from '../components/TitleIconic';
 
 
 function Member() {
@@ -44,12 +45,13 @@ function Member() {
   const { data: memberProjects } = useProjectsByIds(member?.properties?.["Projetos"]?.relation)
   const { data: memberBadges } = useBadgesByIds(member?.properties?.["Selos"]?.relation)
   const { xp, level, xpTotal } = useMemberXP(member, memberProjects)
+  const isXPLoaded = xp !== undefined && level !== undefined && xpTotal !== 0
 
   const photo = member?.properties?.["Fotinha"]?.files?.[0]?.file?.url || member?.properties?.["Foto"]?.files?.[0]?.external?.url
   const memberName = member?.properties?.["Nome"]?.title?.[0]?.text?.content
   const icon = member?.icon
   const sentence = member?.properties?.["Frase do Dia"]?.rich_text?.[0]?.text?.content || "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae totam minima, vitae consequuntur ad nemo voluptatem? Delectus in facere voluptatibus quas debitis, alias odio sit accusamus eum atque optio veritatis."
-  const depColor = member?.properties?.["Setor"]?.multi_select?.[0]?.color
+  const depColor = member?.properties?.["Setor"]?.multi_select?.find(option => option.color === 'gray')?.color || member?.properties?.["Setor"]?.multi_select?.[0]?.color
   const depID = colorToDepID[depColor]
 
   return (
@@ -66,18 +68,23 @@ function Member() {
       </section>
       <section 
         className='member-content'
-        {...(icon && { style: { "--icon": `"${icon}"` } })}
       >
         <div className='member-content-about'>
           <img className='bg-img' src={imagery[`${depID}img`]}/>
           <div className='member-name-wrapper'>
-            <h2>{memberName || <Skeleton/>}</h2>
+            <TitleIconic title={memberName} icon={icon}/>
             <img className='icon' src={icons[`${depID}icon`]} alt={depID} />
           </div>
-          <p className='sentence' >{sentence || <Skeleton count={5}/>}</p>
+          {memberName ? (
+            <p className='sentence' >{sentence}</p>
+          ) : (
+            <p>
+              <Skeleton count={5}/>
+            </p>
+          )}
         </div>
         
-        {xp && level && xpBadges && (
+        {isXPLoaded && (
           <div className='member-content-xp'>
             <img className='xp-badge' src={xpBadges[level].badge} alt={`Level ${level}`} />
             <div className='xp-progress'>
@@ -86,7 +93,7 @@ function Member() {
               </div>
               <p>{xp}/{xpBadges[level].requiredXP} XP</p>
             </div>
-            <h3 style={{ marginLeft: '0.75rem' }}>LVL {level}</h3>
+            <h3 style={{ marginLeft: '0.75rem', flexShrink: 0 }}>LVL {level}</h3>
           </div>
         )}
 

@@ -2,6 +2,8 @@ import { Link, useParams } from 'react-router-dom';
 import { ChapterView } from '@components/ChapterView';
 import trilhasConfig from '@data/trilhasConfig.json';
 
+import './ChapterRouteWrapper.css';
+
 function ChapterRouteWrapper() {
   const { trailId, chapterIndex } = useParams();
   const currentIndex = parseInt(chapterIndex, 10);
@@ -17,7 +19,7 @@ function ChapterRouteWrapper() {
   return (
     <div className={`trail-page ${trail.themeClass}`}>
     <div className='container-reading'>
-      <nav style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2rem' }}>
+      <nav>
         <Link to={`../trilha/${trailId}`} style={{textDecoration: 'none', color: 'var(--cor-url)'}}>Voltar para a Trilha</Link>
         <div style={{ display: 'flex', gap: '1rem' }}>
           {hasPrev && <Link to={`../trilha/${trailId}/capitulo/${currentIndex - 1}`} style={{ textDecoration: 'none',color: 'var(--cor-url)' }}>Anterior</Link>}

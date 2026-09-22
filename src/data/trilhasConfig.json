@@ -605,5 +605,34 @@
         "filepath": "Intro-Phaser/Capítulo%2006%20-%20Áudio%2C%20Câmera%20e%20Eventos.md"
       }
     ]
+  },
+  "fundamentosarte": {
+    "name":"Fundamentos da Arte",
+    "description":"Aprenda conceitos fundamentais para a arte em jogos, como teoria das cores e composição",
+    "thumbnail":"https://github.com/ConwayUSP/Fundamentos-da-Arte-para-Jogos/raw/main/assets/iniciacao_1.png",
+    "themeClass":"theme-fundamentosarte",
+    "repoRootUrl":"https://raw.githubusercontent.com/ConwayUSP/Fundamentos-da-Arte-para-Jogos/main/",
+    "chapters": [
+      {
+        "id":"cap-0",
+        "title":"Iniciação",
+        "filepath":"capitulos/00-Iniciacao.md"
+      },
+      {
+        "id":"cap-1",
+        "title":"Módulo 1 - Teoria das Cores",
+        "filepath":"capitulos/01-Modulo1-Teoria-das-Cores.md"
+      },
+      {
+        "id":"cap-2",
+        "title":"Módulo 2 - Composição",
+        "filepath":"capitulos/02-Modulo2-Composicao.md"
+      },
+      {
+        "id":"cap-3",
+        "title":"Módulo 3 - Conceitos Finais",
+        "filepath":"capitulos/03-Modulo3-Conceitos-Finais.md"
+      }
+    ]
   }
 }

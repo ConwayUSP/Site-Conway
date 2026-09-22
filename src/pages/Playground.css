@@ -64,7 +64,7 @@
   width: 98%;
   margin-right: 2rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
+  overflow: auto;
   white-space: nowrap;
 }
 
@@ -102,6 +102,11 @@
   border: 2px solid var(--bg-principal);
   padding: 6px 18px 6px 10px;
   border-radius: 5px;
+
+  @media (max-width: 768px) {
+    padding: 6px 8px;
+    font-size: 0.7rem;
+  }
 }
 
 .playground-controls.collapsed {
@@ -112,6 +117,7 @@
   border-left: none;
   width: 2rem;
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
 }
 
 .share-btn {

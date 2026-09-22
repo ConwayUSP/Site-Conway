@@ -1,6 +1,8 @@
+import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { VirtuosoGrid } from 'react-virtuoso'
 import Skeleton from 'react-loading-skeleton'
+
 import './ProjectCard.css'
 import enfeitinho from '@assets/icons/enfeitinho.svg'
 
@@ -16,22 +18,48 @@ export function ProjectsCards({ projects }) {
     )
   }
 
+  console.log(projects)
+
+  const projectsAtivos = useMemo(() => projects?.filter(member => member.properties.Status.status.name === 'Na Ativa') || [], [projects]);
+  const projectsFinalizados = useMemo(() => projects?.filter(member => member.properties.Status.status.name === 'Finalizado') || [], [projects]);
+
   return (
-    <VirtuosoGrid
-      style={{ height: '100dvh' }}
-      data={projects}
-      useWindowScroll
-      listClassName='projects-cards'
-      itemContent={(index, project) => (
-        <ProjectCard 
-          key={project.id}
-          id={project.id}
-          cover={project.cover} 
-          properties={project.properties} 
-          icon={project.icon}
+    <div className="projects-cards-wrapper">
+      <div className='projects-cards-section'>
+        <span className='project-card-label'>Em andamento</span>
+        <VirtuosoGrid
+          data={projectsAtivos}
+          useWindowScroll
+          listClassName='projects-cards'
+          itemContent={(index, project) => (
+            <ProjectCard 
+              key={project.id}
+              id={project.id}
+              cover={project.cover} 
+              properties={project.properties} 
+              icon={project.icon}
+            />
+          )}
         />
-      )}
-    />
+      </div>
+      <div className='projects-cards-section'>
+        <span className='project-card-label'>Finalizados</span>
+        <VirtuosoGrid
+          data={projectsFinalizados}
+          useWindowScroll
+          listClassName='projects-cards'
+          itemContent={(index, project) => (
+            <ProjectCard 
+              key={project.id}
+              id={project.id}
+              cover={project.cover} 
+              properties={project.properties} 
+              icon={project.icon}
+            />
+          )}
+        />
+      </div>
+    </div>
   )
 }
 
