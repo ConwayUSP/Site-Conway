@@ -1,102 +1,43 @@
-.hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+.home-hero  {
   position: relative;
-  width: 100%;
-  height: 100vh;
+  min-height: 420px;
+  height: min(78svh, 850px);
+  background: var(--bg-primary);
 }
 
-.hero::before, .hero::after {
-  content: '';
+.home-hero__shader  {
   position: absolute;
-
-  top: calc(var(--y) * 1px);
-  left: calc(var(--x) * 1px);
-  
-  pointer-events: none;
-  opacity: 0.2;
-  
-  transform: translate(-50%, -50%);
+  inset: 0;
 }
 
-.hero::before {
-  width: 500px;
-  height: 500px;
-
-
-  background: radial-gradient(
-    circle,
-    var(--bg-secondary) 0%,
-    var(--bg-primary) 60%,
-    transparent 85%
-  );
-
-  filter: blur(20px);
-}
-
-.hero h1 {
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  font-size: 6rem;
-  font-weight: bold;
-  margin-bottom: 3rem;
-  position: relative;
-  display: inline-block;
-  flex: none;
-
-  z-index: 9;
-
-  text-shadow: 1px 1px #f60099cc,
-              -1px -1px #0fd2ffcc,
-              -1px 0px #ffd200; 
-}
-
-.hero h1::before, .hero h1::after {
-  display: block;
-  content: attr(data-text);
+.home-hero__next  {
   position: absolute;
-  top: 0;
-  left: 0;
-  opacity: .8;
-} 
-  
-.hero h1::after {
-  color: #f60099cc;
-  z-index: -2;
-} 
-
-.hero h1::before {
-  color: #0fd2ffcc;
-  z-index: -1;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
 }
 
-.hero h1:hover::before {
-  animation: glitch .3s cubic-bezier(.25, .46, .45, .94) both 5;
+.home-hero__next img  {
+  width: 30px;
 }
 
-.hero h1:hover::after {
-  animation: glitch .3s cubic-bezier(.25, .46, .45, .94) reverse both 5;
+.home-hero__next:hover  {
+  background: #ffffff12;
 }
 
-@keyframes glitch {
-	0% {
-		transform: translate(0);
-	}
-	20% {
-		transform: translate(-0.04em, 0.04em);
-	}
-	40% {
-		transform: translate(-0.04em, -0.04em);
-	}
-	60% {
-		transform: translate(0.04em, 0.04em);
-	}
-	80% {
-		transform: translate(0.04em, -0.04em);
-	}
-	to {
-		transform: translate(0);
-	}
+.home-hero__next:focus-visible  {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 4px;
+}
+
+@media (max-width: 600px)  {
+  .home-hero  {
+    height: 62svh;
+    min-height: 340px;
+  }
 }

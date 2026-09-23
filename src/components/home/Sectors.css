@@ -1,0 +1,122 @@
+.home-sectors {
+  --sector-slope: 32px;
+  padding-bottom: 140px;
+}
+
+.home-sector {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: 400px;
+  padding: 75px max(9%, calc((100vw - 1100px) / 2));
+  background: var(--sector-color);
+}
+
+.home-sector + .home-sector {
+  margin-top: calc(-1 * var(--sector-slope));
+}
+
+.home-sector--dlc {
+  --sector-color: var(--brand-red);
+  clip-path: polygon(0 var(--sector-slope), 100% 0, 100% 100%, 0 100%);
+}
+
+.home-sector--gg {
+  --sector-color: var(--brand-yellow);
+  clip-path: polygon(0 0, 100% var(--sector-slope), 100% calc(100% - var(--sector-slope)), 0 100%);
+}
+
+.home-sector--op {
+  --sector-color: var(--brand-blue);
+  clip-path: polygon(0 var(--sector-slope), 100% 0, 100% 100%, 0 calc(100% - var(--sector-slope)));
+}
+
+.home-sector__content {
+  position: relative;
+  z-index: 1;
+  width: 66%;
+  max-width: 690px;
+}
+
+.home-sector__content p {
+  margin-top: 26px;
+  color: var(--brand-black);
+  font-size: clamp(16px, 1.3vw, 20px);
+  line-height: 1.55;
+  text-align: center;
+}
+
+.home-sector__texture {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 120%;
+  width: 18%;
+  object-fit: cover;
+  object-position: right;
+  opacity: 0.75;
+  pointer-events: none;
+  mask-image: linear-gradient(to right, black, transparent);
+}
+
+.home-sector__imagery {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 32%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+  filter: brightness(0.45) saturate(0.8);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.home-sector--gg .home-sector__imagery {
+  top: 20px;
+  transform: scaleX(-100%);
+  filter: brightness(0.50) hue-rotate(255deg) saturate(0.8);
+}
+
+.home-sector--op .home-sector__imagery {
+  top: 30px;
+}
+
+@media (max-width: 700px) {
+  .home-sector {
+    min-height: 340px;
+    padding: 56px 8%;
+  }
+
+  .home-sector__content {
+    width: 72%;
+  }
+
+  .home-sector__imagery {
+    width: 36%;
+    opacity: 0.35;
+  }
+
+  .home-sectors {
+    --sector-slope: 22px;
+    padding-bottom: 90px;
+  }
+}
+
+@media (max-width: 400px) {
+  .home-sector__content {
+    width: 100%;
+  }
+
+  .home-sector {
+    padding-bottom: 240px;
+  }
+
+  .home-sector__imagery {
+    width: 60%;
+    height: 240px;
+    opacity: 0.45;
+  }
+}
