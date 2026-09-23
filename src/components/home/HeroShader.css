@@ -1,0 +1,17 @@
+.hero-shader {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.hero-shader canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-shader__fallback {
+  width: clamp(90px, 15vw, 180px);
+  opacity: 0.8;
+}
