@@ -89,6 +89,11 @@ p, a {
   text-decoration: none;
 }
 
+hr {
+  color: var(--cor-borda);
+  border: 1px solid var(--cor-borda);
+}
+
 button {
   border: none;
   background: none;

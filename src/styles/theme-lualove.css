@@ -1,0 +1,24 @@
+.theme-lualove {
+  --bg-principal: #28264f; 
+  --bg-secundario: #332859;
+  --cor-texto: #fff2f5;
+  --cor-texto-mutado: #fb8aca;
+  --cor-destaque: #fa95dc; 
+  --cor-url: #a0ccff;
+  --cor-borda: #fb7ada;
+  --sh-keyword: #f92199;
+  --sh-string: #f547da;
+  --sh-comment: #6b54ce;
+  --sh-function: #b288ff;
+  --sh-number: #79c0ff;
+  --sh-punctuation: #fff2f5;
+}
+
+.theme-lualove .markdown-container pre .code-block-wrapper {
+  border: 2px dashed var(--cor-borda);
+  border-radius: 8px;
+}
+
+.theme-lualove .markdown-container p .inline-code {
+    font-weight: 400;
+}

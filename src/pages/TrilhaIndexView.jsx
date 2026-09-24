@@ -14,6 +14,8 @@ import trilhasConfig from '@data/trilhasConfig.json';
 // paletas de cor de cada trilha
 import '@styles/theme-opengl.css';
 import '@styles/theme-github.css';
+import '@styles/theme-lualove.css';
+import '@styles/theme-craylib.css';
 
 function TrilhaIndexView() {
   const { trailId } = useParams();
