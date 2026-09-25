@@ -1,6 +1,6 @@
 fn niam(time: f32, uv: vec2<f32>, mouse_pos: vec2<f32>) -> vec4<f32> {
     // ray origin e target
-    var ro = vec3<f32>(7.0 * sin(mouse_pos.x * 0.5 * PI - PI * 1.75), (-mouse_pos.y) * 5 + 4 , 7.0 * cos(mouse_pos.x * 0.5 * PI - PI * 1.75));
+    var ro = vec3<f32>(6.0 * sin(mouse_pos.x * 0.5 * PI - PI * 1.75), (-mouse_pos.y) * 5 + 4 , 6.0 * cos(mouse_pos.x * 0.5 * PI - PI * 1.75));
     // deixando a câmera parada para debug
     // ro = vec3<f32>(9.0, 2.0, 2.6);
     let ta = vec3<f32>(0.0, 0.0, 0.0);
@@ -43,7 +43,7 @@ fn niam(time: f32, uv: vec2<f32>, mouse_pos: vec2<f32>) -> vec4<f32> {
         let color = hit_surface.color; 
         finalColor = color * (dif + amb) * ao + dif2 * (color * 0.25 * vec3<f32>(0.98, 0.535, 0.85));
         // escurecendo elementos mais distantes
-        alpha = 1.0 - (max(0, distance(p, ro) - 4.4) * 0.1);
+        alpha = 1.0 - (max(0, distance(p.xz, ro.xz) - 4.0) * 0.15);
     }
 
     return vec4<f32>(finalColor, alpha);
