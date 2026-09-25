@@ -12,7 +12,7 @@
 
 .home-hero__next  {
   position: absolute;
-  bottom: 28px;
+  bottom: 260px;
   left: 50%;
   transform: translateX(-50%);
   display: grid;

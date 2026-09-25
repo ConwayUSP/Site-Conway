@@ -1,6 +1,6 @@
 fn niam(time: f32, uv: vec2<f32>, mouse_pos: vec2<f32>) -> vec4<f32> {
     // ray origin e target
-    var ro = vec3<f32>(7.0 * sin(mouse_pos.x * 2 * PI), (-mouse_pos.y) * 10 + 7 , 7.0 * cos(mouse_pos.x * 2 * PI));
+    var ro = vec3<f32>(7.0 * sin(mouse_pos.x * 0.5 * PI - PI * 1.75), (-mouse_pos.y) * 5 + 4 , 7.0 * cos(mouse_pos.x * 0.5 * PI - PI * 1.75));
     // deixando a câmera parada para debug
     // ro = vec3<f32>(9.0, 2.0, 2.6);
     let ta = vec3<f32>(0.0, 0.0, 0.0);
@@ -23,6 +23,7 @@ fn niam(time: f32, uv: vec2<f32>, mouse_pos: vec2<f32>) -> vec4<f32> {
         return vec4<f32>(0.0);
     }
     // bateu em algo
+    var alpha = 1.0;
     if(t > 0.0) {
         let p = ro + rd * t;   // ponto onde colidiu
         let n = calcNormal(p, time); // normal
@@ -40,10 +41,12 @@ fn niam(time: f32, uv: vec2<f32>, mouse_pos: vec2<f32>) -> vec4<f32> {
         // definindo a cor do fragmento
         let hit_surface = map(p, time);
         let color = hit_surface.color; 
-        finalColor = color * (dif + amb) * ao + dif2 * vec3<f32>(0.27, 0.035, 0.11);
+        finalColor = color * (dif + amb) * ao + dif2 * (color * 0.25 * vec3<f32>(0.98, 0.535, 0.85));
+        // escurecendo elementos mais distantes
+        alpha = 1.0 - (max(0, distance(p, ro) - 4.4) * 0.1);
     }
 
-    return vec4<f32>(finalColor, 1.0);
+    return vec4<f32>(finalColor, alpha);
 }
 
 const PI: f32 = 3.14159265359;
