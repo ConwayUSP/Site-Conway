@@ -1,0 +1,42 @@
+.home-about  {
+  overflow: hidden;
+  padding: 50px 0 120px;
+  background-color: var(--bg-primary);
+  background-image: linear-gradient(var(--bg-primary), transparent 18%, transparent 80%, var(--bg-primary)), url('@assets/home/nebula.png');
+  background-position: center;
+  background-size: 120%;
+  background-repeat: no-repeat;
+  background-attachment: scroll, fixed;
+  scroll-margin-top: 90px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-about {
+    background-attachment: scroll;
+  }
+}
+
+.home-about__intro  {
+  text-align: center;
+  padding: 0 20px 64px;
+}
+
+.home-about__intro > p  {
+  margin: 24px auto 0;
+  font-size: clamp(16px, 2vw, 24px);
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  color: #dfd6e6;
+}
+
+@media (max-width: 600px)  {
+  .home-about  {
+    padding: 30px 0 80px;
+  }
+  .home-about__intro  {
+    padding-bottom: 36px;
+  }
+  .home-about__break  {
+    display: none;
+  }
+}
