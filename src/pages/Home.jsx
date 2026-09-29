@@ -1,15 +1,14 @@
-import { useEffect } from 'react'
+import Hero from '@components/home/Hero'
+import About from '@components/home/About'
+import Sectors from '@components/home/Sectors'
 import './Home.css'
 
-// Hooks
-
-function Home() {
- 
+export default function Home() {
   return (
     <main className="home">
-      <h1>Home do site da Conway!</h1>
+      <Hero />
+      <About />
+      <Sectors />
     </main>
   )
 }
-
-export default Home
