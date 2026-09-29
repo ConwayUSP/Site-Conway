@@ -5,6 +5,7 @@ import './HeroShader.css'
 export default function HeroShader() {
   const containerRef = useRef(null)
   const [unavailable, setUnavailable] = useState(false)
+  const [ready, setReady] = useState(false)
 
   useEffect(() => {
     const container = containerRef.current
@@ -81,6 +82,7 @@ export default function HeroShader() {
         resize()
         await renderer.compileAsync(quad, quad.camera)
         if (disposed) return
+        setReady(true)
 
         let previous = performance.now()
         draw = () => {
@@ -137,7 +139,7 @@ export default function HeroShader() {
   }, [])
 
   return (
-    <div ref={containerRef} className="hero-shader" aria-hidden="true">
+    <div ref={containerRef} className={`hero-shader${ready ? ' hero-shader--ready' : ''}`} aria-hidden="true">
       {unavailable && <img className="hero-shader__fallback" src="/icons/logos/white.svg" alt="" />}
     </div>
   )
