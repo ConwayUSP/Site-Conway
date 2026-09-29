@@ -1,9 +1,8 @@
-import { useEffect } from 'react'
-import isSmallScreen from '@utils/isSmallScreen'
 import './Mapa.css'
 import CursoCard from '@components/mapa/CursoCard'
 import TrilhaCard from '@components/mapa/TrilhaCard'
 import Tracejado from '@components/Tracejado'
+import Whiteboard from '@components/mapa/Whiteboard'
 
 /*
 Para adicionar uma nova trilha, crie uma nova seção. Dentro dela, adicione um TrilhaCard, CursoCards e Tracejados para conectar os cards.
@@ -11,17 +10,8 @@ Leia a especificação de como usar cada componente em seus respectivos arquivos
 */
 
 function Mapa() {
-  
-  useEffect(() => {
-    window.scroll({
-      top: document.documentElement.scrollHeight / 2 - window.innerHeight / 2,
-      left: document.documentElement.scrollWidth / 2 - window.innerWidth / 2,
-      behavior: 'smooth'
-    })
-  }, []);
-
   return (
-    <main className="mapa">
+    <Whiteboard>
       <section className="trilha-membros">
         {/* Início da trilha */}
         <TrilhaCard id="membros-card" line1="Trilha de" line2="Membros" icon="connie" type=""/>
@@ -60,7 +50,7 @@ function Mapa() {
             <CursoCard id="lua" file={"lua"} type=""/>
         </div>
       </section>
-    </main>
+    </Whiteboard>
   )
 }
 
