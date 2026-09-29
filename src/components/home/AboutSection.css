@@ -26,9 +26,15 @@
 
 .home-story__content p  {
   max-width: 66ch;
+  margin: 0 0 1rem;
   font-size: clamp(16px, 1.3vw, 20px);
   line-height: 1.6;
   color: #e0d9e9;
+  text-indent: 1.5em;
+}
+
+.home-story__content p:last-of-type {
+  margin-bottom: 0;
 }
 
 .home-story__content img  {

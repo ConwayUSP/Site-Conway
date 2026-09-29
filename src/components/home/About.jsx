@@ -1,14 +1,44 @@
 import founders from '@assets/home/fundadores.jpg'
+import { motion, useReducedMotion } from 'motion/react'
 import DecoratedTitle from './DecoratedTitle'
 import AboutSection from './AboutSection'
 import './About.css'
 
 export default function About() {
+  const reduceMotion = useReducedMotion()
+  const subtitle = 'A melhor e maior entidade de Desenvolvimento de Jogos e Computação Gráfica da USP.'
+
   return (
     <section className="home-about" id="sobre-conway" aria-labelledby="conway-title">
       <div className="home-about__intro">
         <DecoratedTitle as="h1" id="conway-title">CONWAY</DecoratedTitle>
-        <p>A melhor e maior entidade de Desenvolvimento de Jogos<br className="home-about__break" /> e Computação Gráfica da USP.</p>
+        <p aria-label={subtitle}>
+          <motion.span
+            aria-hidden="true"
+            initial="hidden"
+            animate="visible"
+            variants={{ visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.035 } } }}
+          >
+            {'A melhor e maior entidade de Desenvolvimento de Jogos'.split('').map((character, index) => (
+              <motion.span key={index} variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}>
+                {character}
+              </motion.span>
+            ))}
+          </motion.span>
+          <br className="home-about__break" />
+          <motion.span
+            aria-hidden="true"
+            initial="hidden"
+            animate="visible"
+            variants={{ visible: { transition: { delayChildren: reduceMotion ? 0 : 2.1, staggerChildren: reduceMotion ? 0 : 0.035 } } }}
+          >
+            {' e Computação Gráfica da USP.'.split('').map((character, index) => (
+              <motion.span key={index} variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}>
+                {character}
+              </motion.span>
+            ))}
+          </motion.span>
+        </p>
       </div>
       <AboutSection id="historia" title="História">
         <p>

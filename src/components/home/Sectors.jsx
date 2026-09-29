@@ -6,6 +6,7 @@ import ggImagery from '@assets/setores/imagery/GG.png'
 import opImagery from '@assets/setores/imagery/OP.png'
 import DecoratedTitle from './DecoratedTitle'
 import './Sectors.css'
+import { motion, useReducedMotion } from 'motion/react'
 
 const sectors = [
   { id: 'dlc', title: 'DLC', name: 'Design e Comunicação', texture: dlcTexture, imagery: dlcImagery, description: 'DLC (Design e Comunicação) é o setor responsável por criar e produzir conteúdo para as redes sociais da Conway, como o Instagram e o YouTube. É onde nossas ideias ganham identidade e chegam a mais pessoas.' },
@@ -14,17 +15,27 @@ const sectors = [
 ]
 
 export default function Sectors() {
+  const reduceMotion = useReducedMotion()
+
   return (
     <div className="home-sectors">
       {sectors.map(sector => (
-        <section key={sector.id} className={`home-sector home-sector--${sector.id}`} aria-label={sector.name}>
+        <motion.section
+          key={sector.id}
+          className={`home-sector home-sector--${sector.id}`}
+          aria-label={sector.name}
+          initial={reduceMotion ? false : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: reduceMotion ? 0 : 0.6, ease: 'easeOut' }}
+        >
           <img className="home-sector__texture" src={sector.texture} alt="" loading="lazy" aria-hidden="true" />
           <div className="home-sector__content">
             <DecoratedTitle dark>{sector.title}</DecoratedTitle>
             <p>{sector.description}</p>
           </div>
           <img className="home-sector__imagery" src={sector.imagery} alt="" loading="lazy" aria-hidden="true" />
-        </section>
+        </motion.section>
       ))}
     </div>
   )
