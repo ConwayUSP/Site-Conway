@@ -36,3 +36,16 @@
   padding: 64px 20px 96px;
   pointer-events: none;
 }
+
+@media (max-width: 600px) {
+  .home .home-about__intro .home-title {
+    gap: clamp(10px, 3vw, 16px);
+    font-size: clamp(3.5rem, 15vw, 5rem);
+  }
+
+  .home .home-about__intro > p {
+    max-width: 42ch;
+    font-size: clamp(13px, 3.5vw, 16px);
+    letter-spacing: 0.04em;
+  }
+}
