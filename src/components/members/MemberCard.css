@@ -54,10 +54,13 @@
   object-fit: cover;
 }
 
-.member-card > img {
+.member-card-photo {
   z-index: 1;
   aspect-ratio: 4 / 3;
   width: 100%;
+}
+
+.member-card-photo > img {
   object-fit: cover;
 }
 

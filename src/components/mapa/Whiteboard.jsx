@@ -17,7 +17,7 @@ function Whiteboard({ children }) {
         minPositionY={-PAN_LIMIT}
         maxPositionY={PAN_LIMIT}
         fitOnInit="contain"
-        wheel={{ step: 0.08, excluded: EXCLUDED_ELEMENTS }}
+        wheel={{ step: 0.002, excluded: EXCLUDED_ELEMENTS }}
         trackPadPanning={{ disabled: false, excluded: EXCLUDED_ELEMENTS }}
         panning={{ excluded: EXCLUDED_ELEMENTS }}
         pinch={{ allowPanning: true, excluded: EXCLUDED_ELEMENTS }}
@@ -39,7 +39,7 @@ function Whiteboard({ children }) {
               </button>
               <button
                 type="button"
-                onClick={() => fitToView({ minScale: MIN_SCALE, maxScale: 1 })}
+                onClick={() => fitToView({ mode: 'contain' })}
                 aria-label="Centralizar mapa"
               >
                 <img src="/icons/home.svg" alt="" aria-hidden="true" />

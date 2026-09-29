@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import './MiniMember.css'
+import MemberPhoto from './MemberPhoto'
 
 export function MiniMember({ member }) {
   const navigate = useNavigate()
@@ -12,9 +13,11 @@ export function MiniMember({ member }) {
       className='project-member'
       onClick={() => navigate(`/members/${member.id}`)}
     >
-      <div className='project-member-photo'>
-        <img src={photo} alt={memberName} />
-      </div>
+      <MemberPhoto
+        className='project-member-photo'
+        src={photo}
+        alt={memberName}
+      />
       <span>{memberName.split(' ')[0]}</span>
     </button>
   )
