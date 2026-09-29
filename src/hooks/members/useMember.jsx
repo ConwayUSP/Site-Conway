@@ -8,8 +8,9 @@ export function useMember(id) {
     queryKey: ['member', id],
     queryFn: () => getMember(id),
     initialData: () => {
-      return queryClient.getQueryData(['members'])?.find(m => m.id == id)
-    }
+      return queryClient.getQueryData(['members'])?.find(member => member.id === id)
+    },
+    staleTime: Infinity,
   })
 
   return {

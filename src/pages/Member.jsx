@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import './Member.css'
 
@@ -11,6 +10,7 @@ import { useMemberXP } from '@hooks/members/useMemberXP';
 // Components
 import { ProjectsLabels } from '@components/projects/ProjectLabel';
 import Skeleton from 'react-loading-skeleton';
+import MemberPhoto from '@components/members/MemberPhoto';
 
 // Department bg imagery
 import DPSimg from '@assets/setores/imagery/DPS.png'
@@ -41,7 +41,7 @@ function Member() {
   }
 
   const { id } = useParams()
-  const { data: member, isLoading: isLoadingMember, isFetching: isFetchingMember } = useMember(id)
+  const { data: member, isLoading: isLoadingMember } = useMember(id)
   const { data: memberProjects } = useProjectsByIds(member?.properties?.["Projetos"]?.relation)
   const { data: memberBadges } = useBadgesByIds(member?.properties?.["Selos"]?.relation)
   const { xp, level, xpTotal } = useMemberXP(member, memberProjects)
@@ -62,7 +62,13 @@ function Member() {
             <Skeleton 
               height="100%"
             /> :
-            <img src={photo}/>
+            <MemberPhoto
+              className="member-profile-photo"
+              src={photo}
+              alt={memberName || 'Foto do membro'}
+              loading="eager"
+              ambient
+            />
           }
         </div>
       </section>
