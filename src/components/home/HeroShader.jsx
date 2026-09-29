@@ -15,16 +15,25 @@ export default function HeroShader() {
     let resizeObserver
     let intersectionObserver
     let mouse
+    let mouseTarget
     let draw
     let visible = true
 
-    const onPointerMove = event => {
-      if (!mouse || motion.matches) return
+    const updatePointer = (clientX, clientY) => {
+      if (!mouseTarget) return
       const rect = container.getBoundingClientRect()
-      mouse.set(
-        (event.clientX - rect.left) / rect.width,
-        1 - (event.clientY - rect.top) / rect.height,
-      )
+      if (!rect.width || !rect.height) return
+      mouseTarget.set((clientX - rect.left) / rect.width, 1 - (clientY - rect.top) / rect.height)
+      if (motion.matches) {
+        mouse.copy(mouseTarget)
+        draw?.()
+      }
+    }
+
+    const onPointerMove = event => updatePointer(event.clientX, event.clientY)
+    const onTouch = event => {
+      const touch = event.touches[0]
+      if (touch) updatePointer(touch.clientX, touch.clientY)
     }
 
     const syncAnimation = () => {
@@ -45,6 +54,7 @@ export default function HeroShader() {
         renderer.setClearColor(0x000000, 0)
 
         mouse = new THREE.Vector2(0.35, 0.5)
+        mouseTarget = mouse.clone()
         const aspect = tsl.uniform(new THREE.Vector2(1, 1))
         const elapsed = tsl.uniform(0)
         material = new THREE.NodeMaterial()
@@ -75,7 +85,11 @@ export default function HeroShader() {
         let previous = performance.now()
         draw = () => {
           const now = performance.now()
-          if (!motion.matches) elapsed.value += Math.min((now - previous) / 1000, 0.05)
+          const delta = Math.min((now - previous) / 1000, 0.05)
+          if (!motion.matches) {
+            elapsed.value += delta
+            mouse.lerp(mouseTarget, 1 - Math.exp(-8 * delta))
+          }
           previous = now
           quad.render(renderer)
         }
@@ -97,6 +111,9 @@ export default function HeroShader() {
     }
 
     container.addEventListener('pointermove', onPointerMove)
+    container.addEventListener('pointerdown', onPointerMove)
+    container.addEventListener('touchstart', onTouch, { passive: true })
+    container.addEventListener('touchmove', onTouch, { passive: true })
     document.addEventListener('visibilitychange', syncAnimation)
     motion.addEventListener('change', syncAnimation)
     initialize()
@@ -107,6 +124,9 @@ export default function HeroShader() {
       resizeObserver?.disconnect()
       intersectionObserver?.disconnect()
       container.removeEventListener('pointermove', onPointerMove)
+      container.removeEventListener('pointerdown', onPointerMove)
+      container.removeEventListener('touchstart', onTouch)
+      container.removeEventListener('touchmove', onTouch)
       document.removeEventListener('visibilitychange', syncAnimation)
       motion.removeEventListener('change', syncAnimation)
       renderer?.setAnimationLoop(null)

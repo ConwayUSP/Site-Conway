@@ -3,6 +3,7 @@
   height: 100%;
   display: grid;
   place-items: center;
+  touch-action: pan-y;
 }
 
 .hero-shader canvas {
