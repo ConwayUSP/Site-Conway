@@ -1,0 +1,43 @@
+.home-hero  {
+  position: relative;
+  min-height: 420px;
+  height: min(78svh, 850px);
+  background: var(--bg-primary);
+}
+
+.home-hero__shader  {
+  position: absolute;
+  inset: 0;
+}
+
+.home-hero__next  {
+  position: absolute;
+  bottom: 260px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.home-hero__next img  {
+  width: 30px;
+}
+
+.home-hero__next:hover  {
+  background: #ffffff12;
+}
+
+.home-hero__next:focus-visible  {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 4px;
+}
+
+@media (max-width: 600px)  {
+  .home-hero  {
+    height: 62svh;
+    min-height: 340px;
+  }
+}
