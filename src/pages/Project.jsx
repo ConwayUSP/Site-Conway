@@ -17,7 +17,7 @@ function Project() {
   const { id } = useParams()
   const { data: project, isLoading: isLoadingProject, isFetching: isFetchingProject } = useProject(id)
 
-  const cover = project?.cover?.external?.url || project?.cover?.file?.url
+  const cover = project?.cover
   const icon = project?.icon
 
   const projectName = project?.properties?.["Nome do Projeto"]?.title?.[0]?.text?.content
@@ -30,8 +30,6 @@ function Project() {
 
   const projectScreenshots = project?.properties?.["Imagens"]?.files
   const [currentScreenshot, setCurrentScreenshot] = useState(0);
-
-  console.log(project?.properties)
 
   const handlePrev = () => {
     setCurrentScreenshot(prev =>
