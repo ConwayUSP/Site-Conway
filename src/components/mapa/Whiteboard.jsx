@@ -4,6 +4,7 @@ const MIN_SCALE = 0.55
 const MAX_SCALE = 2.5
 const PAN_LIMIT = 1500
 const EXCLUDED_ELEMENTS = ['mapa-controls', 'curso-modal-container']
+const HOME_VIEW = { mode: 'contain', maxScale: 1 }
 
 function Whiteboard({ children }) {
   return (
@@ -16,7 +17,7 @@ function Whiteboard({ children }) {
         maxPositionX={PAN_LIMIT}
         minPositionY={-PAN_LIMIT}
         maxPositionY={PAN_LIMIT}
-        fitOnInit="contain"
+        onInit={({ fitToView }) => fitToView({ ...HOME_VIEW, animationTime: 0 })}
         wheel={{ step: 0.002, excluded: EXCLUDED_ELEMENTS }}
         trackPadPanning={{ disabled: false, excluded: EXCLUDED_ELEMENTS }}
         panning={{ excluded: EXCLUDED_ELEMENTS }}
@@ -39,7 +40,7 @@ function Whiteboard({ children }) {
               </button>
               <button
                 type="button"
-                onClick={() => fitToView({ mode: 'contain' })}
+                onClick={() => fitToView(HOME_VIEW)}
                 aria-label="Centralizar mapa"
               >
                 <img src="/icons/home.svg" alt="" aria-hidden="true" />

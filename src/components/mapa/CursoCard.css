@@ -15,6 +15,9 @@
     .icon {
         width: 4rem;
         height: 4rem;
+        flex: 0 0 4rem;
+        aspect-ratio: 1;
+        object-fit: contain;
     }
 }
 
@@ -24,6 +27,7 @@
 
 .curso-label {
     width: 3.75rem;
+    min-height: 2rem;
     font-family: 'EB Garamond', serif;
     font-weight: 600;
     font-size: 1rem;

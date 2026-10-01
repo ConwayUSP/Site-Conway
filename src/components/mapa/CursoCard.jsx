@@ -52,7 +52,7 @@ function CursoCard({ file, type, id }) {
                     .then(response => response.json())
                     .then(setData)
                     .catch(() => console.error("O campo 'file' do CursoCard deve ser uma string representando o nome do arquivo de dados (sem extensão) presente em /public/data/trilhas/", file))
-            } catch (error) {
+            } catch {
                 console.error("Erro ao buscar dados do curso")
             }
         }
@@ -60,24 +60,26 @@ function CursoCard({ file, type, id }) {
 
     const filteredLabel = data ? data.label.split(' ').filter(word => word !== '&') : [];
 
-    if (!data) return null
-
     return (
         <div className="curso-card-wrapper" id={id}>
             <motion.div 
             className={`curso-card ${type === 'horizontal' ? 'horizontal' : ''}`} 
-            onClick={isSmallScreen() ? (e) => handleOpen(e) : () => window.open(data.link, '_blank')}
-            onMouseEnter={isSmallScreen() ? null : (e) => handleOpen(e)}
-            onMouseLeave={isSmallScreen() ? null : () => setIsModalOpen(false)}
-            whileHover={{
+            onClick={data ? (isSmallScreen() ? (e) => handleOpen(e) : () => window.open(data.link, '_blank')) : undefined}
+            onMouseEnter={data && !isSmallScreen() ? (e) => handleOpen(e) : undefined}
+            onMouseLeave={data && !isSmallScreen() ? () => setIsModalOpen(false) : undefined}
+            whileHover={data ? {
                 scale: 1.15,
                 transition: { duration: 0.2, ease: 'easeOut' },
                 cursor: 'pointer'
-            }}
+            } : undefined}
             >
-                <img className="icon" src={`/icons/trilhas/${data.icon}.png`} alt={data.titulo} />
+                {data ? (
+                    <img className="icon" src={`/icons/trilhas/${data.icon}.png`} alt={data.titulo} />
+                ) : (
+                    <span className="icon" aria-hidden="true" />
+                )}
                 <div className="curso-label">
-                    {data.label.split(' ').map((palavra, index) => {
+                    {data?.label.split(' ').map((palavra, index) => {
                         if (palavra === '&') {
                             return (
                                 <span key={index} style={{ color: 'var(--white)' }}>
@@ -96,7 +98,7 @@ function CursoCard({ file, type, id }) {
                     })}
                 </div>
             </motion.div>
-            {isModalOpen && createPortal(
+            {data && isModalOpen && createPortal(
             isSmallScreen() ? 
                 <motion.div className="bg-overlay" onClick={() => setIsModalOpen(false) }>
                     <motion.div className="curso-modal-container" style={{ top: modalPos.y, left: modalPos.x }}
