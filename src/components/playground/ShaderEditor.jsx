@@ -1,25 +1,11 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { cpp } from "@codemirror/lang-cpp";
 import { vim } from "@replit/codemirror-vim";
-import { EditorView, keymap } from "@codemirror/view";
+import { EditorView } from "@codemirror/view";
 
 export default function ShaderEditor({ code, onChange, vimEnabled, onToggleVim, currentTheme, fontSize,
   onFontSizeChange }) {
-  const [internalCode, setInternalCode] = useState(code);
-
-  useEffect(() => {
-    setInternalCode(code);
-  }, [code]);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      onChange(internalCode);
-    }, 400);
-
-    return () => clearTimeout(handler);
-  }, [internalCode, onChange]);
-
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.ctrlKey || e.metaKey) {
@@ -90,11 +76,11 @@ export default function ShaderEditor({ code, onChange, vimEnabled, onToggleVim, 
       </div>
       <div style={{ flex: 1, overflow: "auto" }}>
         <CodeMirror
-          value={internalCode}
+          value={code}
           height="100%"
           theme={currentTheme.editorTheme}
           extensions={extensions}
-          onChange={(val) => setInternalCode(val)}
+          onChange={onChange}
         />
       </div>
     </div>
