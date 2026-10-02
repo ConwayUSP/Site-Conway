@@ -1,8 +1,15 @@
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { useLayoutEffect } from 'react'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import HomeButton from '@components/mapa/HomeButton'
 import './AppLayout.css'
 
 function AppLayout() {
+  const { pathname } = useLocation()
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
   return (
     <>
       <Header />
@@ -26,14 +33,6 @@ function Header() {
         </nav>
       </header>
     </>
-  )
-}
-
-function NavItem({ to, children }) {
-  return (
-    <NavLink to={to} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-      {children}
-    </NavLink>
   )
 }
 
