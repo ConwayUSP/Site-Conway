@@ -13,6 +13,11 @@
   z-index: 1000;
 }
 
+.app-header--trail {
+  background-color: var(--bg-principal);
+  border-bottom: 1px solid color-mix(in srgb, var(--cor-borda) 35%, transparent);
+}
+
 .nav-links {
   display: flex;
   flex-direction: row;
@@ -27,4 +32,8 @@
 .active {
   color: var(--brand-violet)
   /* text-decoration: underline; */
+}
+
+.app-header--trail .active {
+  color: var(--cor-destaque);
 }

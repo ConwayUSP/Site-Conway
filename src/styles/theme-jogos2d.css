@@ -1,0 +1,17 @@
+.theme-jogos2d {
+  --bg-principal: #080b16;
+  --bg-secundario: #11182a;
+  --cor-texto: #f3f7ff;
+  --cor-texto-mutado: #aab6d0;
+  --cor-destaque: #9dff57;
+  --cor-url: #56e8ff;
+  --cor-borda: #ffcf4a;
+  --sh-keyword: #ff5aa5;
+  --sh-string: #9dff57;
+  --sh-comment: #718096;
+  --sh-function: #56e8ff;
+  --sh-type: #ffd166;
+  --sh-number: #ff8a4c;
+  --sh-punctuation: #f3f7ff;
+  --sh-operator: #ffcf4a;
+}

@@ -15,6 +15,12 @@ import '@styles/theme-opengl.css';
 import '@styles/theme-github.css';
 import '@styles/theme-lualove.css';
 import '@styles/theme-craylib.css';
+import '@styles/theme-cpp.css';
+import '@styles/theme-jogos2d.css';
+import '@styles/theme-jogos3d.css';
+import '@styles/theme-rustgodot.css';
+import '@styles/theme-phaser.css';
+import '@styles/theme-fundamentosarte.css';
 
 function TrilhaIndexView() {
   const { trailId } = useParams();
@@ -39,7 +45,7 @@ function TrilhaIndexView() {
       <div className='container-reading'>
         <Link to=".." style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>Voltar para o Núcleo</Link>
         
-        <div style={{marginBottom: '1rem'}}>
+        <div className="trail-header">
           <h1 className="trail-name">{trail.name}</h1>
           {hasChapters && <MarkAsReadButton id={trailId} />}
         </div>
