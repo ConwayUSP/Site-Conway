@@ -6,7 +6,6 @@ import './TrilhaIndexView.css';
 import { ProgressBar } from '@components/nucleo/ProgressBar';
 import { MarkAsReadButton } from '@components/nucleo/MarkAsReadButton';
 
-import { useLocalStorage } from '@hooks/useLocalStorage';
 import { useNucleo } from '@hooks/useNucleo';
 
 import trilhasConfig from '@data/trilhasConfig.json';
@@ -20,7 +19,7 @@ function TrilhaIndexView() {
 
   const { isChapterRead } = useNucleo()
 
-  const trail = trilhasConfig[trailId] || [];
+  const trail = trilhasConfig[trailId];
 
   if (!trail) {
     return (
@@ -31,6 +30,8 @@ function TrilhaIndexView() {
     );
   }
 
+  const hasChapters = trail.chapters.length > 0;
+
   return (
     <main className={`trail-page ${trail.themeClass}`}>
       <div className='container-reading'>
@@ -38,14 +39,32 @@ function TrilhaIndexView() {
         
         <div style={{marginBottom: '1rem'}}>
           <h1 className="trail-name">{trail.name}</h1>
-          <MarkAsReadButton id={trailId} />
+          {hasChapters && <MarkAsReadButton id={trailId} />}
         </div>
         <p style={{ color: 'var(--cor-texto-mutado)', marginBottom: '2.5rem' }}>{trail.description}</p>
 
-        <p style={{ marginBottom: '0.5rem' }}>Progresso na leitura:</p>
-        <ProgressBar id={trailId} />
+        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+          {trail.githubUrl && (
+            <a href={trail.githubUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--cor-url)' }}>
+              Ver repositório no GitHub
+            </a>
+          )}
+
+          {trail.externalUrl && (
+            <a href={trail.externalUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--cor-url)' }}>
+              Acessar material
+            </a>
+          )}
+        </div>
+
+        {hasChapters && (
+          <>
+            <p style={{ marginBottom: '0.5rem' }}>Progresso na leitura:</p>
+            <ProgressBar id={trailId} />
+          </>
+        )}
         
-        <h2>Conteúdos da Trilha</h2>
+        {hasChapters && <h2>Conteúdos da Trilha</h2>}
         <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {trail.chapters.map((chapter, index) => (
             <Link 

@@ -1,20 +1,28 @@
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import './CursoCard.css'
 import isSmallScreen from '@utils/isSmallScreen'
 import { remToPx } from '@utils/convertValues'
+import trilhasConfig from '@data/trilhasConfig.json'
 import CursoModal from './CursoModal'
 
 /*
-- Para utilizar, forneça no campo "file" o nome do arquivo de dados presente em /public/data/trilhas/ como "EXEMPLO" para EXEMPLO.json. Confira o arquivo de exemplo (EXEMPLO.txt) para entender a estrutura dos dados
+- Para utilizar, forneça em "trailId" a chave correspondente em trilhasConfig.json.
 - "type" é um campo opcional. Caso deseje utilizar um card horizontal (texto à direita do ícone), basta fornecer o valor "horizontal"
 */
 
-function CursoCard({ file, type, id }) {
-    const [data, setData] = useState(null)
+function CursoCard({ trailId, type, id }) {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [modalPos, setModalPos] = useState({ x: 0, y: 0 })
+    const navigate = useNavigate()
+    const trail = trilhasConfig[trailId]
+    const data = trail?.map
+
+    function handleAccess() {
+        navigate(`/nucleo/trilha/${trailId}`)
+    }
 
     function handleOpen(e) {
         const rect = e.currentTarget.getBoundingClientRect()
@@ -45,26 +53,13 @@ function CursoCard({ file, type, id }) {
         };
     }, [isModalOpen]);
 
-    useEffect(() => {
-        if (file) {
-            try {
-                fetch(`/data/trilhas/${file}.json`)
-                    .then(response => response.json())
-                    .then(setData)
-                    .catch(() => console.error("O campo 'file' do CursoCard deve ser uma string representando o nome do arquivo de dados (sem extensão) presente em /public/data/trilhas/", file))
-            } catch {
-                console.error("Erro ao buscar dados do curso")
-            }
-        }
-    }, [file])
-
     const filteredLabel = data ? data.label.split(' ').filter(word => word !== '&') : [];
 
     return (
         <div className="curso-card-wrapper" id={id}>
             <motion.div 
             className={`curso-card ${type === 'horizontal' ? 'horizontal' : ''}`} 
-            onClick={data ? (isSmallScreen() ? (e) => handleOpen(e) : () => window.open(data.link, '_blank')) : undefined}
+            onClick={data ? (isSmallScreen() ? (e) => handleOpen(e) : handleAccess) : undefined}
             onMouseEnter={data && !isSmallScreen() ? (e) => handleOpen(e) : undefined}
             onMouseLeave={data && !isSmallScreen() ? () => setIsModalOpen(false) : undefined}
             whileHover={data ? {
@@ -74,7 +69,7 @@ function CursoCard({ file, type, id }) {
             } : undefined}
             >
                 {data ? (
-                    <img className="icon" src={`/icons/trilhas/${data.icon}.png`} alt={data.titulo} />
+                    <img className="icon" src={`/icons/trilhas/${data.icon}.png`} alt={data.title} />
                 ) : (
                     <span className="icon" aria-hidden="true" />
                 )}
@@ -88,7 +83,7 @@ function CursoCard({ file, type, id }) {
                             );
                         }
 
-                        const cor = Array.isArray(data.cores)? "var(--" + data.cores[filteredLabel.indexOf(palavra)] + ")" : "var(--" + data.cores + ")";
+                        const cor = Array.isArray(data.colors)? "var(--" + data.colors[filteredLabel.indexOf(palavra)] + ")" : "var(--" + data.colors + ")";
                         
                         return (
                             <span key={index} style={{ color: cor }}>
@@ -103,13 +98,13 @@ function CursoCard({ file, type, id }) {
                 <motion.div className="bg-overlay" onClick={() => setIsModalOpen(false) }>
                     <motion.div className="curso-modal-container" style={{ top: modalPos.y, left: modalPos.x }}
                     initial={{ scale: 1.3 / window.visualViewport?.scale }} animate={{ scale: 1.25 / window.visualViewport?.scale }} transition={{ duration: 0.03, ease: 'easeOut' }}>
-                        <CursoModal data={data} />
+                        <CursoModal data={data} onAccess={handleAccess} />
                     </motion.div>
                 </motion.div>
             :
                 <motion.div className="curso-modal-container" style={{ top: modalPos.y, left: modalPos.x }} 
                 initial={{ scale: 1.05 }} animate={{ scale: 1 }} transition={{ duration: 0.03, ease: 'easeIn' }}>
-                    <CursoModal data={data} />
+                    <CursoModal data={data} onAccess={handleAccess} />
                 </motion.div>
             , document.body)}
         </div>
