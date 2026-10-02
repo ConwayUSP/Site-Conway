@@ -1,5 +1,5 @@
 // src/pages/Playground.jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import LZString from "lz-string";
 import Split from "react-split";
 
@@ -42,6 +42,7 @@ export default function Playground() {
 
     return DEFAULT_SHADER;
   });
+  const [shaderCode, setShaderCode] = useState(code);
 
   const [modelType, setModelType] = useState("plane");
   const [customModelUrl, setCustomModelUrl] = useState(null);
@@ -64,10 +65,32 @@ export default function Playground() {
   });
 
   const [copied, setCopied] = useState(false);
+  const [shaderError, setShaderError] = useState(null);
+  const currentCodeRef = useRef(code);
 
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   const currentTheme = THEMES[themeKey] || THEMES.dark;
+
+  const handleShaderError = useCallback((error, validatedCode) => {
+    if (validatedCode !== undefined && validatedCode !== currentCodeRef.current) return;
+    setShaderError(error);
+  }, []);
+
+  const handleCodeChange = useCallback((nextCode) => {
+    currentCodeRef.current = nextCode;
+    setShaderError(null);
+    setCode(nextCode);
+  }, []);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      currentCodeRef.current = code;
+      setShaderCode(code);
+    }, 400);
+
+    return () => clearTimeout(handler);
+  }, [code]);
 
   useEffect(() => {
     localStorage.setItem("playground_shader_code", code);
@@ -172,10 +195,12 @@ export default function Playground() {
 
           <div className="canvas-wrapper">
             <ShaderCanvas 
-              code={code} 
+              code={shaderCode}
               modelType={modelType} 
               customModelUrl={customModelUrl}
               bgColor={currentTheme.bg}
+              shaderError={shaderError}
+              onShaderError={handleShaderError}
             />
           </div>
         </div>
@@ -184,7 +209,7 @@ export default function Playground() {
         <div className="playground-right">
           <ShaderEditor
             code={code}
-            onChange={setCode}
+            onChange={handleCodeChange}
             vimEnabled={vimEnabled}
             onToggleVim={setVimEnabled}
             currentTheme={currentTheme}

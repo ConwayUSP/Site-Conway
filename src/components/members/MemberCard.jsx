@@ -62,6 +62,7 @@ export function MemberCards({ members }) {
           // style={{ height: '100dvh' }}
           data={membersAFK}
           useWindowScroll
+          increaseViewportBy={{top: 500, bottom: 500}}
           listClassName='members-cards'
           itemClassName='member-card-wrapper'
           itemContent={(index, member) => (

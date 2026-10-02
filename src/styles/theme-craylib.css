@@ -1,0 +1,28 @@
+.theme-craylib {
+  --bg-principal: #121840;
+  --bg-secundario: #233e87;
+  --cor-texto: #a5cdea;
+  --cor-texto-mutado: #ffe1cf;
+  --cor-destaque: #3bbce3;
+  --cor-url: #35f2e6;
+  --cor-borda: #163b63;
+  --sh-keyword: #D94179;
+  --sh-string: #a5d6ff;
+  --sh-comment: #8b949e;
+  --sh-function: #d2a8ff;
+  --sh-number: #79c0ff;
+  --sh-punctuation: #c9d1d9;
+}
+
+.theme-craylib .markdown-container pre .code-block-wrapper {
+  border: 3px solid var(--cor-borda);
+  border-radius: 8px;
+}
+
+.theme-craylib .markdown-container p {
+    color: var(--cor-texto);
+}
+
+.theme-craylib .container-reading p {
+    color: var(--cor-texto);
+}

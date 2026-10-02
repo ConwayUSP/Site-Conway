@@ -39,7 +39,9 @@ function Nucleo() {
       </header>
 
       <div className="trails-grid">
-        {Object.entries(trilhasConfig).map(([id, trail]) => (
+        {Object.entries(trilhasConfig)
+          .filter(([, trail]) => trail.showInNucleo !== false)
+          .map(([id, trail]) => (
           <Link
             key={id}
             to={`./trilha/${id}`}

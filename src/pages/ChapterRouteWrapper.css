@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 2rem;
-    padding: 1em;
+    padding: 1em 0;
     /* position: sticky; */
     /* top: 3.6em; */
   }

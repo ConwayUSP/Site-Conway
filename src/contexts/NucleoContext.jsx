@@ -22,15 +22,15 @@ export function NucleoProvider({ children }) {
   const getPercentage = useCallback((trailId) => {
     const trailProgress = trailSave;
     const totalChapters = trilhasConfig[trailId].chapters.length;
-    const completedChapters = Object.values(trailProgress[trailId]).filter(Boolean).length;
+    const completedChapters = Object.values(trailProgress[trailId] || {}).filter(Boolean).length;
 
-    return ((completedChapters / totalChapters) * 100).toFixed(2);
+    return totalChapters === 0 ? '0.00' : ((completedChapters / totalChapters) * 100).toFixed(2);
   }, [trailSave]);
 
   const markAsRead = useCallback((trailId, chapter) => {
     setTrailSave(prev => {
       const updatedProgress = { ...prev };
-      updatedProgress[trailId][chapter] = true;
+      updatedProgress[trailId] = { ...updatedProgress[trailId], [chapter]: true };
       return updatedProgress;
     });
   }, [setTrailSave]);
@@ -39,16 +39,18 @@ export function NucleoProvider({ children }) {
     setTrailSave(prev => {
       const totalChapters = trilhasConfig[trailId].chapters.length;
       const updatedProgress = { ...prev };
+      const updatedTrailProgress = { ...updatedProgress[trailId] };
 
       for (var i = 0; i < totalChapters; i++) {
-        updatedProgress[trailId][i] = true;
+        updatedTrailProgress[i] = true;
       }
+      updatedProgress[trailId] = updatedTrailProgress;
       return updatedProgress;
     });
   }, [setTrailSave]); 
 
   const isChapterRead = useCallback((trailId, chapter) => {
-    return trailSave[trailId][chapter];
+    return trailSave[trailId]?.[chapter] || false;
   }, [trailSave]);
 
   const value = {

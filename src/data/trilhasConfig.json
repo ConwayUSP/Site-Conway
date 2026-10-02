@@ -61,7 +61,16 @@
         "title": "Modelos 3D",
         "filepath": "capitulos/10%20-%20Modelos%203D.md"
       }
-    ]
+    ],
+    "githubUrl": "https://github.com/ConwayUSP/Estado-da-Arte",
+    "map": {
+      "label": "OpenGL",
+      "colors": "orange",
+      "icon": "opengl",
+      "title": "Estado da Arte",
+      "subtitle": "Sobre este curso:",
+      "description": "Essa é a trilha de OpenGL da Conway, também conhecida como Estado da Arte. Esta trilha é uma adaptação do famoso curso LearnOpenGL, e tem como objetivo te ensinar o básico sobre renderização com C++. \nO material está dividido em 11 capítulos: começa com OpenGL básico, aborda shaders, texturas e conceitos matemáticos, segue com transformações e câmera, avança em iluminação e mapas de luz, e termina com importação e renderização de modelos 3D."
+    }
   },
   "github": {
     "name": "Introdução ao Git(Hub)",
@@ -135,8 +144,19 @@
         "title": "Desafio Final",
         "filepath": "guia_pratico/12_desafio_final.md"
       }
-    ]
-
+    ],
+    "githubUrl": "https://github.com/ConwayUSP/Git_Github",
+    "map": {
+      "label": "Git & Github",
+      "colors": [
+        "yellow",
+        "red-light"
+      ],
+      "icon": "git",
+      "title": "Git & Github: Guia de aprendizado e consulta",
+      "subtitle": "Sobre este curso:",
+      "description": "Aqui, você poderá aprender do zero como usar essas duas ferramentas ou simplesmente utilizar esse repositório como material de consulta. \nO objetivo deste material é fornecer uma base sólida para que você possa entender os conceitos fundamentais do Git e GitHub, aprender os comandos mais importantes e aplicar esse conhecimento em situações práticas. Além disso, depois de já ter consolidado sua base, você poderá usar esse material como um guia de consulta rápida para resolver dúvidas ou relembrar comandos específicos. Incrível, não é mesmo!?"
+    }
   },
   "craylib": {
     "name": "Sea of C",
@@ -175,7 +195,19 @@
         "title": "O Jogo da Vida de um Marinheiro",
         "filepath": "capitulos/05%20-%20O%20Jogo%20da%20Vida%20de%20um%20Marinheiro.md"
       }
-    ]
+    ],
+    "githubUrl": "https://github.com/ConwayUSP/Sea-of-C",
+    "map": {
+      "label": "C & Raylib",
+      "colors": [
+        "blue",
+        "blue-light"
+      ],
+      "icon": "c",
+      "title": "Sea of C",
+      "subtitle": "Sobre este curso:",
+      "description": "Esta trilha foi feita para você, que ainda não possui muito conhecimento ou experiência com programação (principalmente com a linguagem C). \nAqui, iremos explorar desde os conceitos mais básicos e iniciais da programação, até chegarmos à criação de sistemas relativamente complexos, envolvendo interfaces gráficas e interação com o usuário utilizando Raylib. Espero que esteja pronto para embarcar e zarpar, porque nosso navio não tem ré e nem freio de mão! HAR HAR HAR!!!"
+    }
   },
   "cpp": {
     "name": "Sapphiron",
@@ -329,7 +361,16 @@
         "title": "Herança <-> Composição",
         "filepath": "OOP-Cpp/Capítulo%2003%20-%20Parte%202%3A%20Herança%20<->%20Composição.md"
       }
-    ]
+    ],
+    "githubUrl": "https://github.com/ConwayUSP/Intro_Cpp",
+    "map": {
+      "label": "C++",
+      "colors": "purple-light",
+      "icon": "cpp",
+      "title": "Introdução ao C++",
+      "subtitle": "Sobre este curso:",
+      "description": "Caso você tenha interesse em mergulhar no vasto mundo da computação gráfica, trabalhando com o desenvolvimento computacional de, por exemplo, simulações, animações e/ou, até mesmo, jogos, este curso poderá ser seu primeiro passo! Ele servirá como pré-requisito para alguns outros cursos oferecidos pela Conway, tal como Introdução ao OpenGL.\nApresentamos, então, o curso de Introdução ao C++, dedicado a abordar uma das linguagens de maior referência no que diz respeito ao alto desempenho: C++."
+    }
   },
   "lualove": {
     "name": "Hiten Hagoromo",
@@ -363,7 +404,19 @@
         "title": "Aprofundamento em LÖVE",
         "filepath": "love2d/2-aprofundamento/aprofundamento.md"
       }
-    ]
+    ],
+    "githubUrl": "https://github.com/ConwayUSP/Hiten_Hagoromo",
+    "map": {
+      "label": "Lua & LÖVE",
+      "colors": [
+        "purple",
+        "red"
+      ],
+      "icon": "lua",
+      "title": "Hiten Hagoromo",
+      "subtitle": "Sobre este curso:",
+      "description": "Este é um dojo feito para ensinar lua e LÖVE para os membros da Conway. \nO curso é dividido em duas etapas: primeiro, introdução ao Lua, explorando conceitos, diferenças (especialmente com C) e recursos da linguagem, com um projeto final opcional. Depois, entrada no framework LÖVE, entendendo sua estrutura, API e ferramentas. Ao final, você estará preparado para criar seu próprio jogo do zero."
+    }
   },
   "jogos2d": {
     "name": "Introdução a Game Dev 2D",
@@ -412,7 +465,16 @@
         "title": "Projeto Final",
         "filepath": "Projeto%20Final/README.md"
       }
-    ]
+    ],
+    "githubUrl": "https://github.com/ConwayUSP/Intro_Games2D",
+    "map": {
+      "label": "Jogos 2D",
+      "colors": "green",
+      "icon": "2d",
+      "title": "Introdução a Game Dev 2D",
+      "subtitle": "Sobre este curso:",
+      "description": "Este é um curso de introdução ao desenvolvimento de jogos, com o objetivo de introduzir conceitos essenciais para a criação de jogos 2D. \nNeste curso, você vai explorar o design de jogos clássicos e históricos, como Pong, Legend of Zelda, Super Mario Bros. e mais. Serão 6 aulas em que você desenvolverá diversos jogos e no final será convidado a criar um projeto final com tudo que você aprendeu."
+    }
   },
   "jogos3d": {
     "name": "Introdução a Game Dev 3D",
@@ -441,7 +503,16 @@
         "title": "Projeto Final",
         "filepath": "Projeto%20Final/README.md"
       }
-    ]
+    ],
+    "githubUrl": "https://github.com/ConwayUSP/Intro_Games3D",
+    "map": {
+      "label": "Jogos 3D",
+      "colors": "white",
+      "icon": "3d",
+      "title": "Introdução a Game Dev 3D",
+      "subtitle": "Sobre este curso:",
+      "description": "Bem-vindo, este é um curso de introdução ao desenvolvimento de jogos, com o objetivo de introduzir conceitos essenciais para a criação de jogos 3D. \nNeste curso, você vai criar alguns jogos incriveís e mais. Serão 3 aulas em que você desenvolverá diversos jogos e no final será convidado a criar um projeto final com tudo que você aprendeu."
+    }
   },
   "rustgodot": {
     "name": "Lucky Crab",
@@ -555,7 +626,19 @@
         "title": "Projeto Final - Pt. 2",
         "filepath": "02%20-%20Uma%20introdução%20a%20Godot/10.%20Projeto%20Final%20-%20Pt.%202.md"
       }
-    ]
+    ],
+    "githubUrl": "https://github.com/ConwayUSP/Lucky_Crab",
+    "map": {
+      "label": "Rust & Godot",
+      "colors": [
+        "orange",
+        "blue"
+      ],
+      "icon": "godot",
+      "title": "Lucky Crab",
+      "subtitle": "Sobre este curso:",
+      "description": "Se você sempre quis fazer seus próprios jogos com as ferramentas mais modernas do mercado, prioriza o desenvolvimento open-source, e valoriza um código rápido, manutenível, seguro e elegante, então esse curso é para você. \nApresentamos o curso Lucky Crab, dedicado a ensinar o Godot Game Engine, um 'motor de jogo', que permite criar jogos 2D e 3D, cross-plataforma, grátis e open-source. Além disso, estenderemos as funcionalidades do Godot usando a linguagem de programação Rust, uma linguagem de sistemas focada em construir softwares eficientes e confiáveis."
+    }
   },
   "phaser": {
     "name": "Phaser",
@@ -604,35 +687,61 @@
         "title": "Aúdio, Câmera e Eventos",
         "filepath": "Intro-Phaser/Capítulo%2006%20-%20Áudio%2C%20Câmera%20e%20Eventos.md"
       }
-    ]
+    ],
+    "githubUrl": "https://github.com/ConwayUSP/IntroPhaser"
   },
   "fundamentosarte": {
-    "name":"Fundamentos da Arte",
-    "description":"Aprenda conceitos fundamentais para a arte em jogos, como teoria das cores e composição",
-    "thumbnail":"https://github.com/ConwayUSP/Fundamentos-da-Arte-para-Jogos/raw/main/assets/iniciacao_1.png",
-    "themeClass":"theme-fundamentosarte",
-    "repoRootUrl":"https://raw.githubusercontent.com/ConwayUSP/Fundamentos-da-Arte-para-Jogos/main/",
+    "name": "Fundamentos da Arte",
+    "description": "Aprenda conceitos fundamentais para a arte em jogos, como teoria das cores e composição",
+    "thumbnail": "https://github.com/ConwayUSP/Fundamentos-da-Arte-para-Jogos/raw/main/assets/iniciacao_1.png",
+    "themeClass": "theme-fundamentosarte",
+    "repoRootUrl": "https://raw.githubusercontent.com/ConwayUSP/Fundamentos-da-Arte-para-Jogos/main/",
     "chapters": [
       {
-        "id":"cap-0",
-        "title":"Iniciação",
-        "filepath":"capitulos/00-Iniciacao.md"
+        "id": "cap-0",
+        "title": "Iniciação",
+        "filepath": "capitulos/00-Iniciacao.md"
       },
       {
-        "id":"cap-1",
-        "title":"Módulo 1 - Teoria das Cores",
-        "filepath":"capitulos/01-Modulo1-Teoria-das-Cores.md"
+        "id": "cap-1",
+        "title": "Módulo 1 - Teoria das Cores",
+        "filepath": "capitulos/01-Modulo1-Teoria-das-Cores.md"
       },
       {
-        "id":"cap-2",
-        "title":"Módulo 2 - Composição",
-        "filepath":"capitulos/02-Modulo2-Composicao.md"
+        "id": "cap-2",
+        "title": "Módulo 2 - Composição",
+        "filepath": "capitulos/02-Modulo2-Composicao.md"
       },
       {
-        "id":"cap-3",
-        "title":"Módulo 3 - Conceitos Finais",
-        "filepath":"capitulos/03-Modulo3-Conceitos-Finais.md"
+        "id": "cap-3",
+        "title": "Módulo 3 - Conceitos Finais",
+        "filepath": "capitulos/03-Modulo3-Conceitos-Finais.md"
       }
-    ]
+    ],
+    "githubUrl": "https://github.com/ConwayUSP/Fundamentos-da-Arte-para-Jogos",
+    "map": {
+      "label": "Teoria da Arte",
+      "colors": "pink",
+      "icon": "arte",
+      "title": "Fundamentos da Arte para Jogos",
+      "subtitle": "Sobre este curso:",
+      "description": "Desde o design dos personagens até a ambientação do mundo, a arte está intrinsecamente relacionada à jogabilidade e à narração da história nos games. \nAssim, uma boa paleta de cores, posicionamentos corretos de elementos e hierarquia de ênfase dos objetos são alguns dos fatores que influenciam positivamente na estética. Você poderá criar e compor sua própria arte para jogos, aprendendo conceitos essenciais da arte aplicada ao desenvolvimento de jogos, desde a teoria das cores até a composição de cenários e clareza visual."
+    }
+  },
+  "material": {
+    "name": "Quer liberdade para produzir o que mais faz sentido para você?",
+    "description": "Caso você não tenha interesse em realizar uma das trilhas pré-estabelecidas pela nossa entidade no momento, aqui te damos a oportunidade de construir um material didático próprio a respeito de qualquer conteúdo referente à computação gráfica e desenvolvimento de jogos. \nO céu é o limite! Utilize sua criatividade!",
+    "themeClass": "",
+    "externalUrl": "https://docs.google.com/document/d/1NF4KoJ5W1cBiOe9iqAbXd1Mesuag2uCpL9JA7WObbl8",
+    "showInNucleo": false,
+    "chapters": [],
+    "map": {
+      "label": "Material Didático",
+      "colors": "red-light",
+      "icon": "material",
+      "title": "Quer liberdade para produzir o que mais faz sentido para você?",
+      "subtitle": "Sobre essa opção:",
+      "description": "Caso você não tenha interesse em realizar uma das trilhas pré-estabelecidas pela nossa entidade no momento, aqui te damos a oportunidade de construir um material didático próprio a respeito de qualquer conteúdo referente à computação gráfica e desenvolvimento de jogos. \nO céu é o limite! Utilize sua criatividade!"
+    }
   }
 }

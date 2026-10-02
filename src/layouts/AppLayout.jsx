@@ -1,20 +1,32 @@
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { useLayoutEffect } from 'react'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import HomeButton from '@components/mapa/HomeButton'
+import trilhasConfig from '@data/trilhasConfig.json'
 import './AppLayout.css'
 
 function AppLayout() {
+  const { pathname } = useLocation()
+  const trailId = pathname.match(/^\/nucleo\/trilha\/([^/]+)/)?.[1]
+  const trailThemeClass = trailId
+    ? trilhasConfig[decodeURIComponent(trailId)]?.themeClass
+    : ''
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
   return (
     <>
-      <Header />
+      <Header themeClass={trailThemeClass} />
       <Outlet />
     </>
   )
 }
 
-function Header() {
+function Header({ themeClass = '' }) {
   return (
     <>
-      <header className="app-header">
+      <header className={`app-header ${themeClass ? `${themeClass} app-header--trail` : ''}`}>
         <HomeButton id="home-button" />
 
         <nav className="nav-links">
@@ -26,14 +38,6 @@ function Header() {
         </nav>
       </header>
     </>
-  )
-}
-
-function NavItem({ to, children }) {
-  return (
-    <NavLink to={to} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-      {children}
-    </NavLink>
   )
 }
 

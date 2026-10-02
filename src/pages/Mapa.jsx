@@ -20,9 +20,9 @@ function Mapa() {
 
         {/* Conhecimentos Gerais */}
         <div className="topico-wrapper">
-          <CursoCard id="c" file={"c"} type="horizontal"/>
-          <CursoCard id="git" file={"git"} type="horizontal"/>
-          <CursoCard id="arte" file={"arte"} type="horizontal"/>
+          <CursoCard id="c" trailId="craylib" type="horizontal"/>
+          <CursoCard id="git" trailId="github" type="horizontal"/>
+          <CursoCard id="arte" trailId="fundamentosarte" type="horizontal"/>
         </div>
         <header className="topico-title">Conhecimentos Gerais</header>
 
@@ -41,13 +41,13 @@ function Mapa() {
         
         {/* Cards dos cursos */}
         <div className="cursos-container">
-            <CursoCard id="godot" file={"godot"} type=""/>
-            <CursoCard id="material" file={"material"} type=""/>
-            <CursoCard id="opengl" file={"opengl"} type=""/>
-            <CursoCard id="doisd" file={"2d"} type=""/>
-            <CursoCard id="tresd" file={"3d"} type=""/>
-            <CursoCard id="cpp" file={"cpp"} type=""/>
-            <CursoCard id="lua" file={"lua"} type=""/>
+            <CursoCard id="godot" trailId="rustgodot" type=""/>
+            <CursoCard id="material" trailId="material" type=""/>
+            <CursoCard id="opengl" trailId="opengl" type=""/>
+            <CursoCard id="doisd" trailId="jogos2d" type=""/>
+            <CursoCard id="tresd" trailId="jogos3d" type=""/>
+            <CursoCard id="cpp" trailId="cpp" type=""/>
+            <CursoCard id="lua" trailId="lualove" type=""/>
         </div>
       </section>
     </Whiteboard>
