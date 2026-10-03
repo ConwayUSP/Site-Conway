@@ -69,6 +69,9 @@ export default function Playground() {
 
   const currentTheme = THEMES[themeKey] || THEMES.dark;
 
+  const [textures, setTextures] = useState(Array(8).fill(null));
+
+
   useEffect(() => {
     localStorage.setItem("playground_shader_code", code);
   }, [code]);
@@ -107,6 +110,28 @@ export default function Playground() {
       setCustomModelUrl(url);
       setModelType("custom");
     }
+  };
+
+  const handleTextureUpload = (index, file) => {
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setTextures((prev) => {
+        const next = [...prev];
+        // Libera a memória da textura antiga se ela existir
+        if (next[index]) URL.revokeObjectURL(next[index]);
+        next[index] = url;
+        return next;
+      });
+    }
+  };
+
+  const handleTextureClear = (index) => {
+    setTextures((prev) => {
+      const next = [...prev];
+      if (next[index]) URL.revokeObjectURL(next[index]);
+      next[index] = null;
+      return next;
+    });
   };
 
   return (
@@ -176,6 +201,7 @@ export default function Playground() {
               modelType={modelType} 
               customModelUrl={customModelUrl}
               bgColor={currentTheme.bg}
+              textures={textures}
             />
           </div>
         </div>
@@ -190,6 +216,9 @@ export default function Playground() {
             currentTheme={currentTheme}
             fontSize={fontSize}
             onFontSizeChange={setFontSize}
+            textures={textures}
+            onTextureUpload={handleTextureUpload}
+            onTextureClear={handleTextureClear}
           />
         </div>
       </Split>
