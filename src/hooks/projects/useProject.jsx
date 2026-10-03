@@ -8,8 +8,9 @@ export function useProject(id) {
     queryKey: ['project', id],
     queryFn: () => getProject(id),
     initialData: () => {
-      return queryClient.getQueryData(['projects'])?.find(p => p.id == id)
-    }
+      return queryClient.getQueryData(['projects'])?.find(project => project.id === id)
+    },
+    staleTime: Infinity,
   })
 
   return {

@@ -1,0 +1,17 @@
+.theme-fundamentosarte {
+  --bg-principal: #180b42;
+  --bg-secundario: #29175f;
+  --cor-texto: #fffaf0;
+  --cor-texto-mutado: #8ee8df;
+  --cor-destaque: #fff36d;
+  --cor-url: #62d4d8;
+  --cor-borda: #62d4d8;
+  --sh-keyword: #62d4d8;
+  --sh-string: #fff36d;
+  --sh-comment: #8d7cc7;
+  --sh-function: #8ee8df;
+  --sh-type: #ffe17a;
+  --sh-number: #ffd05a;
+  --sh-punctuation: #fffaf0;
+  --sh-operator: #62d4d8;
+}

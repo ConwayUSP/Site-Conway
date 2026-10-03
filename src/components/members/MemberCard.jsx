@@ -11,6 +11,7 @@ import GG from '@assets/setores/textures/GG.png'
 import OP from '@assets/setores/textures/OP.png'
 import TitleIconic from '../TitleIconic'
 import { use, useMemo } from 'react'
+import MemberPhoto from './MemberPhoto'
 
 const textures = {
   estrelinhas,
@@ -61,6 +62,7 @@ export function MemberCards({ members }) {
           // style={{ height: '100dvh' }}
           data={membersAFK}
           useWindowScroll
+          increaseViewportBy={{top: 500, bottom: 500}}
           listClassName='members-cards'
           itemClassName='member-card-wrapper'
           itemContent={(index, member) => (
@@ -110,10 +112,10 @@ export function MemberCard({ properties, icon, id }) {
           src={textures[depID]}
         />
       </div>
-      <img 
-        src={photo} 
-        alt={memberName || 'Member Photo'} 
-        loading="lazy"
+      <MemberPhoto
+        className="member-card-photo"
+        src={photo}
+        alt={memberName || 'Foto do membro'}
       />
       <div 
         className="member-card-content"

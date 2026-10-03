@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { cpp } from "@codemirror/lang-cpp";
 import { vim } from "@replit/codemirror-vim";
@@ -146,11 +146,11 @@ export default function ShaderEditor({ code, onChange, vimEnabled, onToggleVim, 
       </div>
       <div style={{ flex: 1, overflow: "auto" }}>
         <CodeMirror
-          value={internalCode}
+          value={code}
           height="100%"
           theme={currentTheme.editorTheme}
           extensions={extensions}
-          onChange={(val) => setInternalCode(val)}
+          onChange={onChange}
         />
       </div>
     </div>

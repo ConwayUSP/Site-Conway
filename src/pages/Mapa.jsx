@@ -1,9 +1,8 @@
-import { useEffect } from 'react'
-import isSmallScreen from '@utils/isSmallScreen'
 import './Mapa.css'
 import CursoCard from '@components/mapa/CursoCard'
 import TrilhaCard from '@components/mapa/TrilhaCard'
 import Tracejado from '@components/Tracejado'
+import Whiteboard from '@components/mapa/Whiteboard'
 
 /*
 Para adicionar uma nova trilha, crie uma nova seção. Dentro dela, adicione um TrilhaCard, CursoCards e Tracejados para conectar os cards.
@@ -11,17 +10,8 @@ Leia a especificação de como usar cada componente em seus respectivos arquivos
 */
 
 function Mapa() {
-  
-  useEffect(() => {
-    window.scroll({
-      top: document.documentElement.scrollHeight / 2 - window.innerHeight / 2,
-      left: document.documentElement.scrollWidth / 2 - window.innerWidth / 2,
-      behavior: 'smooth'
-    })
-  }, []);
-
   return (
-    <main className="mapa">
+    <Whiteboard>
       <section className="trilha-membros">
         {/* Início da trilha */}
         <TrilhaCard id="membros-card" line1="Trilha de" line2="Membros" icon="connie" type=""/>
@@ -30,9 +20,9 @@ function Mapa() {
 
         {/* Conhecimentos Gerais */}
         <div className="topico-wrapper">
-          <CursoCard id="c" file={"c"} type="horizontal"/>
-          <CursoCard id="git" file={"git"} type="horizontal"/>
-          <CursoCard id="arte" file={"arte"} type="horizontal"/>
+          <CursoCard id="c" trailId="craylib" type="horizontal"/>
+          <CursoCard id="git" trailId="github" type="horizontal"/>
+          <CursoCard id="arte" trailId="fundamentosarte" type="horizontal"/>
         </div>
         <header className="topico-title">Conhecimentos Gerais</header>
 
@@ -51,16 +41,16 @@ function Mapa() {
         
         {/* Cards dos cursos */}
         <div className="cursos-container">
-            <CursoCard id="godot" file={"godot"} type=""/>
-            <CursoCard id="material" file={"material"} type=""/>
-            <CursoCard id="opengl" file={"opengl"} type=""/>
-            <CursoCard id="doisd" file={"2d"} type=""/>
-            <CursoCard id="tresd" file={"3d"} type=""/>
-            <CursoCard id="cpp" file={"cpp"} type=""/>
-            <CursoCard id="lua" file={"lua"} type=""/>
+            <CursoCard id="godot" trailId="rustgodot" type=""/>
+            <CursoCard id="material" trailId="material" type=""/>
+            <CursoCard id="opengl" trailId="opengl" type=""/>
+            <CursoCard id="doisd" trailId="jogos2d" type=""/>
+            <CursoCard id="tresd" trailId="jogos3d" type=""/>
+            <CursoCard id="cpp" trailId="cpp" type=""/>
+            <CursoCard id="lua" trailId="lualove" type=""/>
         </div>
       </section>
-    </main>
+    </Whiteboard>
   )
 }
 

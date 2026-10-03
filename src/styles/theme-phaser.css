@@ -1,0 +1,17 @@
+.theme-phaser {
+  --bg-principal: #100b28;
+  --bg-secundario: #1c153d;
+  --cor-texto: #f4f0ff;
+  --cor-texto-mutado: #beb2df;
+  --cor-destaque: #b69cff;
+  --cor-url: #64e7dc;
+  --cor-borda: #7355d9;
+  --sh-keyword: #ff70b7;
+  --sh-string: #7fe0a3;
+  --sh-comment: #7f759e;
+  --sh-function: #65dcec;
+  --sh-type: #c6a8ff;
+  --sh-number: #ffd36e;
+  --sh-punctuation: #eee8ff;
+  --sh-operator: #b69cff;
+}

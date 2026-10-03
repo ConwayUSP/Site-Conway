@@ -1,0 +1,17 @@
+.theme-rustgodot {
+  --bg-principal: #0d1820;
+  --bg-secundario: #162733;
+  --cor-texto: #f2f7f8;
+  --cor-texto-mutado: #a9c2c9;
+  --cor-destaque: #72c8f0;
+  --cor-url: #8ee8ff;
+  --cor-borda: #e98a55;
+  --sh-keyword: #e98a55;
+  --sh-string: #9bdc8c;
+  --sh-comment: #76909a;
+  --sh-function: #72c8f0;
+  --sh-type: #ffc37d;
+  --sh-number: #ffd166;
+  --sh-punctuation: #e6f1f3;
+  --sh-operator: #8ee8ff;
+}

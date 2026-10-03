@@ -6,13 +6,13 @@ import arrow from '@assets/icons/arrow-forward.svg'
 import estrelinhas1 from '@assets/enfeites/twinkles1.svg'
 import estrelinhas2 from '@assets/enfeites/twinkles2.svg'
 
-function CursoModal({data, id}) {
+function CursoModal({data, id, onAccess}) {
     if (!data) return null
     
     return (
         <div className="curso-modal" id={id}>
             <div className="curso-modal-title">
-                <h2 style={{ marginRight: "2rem" }}>{data.titulo}</h2>
+                <h2 style={{ marginRight: "2rem" }}>{data.title}</h2>
                 <img className="estrelinhas-top" src={estrelinhas1} alt="Estrelinhas" style={{ height: '1.2rem', width: 'auto' }} />
             </div>
             <div className="curso-modal-content">
@@ -20,16 +20,16 @@ function CursoModal({data, id}) {
                     <svg width="0.5rem" height="0.5rem" xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.1rem" y="0.1rem" width="0.3rem" height="0.3rem" transform={"rotate(-45 " + remToPx(0.3) + " " + remToPx(0.3) + ")"} fill="var(--yellow)" />
                     </svg>
-                    <h3 style={{ color: 'var(--yellow)' }}>{data.subtitulo}</h3>
+                    <h3 style={{ color: 'var(--yellow)' }}>{data.subtitle}</h3>
                 </div>
 
-                {data.descricao.split('\n').map((line, index) => ( 
+                {data.description.split('\n').map((line, index) => (
                     <p key={index} style={{ fontSize: '0.8rem', lineHeight: '1rem', marginBottom: "0.1rem"}}>{line}</p>
                 ))}
                 
                 { isSmallScreen() ?
                     <div style={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'end', gap: '0.4rem' }}>
-                        <motion.button onClick={() => window.open(data.link, '_blank')}>
+                        <motion.button onClick={onAccess}>
                             Acesse o curso
                             <img src={arrow} alt="->" style={{ width: '0.8rem', height: '0.8rem' }} />
                         </motion.button>

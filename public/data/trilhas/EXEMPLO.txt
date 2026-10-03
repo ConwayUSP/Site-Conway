@@ -1,9 +1,0 @@
-{
-    "label": "Exemplo & Exemplo",   // O nome que será exibido no mapa
-    "cores": ["orange", "blue"],    // Cor(es) da label - confira /index.css para as opções de cores ou adicione uma nova
-    "icon": "exemplo",              // Nome da imagem em /public/icons/trilhas - sem extensão (use .png)
-    "titulo": "Título do curso ou trilha",      // Título que será exibido no card
-    "subtitulo": "Objetivos de Aprendizado:",       // Subtítulo que será exibido no card
-    "descricao": "Descrição do curso ou trilha",    // Descrição que será exibida no card
-    "link": "https://example.com/"      // Link para o github ou material do curso
-}

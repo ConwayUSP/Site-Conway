@@ -18,8 +18,6 @@ export function ProjectsCards({ projects }) {
     )
   }
 
-  console.log(projects)
-
   const projectsAtivos = useMemo(() => projects?.filter(member => member.properties.Status.status.name === 'Na Ativa') || [], [projects]);
   const projectsFinalizados = useMemo(() => projects?.filter(member => member.properties.Status.status.name === 'Finalizado') || [], [projects]);
 
@@ -29,6 +27,7 @@ export function ProjectsCards({ projects }) {
         <span className='project-card-label'>Em andamento</span>
         <VirtuosoGrid
           data={projectsAtivos}
+          increaseViewportBy={{top: 500, bottom: 500}}
           useWindowScroll
           listClassName='projects-cards'
           itemContent={(index, project) => (
@@ -46,6 +45,7 @@ export function ProjectsCards({ projects }) {
         <span className='project-card-label'>Finalizados</span>
         <VirtuosoGrid
           data={projectsFinalizados}
+          increaseViewportBy={{top: 500, bottom: 500}}
           useWindowScroll
           listClassName='projects-cards'
           itemContent={(index, project) => (

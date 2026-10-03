@@ -1,0 +1,17 @@
+.theme-jogos3d {
+  --bg-principal: #080d13;
+  --bg-secundario: #111b24;
+  --cor-texto: #edf8f8;
+  --cor-texto-mutado: #9fb6ba;
+  --cor-destaque: #62f4e8;
+  --cor-url: #72dfff;
+  --cor-borda: #ff914d;
+  --sh-keyword: #ff914d;
+  --sh-string: #7de7c4;
+  --sh-comment: #71838a;
+  --sh-function: #72dfff;
+  --sh-type: #b9a4ff;
+  --sh-number: #ffc857;
+  --sh-punctuation: #e3f2f3;
+  --sh-operator: #62f4e8;
+}

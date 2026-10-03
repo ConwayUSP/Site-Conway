@@ -1,18 +1,33 @@
 .mapa {
-  /* min-width: 100dvw; */
-  min-height: 100dvh;
+  position: relative;
+  width: 100%;
+  height: calc(100dvh - 3.67rem);
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.mapa-viewport {
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+  cursor: grab;
+}
+
+.mapa-viewport:active {
+  cursor: grabbing;
+}
+
+.mapa-world {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 3rem;
-  margin-left: 6rem;
+  padding: 6rem;
   gap: 10rem;
+  will-change: transform;
 
   @media (min-width: 1024px) {
-    padding: 1rem;
     gap: 3rem;
-    margin: 0;
   }
 
   & .topico-wrapper {
@@ -38,6 +53,47 @@
     font-weight: 600;
     text-align: center;
   }
+}
+
+.mapa-controls {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+  display: flex;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--bg-secondary) 88%, transparent);
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+  touch-action: manipulation;
+}
+
+.mapa-controls button {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  color: var(--content-primary);
+  font-family: system-ui, sans-serif;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.mapa-controls img {
+  width: 1.15rem;
+  height: 1.15rem;
+  filter: invert(1);
+  pointer-events: none;
+}
+
+.mapa-controls button + button {
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.mapa-controls button:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* TRILHA DE MEMBROS */

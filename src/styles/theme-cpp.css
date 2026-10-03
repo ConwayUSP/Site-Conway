@@ -1,0 +1,17 @@
+.theme-cpp {
+  --bg-principal: #070d24;
+  --bg-secundario: #101d46;
+  --cor-texto: #edf5ff;
+  --cor-texto-mutado: #9eb9e8;
+  --cor-destaque: #78b7ff;
+  --cor-url: #70e1ff;
+  --cor-borda: #315fc2;
+  --sh-keyword: #ff79c6;
+  --sh-string: #8de6c0;
+  --sh-comment: #7185ad;
+  --sh-function: #82c7ff;
+  --sh-type: #c6a7ff;
+  --sh-number: #ffd479;
+  --sh-punctuation: #dbe8ff;
+  --sh-operator: #70e1ff;
+}

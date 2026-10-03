@@ -65,7 +65,7 @@ export function QuizModal({ closeModal, perguntas }) {
               >
                 <Button
                   onClick={() => {
-                    setPoints((prev) => [...prev, 0]);
+                    setPoints((prev) => [...prev, -3]);
                     setCurrentQuestion((prev) => prev + 1);
                   }}
                 >
@@ -73,7 +73,7 @@ export function QuizModal({ closeModal, perguntas }) {
                 </Button>
                 <Button
                   onClick={() => {
-                    setPoints((prev) => [...prev, 1]);
+                    setPoints((prev) => [...prev, -1]);
                     setCurrentQuestion((prev) => prev + 1);
                   }}
                 >
@@ -81,7 +81,7 @@ export function QuizModal({ closeModal, perguntas }) {
                 </Button>
                 <Button
                   onClick={() => {
-                    setPoints((prev) => [...prev, 2]);
+                    setPoints((prev) => [...prev, 1]);
                     setCurrentQuestion((prev) => prev + 1);
                   }}
                 >
