@@ -3,6 +3,7 @@ import CodeMirror from "@uiw/react-codemirror";
 import { cpp } from "@codemirror/lang-cpp";
 import { vim } from "@replit/codemirror-vim";
 import { EditorView, keymap } from "@codemirror/view";
+import { Prec } from "@codemirror/state";
 
 export default function ShaderEditor({ code, onChange, vimEnabled, onToggleVim, currentTheme, fontSize,
   onFontSizeChange, textures, onTextureUpload, onTextureClear }) {
@@ -48,7 +49,21 @@ export default function ShaderEditor({ code, onChange, vimEnabled, onToggleVim, 
     });
   }, [fontSize]);
 
-  const extensions = [cpp(), currentTheme.editorTheme, fontSizeTheme];
+  const vimEscape = useMemo(() => {
+    return Prec.highest(
+      keymap.of([
+        {
+          key: "Escape",
+          run: (view) => {
+            view.contentDOM.focus();
+            return false;
+          }
+        }
+      ])
+    );
+  }, []);
+
+  const extensions = [cpp(), currentTheme.editorTheme, fontSizeTheme, vimEscape];
   if (vimEnabled) {
     extensions.push(vim());
   }
