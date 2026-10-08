@@ -4,7 +4,7 @@ import { useMemo, useEffect, useRef, useCallback, Suspense } from "react";
 import * as THREE from "three";
 import WebGPURenderer from "three/src/renderers/webgpu/WebGPURenderer.js";
 import { NodeMaterial } from "three/webgpu";
-import { wgslFn, time, uv, vec4, uniform } from "three/tsl";
+import { wgslFn, time, uv, vec4, uniform, texture } from "three/tsl";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 import ShaderErrorPanel from "./ShaderErrorPanel";
@@ -27,8 +27,22 @@ function CustomModelMesh({ url, material }) {
   return <primitive object={clonedScene} scale={1.2} />;
 }
 
-function ShaderMesh({ code, modelType, customModelUrl, mouseVec, onShaderError }) {
-  const { material, parseError } = useMemo(() => {
+function ShaderMesh({ code, modelType, customModelUrl, mouseVec, textures = [], onShaderError }) {
+  // Carrega dinamicamente as texturas que estiverem preenchidas
+  const loadedTextures = useMemo(() => {
+    const loader = new THREE.TextureLoader();
+    return textures.map(url => {
+      if (!url) return null;
+      const tex = loader.load(url);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.wrapT = THREE.RepeatWrapping;
+      return tex;
+    });
+  }, [textures]);
+
+  // Constrói o material e injeta os nós no TSL
+  const {material, parseError} = useMemo(() => {
     const mat = new NodeMaterial();
     let nextParseError = null;
     mat.side = THREE.DoubleSide;
@@ -36,29 +50,33 @@ function ShaderMesh({ code, modelType, customModelUrl, mouseVec, onShaderError }
     try {
       const userShader = wgslFn(code);
       
-      mat.fragmentNode = userShader({ 
+      const shaderArgs = { 
         time: time, 
         uv: uv(),
         mouse_pos: uniform(mouseVec)
+      };
+
+      loadedTextures.forEach((tex, i) => {
+        if (tex) {
+          shaderArgs[`tex${i}`] = texture(tex); 
+        }
       });
-      
+
+      mat.fragmentNode = userShader(shaderArgs);
     } catch (error) {
-      // Se o usuário estiver no meio da digitação e o WGSL quebrar, 
-      // renderizamos preto sem travar a aplicação React
       console.warn("Aguardando sintaxe WGSL válida...", error.message);
       nextParseError = getErrorMessage(error);
       mat.fragmentNode = vec4(0.0, 0.0, 0.0, 1.0);
     }
-
-    return { material: mat, parseError: nextParseError };
-  }, [code, mouseVec]);
+    return {material: mat, parseError: nextParseError};
+  }, [code, mouseVec, loadedTextures]);
 
   useEffect(() => {
     if (parseError) onShaderError(parseError, code);
   }, [code, parseError, onShaderError]);
 
   useEffect(() => () => {
-    material.dispose();
+    if (material) material.dispose();
   }, [material]);
 
   if (modelType === "custom" && customModelUrl) {
@@ -74,13 +92,12 @@ function ShaderMesh({ code, modelType, customModelUrl, mouseVec, onShaderError }
       {modelType === "plane" && <planeGeometry args={[4, 4]} />}
       {modelType === "cube" && <boxGeometry args={[2, 2, 2]} />}
       {modelType === "sphere" && <sphereGeometry args={[1.5, 64, 64]} />}
-      {modelType === "icosahedron" && <icosahedronGeometry args={[1.67, 0]} />}
       {modelType === "torus" && <torusGeometry args={[1.2, 0.4, 32, 100]} />}
     </mesh>
   );
 }
 
-export default function ShaderCanvas({ code, modelType, customModelUrl, bgColor, shaderError, onShaderError }) {
+export default function ShaderCanvas({ code, modelType, customModelUrl, bgColor, textures, shaderError, onShaderError }) {
   const mouseVec = useMemo(() => new THREE.Vector2(0.5, 0.5), []);
   const consoleCleanupRef = useRef(null);
 
@@ -152,6 +169,7 @@ export default function ShaderCanvas({ code, modelType, customModelUrl, bgColor,
           modelType={modelType}
           customModelUrl={customModelUrl}
           mouseVec={mouseVec}
+          textures={textures}
           onShaderError={onShaderError}
         />
         <OrbitControls enableDamping />

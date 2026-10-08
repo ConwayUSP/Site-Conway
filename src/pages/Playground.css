@@ -326,3 +326,99 @@
 .vim-switch input:focus-visible + .vim-slider {
   box-shadow: 0 0 0 2px rgba(250, 50, 80, 0.8);
 }
+
+/* Container do Menu de Texturas */
+.textures-menu-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Botão de abrir os slots */
+.textures-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.textures-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Dropdown de Slots (Flutuante sobre o editor) */
+.textures-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  width: 240px;
+  z-index: 100;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 6px;
+}
+
+/* Cada slot (Canal 0 a 7) */
+.texture-slot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  padding: 6px 8px;
+  border-radius: 0px;
+  border-bottom: 2px solid transparent;
+  transition-duration: 0.2s;
+}
+
+.texture-slot:hover {
+  border-bottom: 2px solid var(--brand-blue);
+}
+
+.texture-slot span {
+  cursor: default;
+}
+
+.texture-slot input[type="file"] {
+  display: none;
+}
+
+.texture-slot-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.texture-slot-label {
+  cursor: pointer;
+  color: var(--pink);
+  font-weight: 500;
+}
+
+.texture-slot-label:hover {
+  transform: scale(1.07);
+}
+
+.texture-clear-btn {
+  background: none;
+  border: none;
+  color: var(--pink);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0 4px;
+}
+
+.texture-clear-btn:hover {
+  transform: scale(1.07);
+}

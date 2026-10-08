@@ -91,7 +91,11 @@ export function MemberCard({ properties, icon, id }) {
 
   const navigate = useNavigate()
   const memberName = properties?.["Nome"]?.title?.[0]?.text?.content
-  const photo = properties?.["Fotinha"]?.files?.[0]?.file?.url || properties?.["Foto"]?.files?.[0]?.external?.url
+  const optimizedPhoto = properties?.["Fotinha otimizada"]?.files?.[0]
+  const photo = optimizedPhoto?.file?.url
+    || optimizedPhoto?.external?.url
+    || properties?.["Fotinha"]?.files?.[0]?.file?.url
+    || properties?.["Foto"]?.files?.[0]?.external?.url
   const depColor = properties?.["Setor"]?.multi_select?.find(option => option.color === 'gray')?.color || properties?.["Setor"]?.multi_select?.[0]?.color || "violet"
   const depID = colorToDepID[depColor] || "estrelinhas"
 

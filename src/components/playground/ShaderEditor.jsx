@@ -1,11 +1,27 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { cpp } from "@codemirror/lang-cpp";
 import { vim } from "@replit/codemirror-vim";
-import { EditorView } from "@codemirror/view";
+import { EditorView, keymap } from "@codemirror/view";
+import { Prec } from "@codemirror/state";
 
 export default function ShaderEditor({ code, onChange, vimEnabled, onToggleVim, currentTheme, fontSize,
-  onFontSizeChange }) {
+  onFontSizeChange, textures, onTextureUpload, onTextureClear }) {
+  const [internalCode, setInternalCode] = useState(code);
+  const [isTexturesOpen, setIsTexturesOpen] = useState(false);
+
+  useEffect(() => {
+    setInternalCode(code);
+  }, [code]);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      onChange(internalCode);
+    }, 400);
+
+    return () => clearTimeout(handler);
+  }, [internalCode, onChange]);
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.ctrlKey || e.metaKey) {
@@ -33,7 +49,21 @@ export default function ShaderEditor({ code, onChange, vimEnabled, onToggleVim, 
     });
   }, [fontSize]);
 
-  const extensions = [cpp(), currentTheme.editorTheme, fontSizeTheme];
+  const vimEscape = useMemo(() => {
+    return Prec.highest(
+      keymap.of([
+        {
+          key: "Escape",
+          run: (view) => {
+            view.contentDOM.focus();
+            return false;
+          }
+        }
+      ])
+    );
+  }, []);
+
+  const extensions = [cpp(), currentTheme.editorTheme, fontSizeTheme, vimEscape];
   if (vimEnabled) {
     extensions.push(vim());
   }
@@ -62,6 +92,46 @@ export default function ShaderEditor({ code, onChange, vimEnabled, onToggleVim, 
         }}
       >
         <span>Editor de Shader</span>
+
+        {/* Menu Dropdown de Texturas */}
+        <div className="textures-menu-container">
+          <button 
+            className="textures-btn" 
+            style={{ color: currentTheme.text }}
+            onClick={() => setIsTexturesOpen(!isTexturesOpen)}
+          >
+            Texturas
+          </button>
+
+          {isTexturesOpen && (
+            <div 
+              className="textures-dropdown" 
+              style={{ backgroundColor: currentTheme.panelBg, borderColor: currentTheme.border }}
+            >
+              {textures.map((tex, i) => (
+                <div key={i} className={`texture-slot ${tex ? 'has-texture' : ''}`} style={{backgroundColor: currentTheme.bg}}>
+                  <span style={{ color: currentTheme.text }}>Slot {i}</span>
+                  <div className="texture-slot-actions">
+                    <label className="texture-slot-label">
+                      {tex ? "Trocar" : "Carregar"}
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={(e) => onTextureUpload(i, e.target.files[0])} 
+                      />
+                    </label>
+                    {tex && (
+                      <button className="texture-clear-btn" onClick={() => onTextureClear(i)} title="Remover textura" >
+                        ✕
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
         <label className="vim-switch-label" style={{ color: currentTheme.text }}>
           <div className="vim-switch">
             <input
