@@ -12,6 +12,40 @@ dist
 dist-ssr
 *.local
 
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.hypothesis/
+
+# Python environments and packaging
+.venv/
+venv/
+env/
+ENV/
+build/
+site/
+*.egg-info/
+.eggs/
+*.egg
+pip-wheel-metadata/
+
+# Python test and coverage artifacts
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+*.py,cover
+nosetests.xml
+
+# Jupyter
+.ipynb_checkpoints/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

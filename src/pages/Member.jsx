@@ -47,7 +47,11 @@ function Member() {
   const { xp, level, xpTotal } = useMemberXP(member, memberProjects)
   const isXPLoaded = xp !== undefined && level !== undefined && xpTotal !== 0
 
-  const photo = member?.properties?.["Fotinha"]?.files?.[0]?.file?.url || member?.properties?.["Foto"]?.files?.[0]?.external?.url
+  const optimizedPhoto = member?.properties?.["Fotinha otimizada"]?.files?.[0]
+  const photo = optimizedPhoto?.file?.url
+    || optimizedPhoto?.external?.url
+    || member?.properties?.["Fotinha"]?.files?.[0]?.file?.url
+    || member?.properties?.["Foto"]?.files?.[0]?.external?.url
   const memberName = member?.properties?.["Nome"]?.title?.[0]?.text?.content
   const icon = member?.icon
   const sentence = member?.properties?.["Frase do Dia"]?.rich_text?.[0]?.text?.content || "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae totam minima, vitae consequuntur ad nemo voluptatem? Delectus in facere voluptatibus quas debitis, alias odio sit accusamus eum atque optio veritatis."
