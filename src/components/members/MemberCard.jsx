@@ -10,7 +10,7 @@ import DLC from '@assets/setores/textures/DLC.png'
 import GG from '@assets/setores/textures/GG.png'
 import OP from '@assets/setores/textures/OP.png'
 import TitleIconic from '../TitleIconic'
-import { use, useMemo } from 'react'
+import { useMemo } from 'react'
 import MemberPhoto from './MemberPhoto'
 
 const textures = {
@@ -22,6 +22,9 @@ const textures = {
 }
 
 export function MemberCards({ members }) {
+  const membersAtivos = useMemo(() => members?.filter(member => member.properties.Status.status.name === 'Ativo') || [], [members]);
+  const membersAFK = useMemo(() => members?.filter(member => member.properties.Status.status.name === 'AFK') || [], [members]);
+
   if (!members || members.length === 0) {
     const skeletons = Array.from({ length: 12 }, (_, index) => (
       <MemberCardSkeleton key={index} />
@@ -32,9 +35,6 @@ export function MemberCards({ members }) {
       </div>
     )
   }
-
-  const membersAtivos = useMemo(() => members?.filter(member => member.properties.Status.status.name === 'Ativo') || [], [members]);
-  const membersAFK = useMemo(() => members?.filter(member => member.properties.Status.status.name === 'AFK') || [], [members]);
 
   return (
     <div className="members-cards-wrapper">
@@ -120,6 +120,7 @@ export function MemberCard({ properties, icon, id }) {
         className="member-card-photo"
         src={photo}
         alt={memberName || 'Foto do membro'}
+        accent={depColor}
       />
       <div 
         className="member-card-content"

@@ -32,7 +32,7 @@
 }
 
 .member-photo img {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   border-radius: 0.5em;
 }
@@ -85,14 +85,14 @@
     text-align: justify;
   }
 
-  & .sentence::before {
-    content: '"';
+  & .sentence:not(.with-quotes)::before {
+    content: '“';
     margin-right: 0.2rem;
   }
 
   
-  & .sentence::after {
-    content: '"';
+  & .sentence:not(.with-quotes)::after {
+    content: '”';
     margin-right: 0.2rem;
   }
 }

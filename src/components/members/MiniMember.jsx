@@ -11,6 +11,9 @@ export function MiniMember({ member }) {
     || member?.properties?.["Fotinha"]?.files?.[0]?.file?.url
     || member?.properties?.["Foto"]?.files?.[0]?.external?.url
   const memberName = member?.properties?.["Nome"]?.title?.[0]?.text?.content || ''
+  const depColor = member?.properties?.["Setor"]?.multi_select?.find(option => option.color === 'gray')?.color
+    || member?.properties?.["Setor"]?.multi_select?.[0]?.color
+    || 'violet'
 
   return (
     <button 
@@ -21,6 +24,7 @@ export function MiniMember({ member }) {
         className='project-member-photo'
         src={photo}
         alt={memberName}
+        accent={depColor}
       />
       <span>{memberName.split(' ')[0]}</span>
     </button>

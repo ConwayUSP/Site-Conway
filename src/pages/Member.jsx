@@ -54,7 +54,9 @@ function Member() {
     || member?.properties?.["Foto"]?.files?.[0]?.external?.url
   const memberName = member?.properties?.["Nome"]?.title?.[0]?.text?.content
   const icon = member?.icon
-  const sentence = member?.properties?.["Frase do Dia"]?.rich_text?.[0]?.text?.content || "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae totam minima, vitae consequuntur ad nemo voluptatem? Delectus in facere voluptatibus quas debitis, alias odio sit accusamus eum atque optio veritatis."
+  const sentence = member?.properties?.["Frase do Dia"]?.rich_text?.[0]?.text?.content.replace(`"`, '“').replace(`"`, '”')
+   || "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae totam minima, vitae consequuntur ad nemo voluptatem? Delectus in facere voluptatibus quas debitis, alias odio sit accusamus eum atque optio veritatis."
+  const hasQuotationMarks = sentence.includes('"') || sentence.includes('“') || sentence.includes('”')
   const depColor = member?.properties?.["Setor"]?.multi_select?.find(option => option.color === 'gray')?.color || member?.properties?.["Setor"]?.multi_select?.[0]?.color
   const depID = colorToDepID[depColor]
 
@@ -72,6 +74,7 @@ function Member() {
               alt={memberName || 'Foto do membro'}
               loading="eager"
               ambient
+              accent={depColor || 'violet'}
             />
           }
         </div>
@@ -86,7 +89,7 @@ function Member() {
             <img className='icon' src={icons[`${depID}icon`]} alt={depID} />
           </div>
           {memberName ? (
-            <p className='sentence' >{sentence}</p>
+            <p className={`sentence ${hasQuotationMarks ? 'with-quotes' : ''}`} >{sentence}</p>
           ) : (
             <p>
               <Skeleton count={5}/>
