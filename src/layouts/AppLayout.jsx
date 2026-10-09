@@ -1,5 +1,4 @@
-import { useLayoutEffect } from 'react'
-import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { NavLink, Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
 import HomeButton from '@components/mapa/HomeButton'
 import trilhasConfig from '@data/trilhasConfig.json'
 import './AppLayout.css'
@@ -11,12 +10,9 @@ function AppLayout() {
     ? trilhasConfig[decodeURIComponent(trailId)]?.themeClass
     : ''
 
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
-
   return (
     <>
+      <ScrollRestoration />
       <Header themeClass={trailThemeClass} />
       <Outlet />
     </>

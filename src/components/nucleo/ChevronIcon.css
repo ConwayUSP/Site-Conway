@@ -1,0 +1,39 @@
+.chevron-icon {
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  flex: 0 0 auto;
+  background-color: currentColor;
+  mask: url('/icons/chevron-down.svg') center / contain no-repeat;
+  -webkit-mask: url('/icons/chevron-down.svg') center / contain no-repeat;
+}
+
+.chevron-icon--left {
+  transform: rotate(90deg);
+}
+
+.chevron-icon--right {
+  transform: rotate(-90deg);
+}
+
+.trail-navigation-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--cor-url);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.trail-navigation-link:hover {
+  filter: brightness(1.2);
+}
+
+.trail-navigation-link--next {
+  justify-content: flex-end;
+  text-align: right;
+}

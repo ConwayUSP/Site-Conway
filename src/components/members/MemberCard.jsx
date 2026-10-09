@@ -1,5 +1,5 @@
 import { VirtuosoGrid } from 'react-virtuoso'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import './MemberCard.css'
 import Skeleton from 'react-loading-skeleton'
 
@@ -22,6 +22,8 @@ const textures = {
 }
 
 export function MemberCards({ members }) {
+  const location = useLocation()
+  const membersReturnTo = `${location.pathname}${location.search}`
   const membersAtivos = useMemo(() => members?.filter(member => member.properties.Status.status.name === 'Ativo') || [], [members]);
   const membersAFK = useMemo(() => members?.filter(member => member.properties.Status.status.name === 'AFK') || [], [members]);
 
@@ -41,9 +43,9 @@ export function MemberCards({ members }) {
       <div className='members-cards-section'>
         <span className='member-card-label'>Ativos</span>
         <VirtuosoGrid
-          // style={{ height: '100dvh' }}
           data={membersAtivos}
           useWindowScroll
+          increaseViewportBy={{top: 500, bottom: 500}}
           listClassName='members-cards'
           itemClassName='member-card-wrapper'
           itemContent={(index, member) => (
@@ -52,6 +54,7 @@ export function MemberCards({ members }) {
               properties={member.properties}
               id={member.id}
               icon={member.icon}
+              membersReturnTo={membersReturnTo}
             />
           )}
         />
@@ -59,7 +62,6 @@ export function MemberCards({ members }) {
       <div className='members-cards-section'>
         <span className='member-card-label'>AFK</span>
         <VirtuosoGrid
-          // style={{ height: '100dvh' }}
           data={membersAFK}
           useWindowScroll
           increaseViewportBy={{top: 500, bottom: 500}}
@@ -71,6 +73,7 @@ export function MemberCards({ members }) {
               properties={member.properties} 
               id={member.id}
               icon={member.icon}
+              membersReturnTo={membersReturnTo}
             />
           )}
           />
@@ -79,7 +82,7 @@ export function MemberCards({ members }) {
   )
 }
 
-export function MemberCard({ properties, icon, id }) {
+export function MemberCard({ properties, icon, id, membersReturnTo }) {
 
   // Color to department ID dictionary
   const colorToDepID = {
@@ -108,7 +111,7 @@ export function MemberCard({ properties, icon, id }) {
         color-mix(in srgb, var(--brand-${depColor}) 50%, transparent), 
         #261B58
       )`}}
-      onClick={() => navigate(`./${id}`)}
+      onClick={() => navigate(`./${id}`,  { state: { membersReturnTo } })}
       aria-label={`Membro ${memberName || 'Sem Nome'}`}
     >
       <div className="member-card-texture">
