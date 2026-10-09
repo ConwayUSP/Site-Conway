@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import './Member.css'
 
 // Hooks
@@ -11,6 +11,7 @@ import { useMemberXP } from '@hooks/members/useMemberXP';
 import { ProjectsLabels } from '@components/projects/ProjectLabel';
 import Skeleton from 'react-loading-skeleton';
 import MemberPhoto from '@components/members/MemberPhoto';
+import ChevronIcon from '@components/nucleo/ChevronIcon';
 
 // Department bg imagery
 import DPSimg from '@assets/setores/imagery/DPS.png'
@@ -41,6 +42,10 @@ function Member() {
   }
 
   const { id } = useParams()
+  const location = useLocation()
+  const navigate = useNavigate()
+  const membersReturnTo = location.state?.membersReturnTo
+  const hasMembersOrigin = typeof membersReturnTo === 'string' && membersReturnTo.startsWith('/members')
   const { data: member, isLoading: isLoadingMember } = useMember(id)
   const { data: memberProjects } = useProjectsByIds(member?.properties?.["Projetos"]?.relation)
   const { data: memberBadges } = useBadgesByIds(member?.properties?.["Selos"]?.relation)
@@ -54,71 +59,83 @@ function Member() {
     || member?.properties?.["Foto"]?.files?.[0]?.external?.url
   const memberName = member?.properties?.["Nome"]?.title?.[0]?.text?.content
   const icon = member?.icon
-  const sentence = member?.properties?.["Frase do Dia"]?.rich_text?.[0]?.text?.content || "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae totam minima, vitae consequuntur ad nemo voluptatem? Delectus in facere voluptatibus quas debitis, alias odio sit accusamus eum atque optio veritatis."
+  const sentence = member?.properties?.["Frase do Dia"]?.rich_text?.[0]?.text?.content.replace(`"`, '“').replace(`"`, '”')
+   || "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae totam minima, vitae consequuntur ad nemo voluptatem? Delectus in facere voluptatibus quas debitis, alias odio sit accusamus eum atque optio veritatis."
+  const hasQuotationMarks = sentence.includes('"') || sentence.includes('“') || sentence.includes('”')
   const depColor = member?.properties?.["Setor"]?.multi_select?.find(option => option.color === 'gray')?.color || member?.properties?.["Setor"]?.multi_select?.[0]?.color
   const depID = colorToDepID[depColor]
 
   return (
     <main className="member">
-      <section className='member-photo'>
-        <div className='member-photo-container'>
-          {isLoadingMember ? 
-            <Skeleton 
-              height="100%"
-            /> :
-            <MemberPhoto
-              className="member-profile-photo"
-              src={photo}
-              alt={memberName || 'Foto do membro'}
-              loading="eager"
-              ambient
-            />
-          }
-        </div>
-      </section>
-      <section 
-        className='member-content'
+      <button
+        type="button"
+        className="member-back-button"
+        onClick={() => navigate(hasMembersOrigin ? -1 : '/members')}
       >
-        <div className='member-content-about'>
-          <img className='bg-img' src={imagery[`${depID}img`]}/>
-          <div className='member-name-wrapper'>
-            <TitleIconic title={memberName} icon={icon}/>
-            <img className='icon' src={icons[`${depID}icon`]} alt={depID} />
+        <ChevronIcon direction="left" />
+        Voltar
+      </button>
+      <div className='member-content-wrapper'>
+        <section className='member-photo'>
+          <div className='member-photo-container'>
+            {isLoadingMember ?
+              <Skeleton
+                height="100%"
+              /> :
+              <MemberPhoto
+                className="member-profile-photo"
+                src={photo}
+                alt={memberName || 'Foto do membro'}
+                loading="eager"
+                ambient
+                accent={depColor || 'violet'}
+              />
+            }
           </div>
-          {memberName ? (
-            <p className='sentence' >{sentence}</p>
-          ) : (
-            <p>
-              <Skeleton count={5}/>
-            </p>
-          )}
-        </div>
-        
-        {isXPLoaded && (
-          <div className='member-content-xp'>
-            <img className='xp-badge' src={xpBadges[level].badge} alt={`Level ${level}`} />
-            <div className='xp-progress'>
-              <div className="progressbar" style={{ background: `linear-gradient(var(--bg-primary), var(--bg-secondary)) padding-box, linear-gradient(to right, ${xpBadges[level].color}) border-box` }}>
-                <div className="progressbar-fill" style={{ '--width': `${(xp / xpBadges[level].requiredXP) * 100}%`, background: `linear-gradient(to right, ${xpBadges[level].color})` }}>&nbsp;</div>
-              </div>
-              <p>{xp}/{xpBadges[level].requiredXP} XP</p>
+        </section>
+        <section
+          className='member-content'
+        >
+          <div className='member-content-about'>
+            <img className='bg-img' src={imagery[`${depID}img`]}/>
+            <div className='member-name-wrapper'>
+              <TitleIconic title={memberName} icon={icon}/>
+              <img className='icon' src={icons[`${depID}icon`]} alt={depID} />
             </div>
-            <h3 style={{ marginLeft: '0.75rem', flexShrink: 0 }}>LVL {level}</h3>
+            {memberName ? (
+              <p className={`sentence ${hasQuotationMarks ? 'with-quotes' : ''}`} >{sentence}</p>
+            ) : (
+              <p>
+                <Skeleton count={5}/>
+              </p>
+            )}
           </div>
-        )}
 
-        <div className='member-content-involviment'>
-          {memberBadges?.length > 0 && (
-            <MemberBadges badges={memberBadges || []} />
-          )}
-          {memberProjects?.length > 0 && (
-            <div className='member-projects-display'>
-              <h3>Projetos</h3>
-              <ProjectsLabels projects={memberProjects || []} />
+          {isXPLoaded && (
+            <div className='member-content-xp'>
+              <img className='xp-badge' src={xpBadges[level].badge} alt={`Level ${level}`} />
+              <div className='xp-progress'>
+                <div className="progressbar" style={{ background: `linear-gradient(var(--bg-primary), var(--bg-secondary)) padding-box, linear-gradient(to right, ${xpBadges[level].color}) border-box` }}>
+                  <div className="progressbar-fill" style={{ '--width': `${(xp / xpBadges[level].requiredXP) * 100}%`, background: `linear-gradient(to right, ${xpBadges[level].color})` }}>&nbsp;</div>
+                </div>
+                <p>{xp}/{xpBadges[level].requiredXP} XP</p>
+              </div>
+              <h3 style={{ marginLeft: '0.75rem', flexShrink: 0 }}>LVL {level}</h3>
             </div>
           )}
-        </div>
-      </section>
+          <div className='member-content-involviment'>
+            {memberBadges?.length > 0 && (
+              <MemberBadges badges={memberBadges || []} />
+            )}
+            {memberProjects?.length > 0 && (
+              <div className='member-projects-display'>
+                <h3>Projetos</h3>
+                <ProjectsLabels projects={memberProjects || []} />
+              </div>
+            )}
+          </div>
+        </section>
+      </div>
     </main>
   )
 }
