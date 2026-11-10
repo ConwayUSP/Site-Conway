@@ -1,11 +1,13 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ChapterView } from '@components/ChapterView';
+import ChevronIcon from '@components/nucleo/ChevronIcon';
 import trilhasConfig from '@data/trilhasConfig.json';
 
 import './ChapterRouteWrapper.css';
 
 function ChapterRouteWrapper() {
   const { trailId, chapterIndex } = useParams();
+  const navigate = useNavigate();
   const currentIndex = parseInt(chapterIndex, 10);
   const trail = trilhasConfig[trailId];
 
@@ -19,12 +21,24 @@ function ChapterRouteWrapper() {
   return (
     <div className={`trail-page ${trail.themeClass}`}>
     <div className='container-reading'>
-      <nav>
-        <Link to={`../trilha/${trailId}`} style={{textDecoration: 'none', color: 'var(--cor-url)'}}>Voltar para a Trilha</Link>
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          {hasPrev && <Link to={`../trilha/${trailId}/capitulo/${currentIndex - 1}`} style={{ textDecoration: 'none',color: 'var(--cor-url)' }}>Anterior</Link>}
-          {hasPrev && hasNext && <span style={{color: 'var(--cor-url)'}}> | </span>}
-          {hasNext && <Link to={`../trilha/${trailId}/capitulo/${currentIndex + 1}`} style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>Próximo</Link>}
+      <nav className="chapter-header-navigation">
+        <button type="button" className="trail-navigation-link" onClick={() => navigate(-1)}>
+          <ChevronIcon direction="left" />
+          Voltar para a Trilha
+        </button>
+        <div className="chapter-navigation">
+          {hasPrev && (
+            <Link to={`../trilha/${trailId}/capitulo/${currentIndex - 1}`} className="trail-navigation-link">
+              <ChevronIcon direction="left" />
+              Anterior
+            </Link>
+          )}
+          {hasNext && (
+            <Link to={`../trilha/${trailId}/capitulo/${currentIndex + 1}`} className="trail-navigation-link trail-navigation-link--next">
+              Próximo
+              <ChevronIcon direction="right" />
+            </Link>
+          )}
         </div>
       </nav>
 
@@ -32,10 +46,16 @@ function ChapterRouteWrapper() {
 
       <nav className='nav-bar nav-bar-footer'>
         {hasPrev ? (
-          <Link to={`../trilha/${trailId}/capitulo/${currentIndex - 1}`} style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>{'< ' + trail.chapters[currentIndex - 1].title}</Link>
+          <Link to={`../trilha/${trailId}/capitulo/${currentIndex - 1}`} className="trail-navigation-link">
+            <ChevronIcon direction="left" />
+            {trail.chapters[currentIndex - 1].title}
+          </Link>
         ) : <span />}
         {hasNext ? (
-          <Link to={`../trilha/${trailId}/capitulo/${currentIndex + 1}`} style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>{trail.chapters[currentIndex + 1].title + ' >'}</Link>
+          <Link to={`../trilha/${trailId}/capitulo/${currentIndex + 1}`} className="trail-navigation-link trail-navigation-link--next">
+            {trail.chapters[currentIndex + 1].title}
+            <ChevronIcon direction="right" />
+          </Link>
         ) : <span />}
       </nav>
     </div>

@@ -1,10 +1,11 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import './TrilhaIndexView.css';
 
 import { ProgressBar } from '@components/nucleo/ProgressBar';
 import { MarkAsReadButton } from '@components/nucleo/MarkAsReadButton';
+import ChevronIcon from '@components/nucleo/ChevronIcon';
 
 import { useNucleo } from '@hooks/useNucleo';
 
@@ -24,6 +25,7 @@ import '@styles/theme-fundamentosarte.css';
 
 function TrilhaIndexView() {
   const { trailId } = useParams();
+  const navigate = useNavigate();
 
   const { isChapterRead } = useNucleo()
 
@@ -43,7 +45,10 @@ function TrilhaIndexView() {
   return (
     <main className={`trail-page ${trail.themeClass}`}>
       <div className='container-reading'>
-        <Link to=".." style={{ textDecoration: 'none', color: 'var(--cor-url)' }}>Voltar para o Núcleo</Link>
+        <button type="button" className="trail-navigation-link" onClick={() => navigate(-1)}>
+          <ChevronIcon direction="left" />
+          Voltar para o Núcleo
+        </button>
         
         <div className="trail-header">
           <h1 className="trail-name">{trail.name}</h1>

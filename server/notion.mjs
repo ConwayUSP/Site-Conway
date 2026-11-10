@@ -3,6 +3,7 @@ const NOTION_API_URL = 'https://api.notion.com/v1'
 const memberPropertyIds = [
   'title', // Nome
   'APEF', // Fotinha
+  'VNFK', // Fotinha otimizada
   'NMrA', // Setor
   'h%5BeT', // Status
   'X%3FwO', // Projetos

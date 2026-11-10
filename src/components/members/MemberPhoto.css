@@ -5,6 +5,24 @@
   overflow: hidden;
 }
 
+.member-photo-placeholder.has-silhouette {
+  background: #17152a;
+}
+
+.member-photo-placeholder.has-silhouette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--member-photo-accent) 7%, transparent),
+    transparent 48%,
+    color-mix(in srgb, var(--member-photo-accent) 13%, transparent)
+  );
+  pointer-events: none;
+}
+
 .member-photo-placeholder > img {
   display: block;
   width: 100%;
@@ -20,6 +38,19 @@
   opacity: 0.45;
   transform: scale(1.1);
   pointer-events: none;
+}
+
+.member-photo-placeholder > .member-photo-silhouette {
+  position: absolute;
+  inset: 5% 7% 0;
+  z-index: 1;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--member-photo-accent) 80%, white),
+    color-mix(in srgb, var(--member-photo-accent) 42%, var(--brand-purple))
+  );
+  mask: url('/silhouette.png') center / contain no-repeat;
+  -webkit-mask: url('/silhouette.png') center / contain no-repeat;
 }
 
 .member-photo-foreground {
