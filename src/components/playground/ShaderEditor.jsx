@@ -69,7 +69,7 @@ export default function ShaderEditor({
               </div>
             );
           })}
-          <button onClick={onAddBuffer} title="Adicionar novo Buffer" style={{ background: "rgba(59,130,246,0.2)", border: "1px dashed #3b82f6", color: "#3b82f6", borderRadius: "4px", padding: "2px 8px", cursor: "pointer", fontSize: "0.8rem", marginLeft: "4px" }}>
+          <button onClick={onAddBuffer} title="Adicionar novo Buffer" style={{ background: "rgba(59,130,246,0.1)", border: "1px solid #3b82f6", color: "#3b82f6", borderRadius: "4px", padding: "6px 8px 2px 8px", display: "flex", alignItems: "flex-end", cursor: "pointer", fontSize: "0.8rem", marginLeft: "4px"}}>
             + Buffer
           </button>
         </div>

@@ -13,14 +13,14 @@ import "./Playground.css";
 const DEFAULT_SHADERS = [
   {
     id: "bufferA",
-    name: "Buffer A (Dynamic Energy Pulse)",
+    name: "Buffer A",
     code: `fn buffA(time: f32, uv: vec2<f32>, mouse_pos: vec2<f32>) -> vec4<f32> {
   return vec4<f32>(0.0, 0.0, 0.0, 1.0);
 }`
   },
   {
     id: "main",
-    name: "Image (Texture + Normals + Buffer A)",
+    name: "Frag",
     code: `fn niam(time: f32, uv: vec2<f32>, mouse_pos: vec2<f32>, normal: vec3<f32>, pass0: vec4<f32>, tex0: vec4<f32>, cam_pos: vec3<f32>, cam_dir: vec3<f32>) -> vec4<f32> {
   // cor da primeira textura caso haja alguma
   let tex_color = tex0;
@@ -43,6 +43,8 @@ export default function Playground() {
     return DEFAULT_SHADERS;
   });
 
+  const [lightPos, setLightPos] = useState({ x: 5, y: 5, z: -3 });
+  const [showLightMenu, setShowLightMenu] = useState(false);
   const [activeShaderId, setActiveShaderId] = useState("main");
   const [modelType, setModelType] = useState("plane");
   const [customModelUrl, setCustomModelUrl] = useState(null);
@@ -209,6 +211,65 @@ export default function Playground() {
                     {Object.keys(THEMES).map((key) => <option key={key} value={key}>{THEMES[key].name}</option>)}
                   </select>
                 </div>
+                  
+                <div className="light-menu-container">
+                  <button
+                    onClick={() => setShowLightMenu(!showLightMenu)}
+                    className="light-menu-btn"
+                    style={{ borderColor: currentTheme.border, color: currentTheme.text }}
+                  >
+                    Luz
+                  </button>
+
+                  {showLightMenu && (
+                    <div className="light-menu-dropdown">
+                      <div className="light-menu-title">Posição da Luz</div>
+                      
+                      {/* Slider X (Vermelho) */}
+                      <div className="light-slider-group">
+                        <div className="light-slider-header">
+                          <span className="light-axis-x">Eixo X</span>
+                          <span>{lightPos.x}</span>
+                        </div>
+                        <input 
+                          type="range" min="-20" max="20" step="0.1" 
+                          value={lightPos.x} 
+                          className="slider-x"
+                          onChange={(e) => setLightPos({ ...lightPos, x: parseFloat(e.target.value) })}
+                        />
+                      </div>
+
+                      {/* Slider Y (Verde) */}
+                      <div className="light-slider-group">
+                        <div className="light-slider-header">
+                          <span className="light-axis-y">Eixo Y</span>
+                          <span>{lightPos.y}</span>
+                        </div>
+                        <input 
+                          type="range" min="-20" max="20" step="0.1" 
+                          value={lightPos.y} 
+                          className="slider-y"
+                          onChange={(e) => setLightPos({ ...lightPos, y: parseFloat(e.target.value) })}
+                        />
+                      </div>
+
+                      {/* Slider Z (Azul) */}
+                      <div className="light-slider-group">
+                        <div className="light-slider-header">
+                          <span className="light-axis-z">Eixo Z</span>
+                          <span>{lightPos.z}</span>
+                        </div>
+                        <input 
+                          type="range" min="-20" max="20" step="0.1" 
+                          value={lightPos.z} 
+                          className="slider-z"
+                          onChange={(e) => setLightPos({ ...lightPos, z: parseFloat(e.target.value) })}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+
                 <button onClick={handleShare} className="share-btn">{copied ? "Link Copiado!" : "Compartilhar"}</button>
               </div>
             )}
@@ -222,6 +283,7 @@ export default function Playground() {
               textures={textures}
               shaderError={shaderError}
               onShaderError={handleShaderError}
+              lightPosition={lightPos}
             />
           </div>
         </div>

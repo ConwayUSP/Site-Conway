@@ -4,11 +4,11 @@ import { useMemo, useEffect, useRef, useCallback, useState, Suspense } from "rea
 import * as THREE from "three";
 import WebGPURenderer from "three/src/renderers/webgpu/WebGPURenderer.js";
 import { NodeMaterial } from "three/webgpu";
-import { wgslFn, time, uv, vec4, uniform, texture, positionLocal, Fn, normalLocal, positionWorld, cameraPosition, sub, normalize } from "three/tsl";
+import { wgslFn, time, uv, vec4, uniform, texture, normalLocal, positionWorld, cameraPosition, sub, normalize } from "three/tsl";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 import ShaderErrorPanel from "./ShaderErrorPanel";
-import { getErrorMessage, isShaderRendererError } from "@utils/shaderErrors";
+import { getErrorMessage } from "@utils/shaderErrors";
 
 function CustomModelMesh({ customModel, material, onTextureExtracted }) {
   const { url, fileMap } = customModel || {};
@@ -66,7 +66,7 @@ function CustomModelMesh({ customModel, material, onTextureExtracted }) {
   return <primitive object={clonedScene} scale={1.2} />;
 }
 
-function MultiPassShaderMesh({ shaders, modelType, customModel, mouseVec, textures = [], onShaderError }) {
+function MultiPassShaderMesh({ shaders, modelType, customModel, mouseVec, textures = [], lightPosition, onShaderError }) {
   const { gl } = useThree();
   const [nativeModelTexture, setNativeModelTexture] = useState(null);
 
@@ -89,15 +89,44 @@ function MultiPassShaderMesh({ shaders, modelType, customModel, mouseVec, textur
     return () => window.removeEventListener('resize', handleResize);
   }, [renderTargets]);
 
-  // Compilação dos Buffers com captura robusta
+  const lightPosUniform = useMemo(() => uniform(new THREE.Vector3(5, -5, 2.5)), []);
+
+  useEffect(() => {
+    if (lightPosition) {
+      lightPosUniform.value.set(lightPosition.x, lightPosition.y, lightPosition.z);
+    }
+  }, [lightPosition, lightPosUniform]);
+
+  const sharedShaderArgs = useMemo(() => {
+    const viewDir = normalize(sub(cameraPosition, positionWorld));
+    return {
+      time: time,
+      uv: uv(),
+      mouse_pos: uniform(mouseVec),
+      light_pos: lightPosUniform,
+      normal: normalLocal,
+      pos: positionWorld,
+      cam_pos: cameraPosition,
+      cam_dir: viewDir,
+    };
+  }, [mouseVec, lightPosUniform]);
+
+  // Compilação dos Buffers em cadeia (Buffer A, Buffer B...) com injeção de passes anteriores
   const { bufferMaterials, bufferError } = useMemo(() => {
     let err = null;
-    const mats = bufferShaders.map((shader) => {
+    const mats = bufferShaders.map((shader, idx) => {
       const mat = new NodeMaterial();
       mat.side = THREE.DoubleSide;
       try {
         const parsedFn = wgslFn(shader.code);
-        mat.fragmentNode = parsedFn({ time: time, uv: uv(), mouse_pos: uniform(mouseVec) });
+        const args = { ...sharedShaderArgs };
+        
+        // Injeção sequencial: Buffer B pode ler pass0 gerado pelo Buffer A
+        for (let i = 0; i < idx; i++) {
+          args[`pass${i}`] = texture(renderTargets[i].texture, uv());
+        }
+
+        mat.fragmentNode = parsedFn(args);
       } catch (error) {
         err = `[${shader.name}] ${getErrorMessage(error)}`;
         mat.fragmentNode = vec4(0.0, 0.0, 0.0, 1.0);
@@ -105,9 +134,8 @@ function MultiPassShaderMesh({ shaders, modelType, customModel, mouseVec, textur
       return mat;
     });
     return { bufferMaterials: mats, bufferError: err };
-  }, [bufferShaders, mouseVec]);
+  }, [bufferShaders, sharedShaderArgs, renderTargets]);
 
-  // Carrega texturas dos slots manuais
   const loadedTextures = useMemo(() => {
     const loader = new THREE.TextureLoader();
     return textures.map(url => {
@@ -120,7 +148,7 @@ function MultiPassShaderMesh({ shaders, modelType, customModel, mouseVec, textur
     });
   }, [textures]);
 
-  // Compilação do Material Principal (Image)
+  // Compilação do Material Principal (Image) recebendo todos os buffers e texturas
   const { material, parseError } = useMemo(() => {
     const mat = new NodeMaterial();
     let nextParseError = null;
@@ -128,17 +156,9 @@ function MultiPassShaderMesh({ shaders, modelType, customModel, mouseVec, textur
 
     try {
       const userShader = wgslFn(mainShaderObj.code);
-      const viewDir = normalize(sub(cameraPosition, positionWorld));
-      const shaderArgs = { 
-        time: time, 
-        uv: uv(),
-        mouse_pos: uniform(mouseVec),
-        normal: normalLocal,
-        pos: positionWorld,
-        cam_pos: cameraPosition,
-        cam_dir: viewDir,
-      };
+      const shaderArgs = { ...sharedShaderArgs };
 
+      // Injeta todos os passes disponíveis (pass0, pass1...)
       renderTargets.forEach((rt, idx) => {
         shaderArgs[`pass${idx}`] = texture(rt.texture, uv());
       });
@@ -161,31 +181,51 @@ function MultiPassShaderMesh({ shaders, modelType, customModel, mouseVec, textur
     }
 
     return { material: mat, parseError: nextParseError };
-  }, [mainShaderObj, mouseVec, renderTargets, nativeModelTexture, loadedTextures]);
+  }, [mainShaderObj, sharedShaderArgs, renderTargets, nativeModelTexture, loadedTextures]);
 
-  const quadScene = useMemo(() => new THREE.Scene(), []);
-  const quadCamera = useMemo(() => new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1), []);
-  const quadMesh = useMemo(() => new THREE.Mesh(new THREE.PlaneGeometry(2, 2)), []);
-  
+  const lightCamera = useMemo(() => new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 50), []);
+  const bufferScene = useMemo(() => new THREE.Scene(), []);
+  const bufferMeshRef = useRef(null);
+
   useEffect(() => {
-    quadScene.add(quadMesh);
-    return () => quadScene.remove(quadMesh);
-  }, [quadScene, quadMesh]);
+    const geom = modelType === "cube" ? new THREE.BoxGeometry(2, 2, 2, 32, 32, 32) :
+                 modelType === "sphere" ? new THREE.SphereGeometry(1.5, 64, 64) :
+                 modelType === "torus" ? new THREE.TorusGeometry(1.2, 0.4, 32, 64) :
+                 new THREE.PlaneGeometry(4, 4, 64, 64);
 
+    const mesh = new THREE.Mesh(geom);
+    bufferScene.add(mesh);
+    bufferMeshRef.current = mesh;
+
+    return () => {
+      bufferScene.remove(mesh);
+      geom.dispose();
+    };
+  }, [modelType, bufferScene]);
+
+  // Executa o loop de renderização offscreen de cada buffer sequencialmente
   useFrame(() => {
     if (bufferMaterials.length === 0) return;
     const currentRenderTarget = gl.getRenderTarget();
+
+    if (lightPosition) {
+      lightCamera.position.set(lightPosition.x, lightPosition.y, lightPosition.z);
+    }
+    lightCamera.lookAt(0, 0, 0);
+    lightCamera.updateMatrixWorld();
     
     bufferMaterials.forEach((bufMat, idx) => {
-      quadMesh.material = bufMat;
+      if (bufferMeshRef.current) {
+        bufferMeshRef.current.material = bufMat;
+      }
       gl.setRenderTarget(renderTargets[idx]);
-      gl.render(quadScene, quadCamera);
+      gl.clear();
+      gl.render(bufferScene, lightCamera);
     });
 
     gl.setRenderTarget(currentRenderTarget);
   });
 
-  // Notifica o componente pai sobre erros estáticos detectados no useMemo (sem limpar agressivamente)
   useEffect(() => {
     const activeError = parseError || bufferError;
     if (activeError) {
@@ -223,7 +263,7 @@ function MultiPassShaderMesh({ shaders, modelType, customModel, mouseVec, textur
   );
 }
 
-export default function ShaderCanvas({ shaders, modelType, customModel, bgColor, textures, shaderError, onShaderError }) {
+export default function ShaderCanvas({ shaders, modelType, customModel, bgColor, textures, shaderError, lightPosition, onShaderError }) {
   const mouseVec = useMemo(() => new THREE.Vector2(0.5, 0.5), []);
   const consoleCleanupRef = useRef(null);
 
@@ -233,31 +273,19 @@ export default function ShaderCanvas({ shaders, modelType, customModel, bgColor,
     
     const captureConsoleError = (...args) => {
       originalConsoleError(...args);
-      
-      // Conversão robusta de qualquer argumento para string
       const message = args.map(arg => {
         if (!arg) return "";
         if (typeof arg === "string") return arg;
         if (arg instanceof Error) return arg.message || String(arg);
-        if (typeof arg === "object") {
-          return arg.message || arg.toString?.() || JSON.stringify(arg);
-        }
         return String(arg);
       }).join(" ");
 
       const lower = message.toLowerCase();
-      
-      // Captura ampla para qualquer erro gerado pelo WebGPU / WebGL / Shaders / TSL
       if (
-        lower.includes("wgsl") || 
-        lower.includes("shader") || 
-        lower.includes("webgpu") || 
-        lower.includes("failed") || 
-        lower.includes("error") || 
-        lower.includes("unresolved") ||
-        lower.includes("not defined") ||
-        lower.includes("pipeline") ||
-        lower.includes("compil")
+        lower.includes("wgsl") || lower.includes("shader") || 
+        lower.includes("webgpu") || lower.includes("failed") || 
+        lower.includes("error") || lower.includes("unresolved") ||
+        lower.includes("not defined") || lower.includes("pipeline")
       ) {
         onShaderError(message);
       }
@@ -265,22 +293,18 @@ export default function ShaderCanvas({ shaders, modelType, customModel, bgColor,
 
     console.error = captureConsoleError;
     consoleCleanupRef.current = () => {
-      if (console.error === captureConsoleError) {
-        console.error = originalConsoleError;
-      }
+      if (console.error === captureConsoleError) console.error = originalConsoleError;
       consoleCleanupRef.current = null;
     };
   }, [onShaderError]);
 
-  // Instancia a captura imediatamente na montagem do canvas
+  useEffect(() => () => { consoleCleanupRef.current?.(); }, []);
+
   useEffect(() => {
     installErrorCapture();
-    return () => {
-      consoleCleanupRef.current?.();
-    };
+    return () => consoleCleanupRef.current?.();
   }, [installErrorCapture]);
 
-  // Limpa o erro da tela apenas quando o usuário alterar/escrever código nas abas
   useEffect(() => {
     onShaderError(null);
   }, [shaders, onShaderError]);
@@ -310,6 +334,7 @@ export default function ShaderCanvas({ shaders, modelType, customModel, bgColor,
           customModel={customModel}
           mouseVec={mouseVec}
           textures={textures}
+          lightPosition={lightPosition}
           onShaderError={onShaderError}
         />
         <OrbitControls enableDamping />
