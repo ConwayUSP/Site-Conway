@@ -324,7 +324,7 @@ export default function ShaderCanvas({ shaders, modelType, customModel, bgColor,
   };
 
   return (
-    <div onPointerMove={handlePointerMove} style={{ width: "100%", height: "100%", position: "relative", background: bgColor }}>
+    <div onPointerMove={handlePointerMove} style={{ width: "100%", height: "100%", position: "relative", background: "rgba(0, 0, 0, 0)" }}>
       <Canvas gl={createRenderer} camera={{ position: [0, 0, 3.5], fov: 60 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} />

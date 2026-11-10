@@ -506,3 +506,184 @@
 .light-menu-dropdown input[type="range"].slider-x { accent-color: var(--brand-red); }
 .light-menu-dropdown input[type="range"].slider-y { accent-color: var(--brand-blue); }
 .light-menu-dropdown input[type="range"].slider-z { accent-color: var(--brand-violet); }
+
+/* TELA DE AJUDA */
+/* Container do Botão de Ajuda */
+.help-button-container {
+  display: flex;
+  margin-top: 10px;
+  padding: 6px 16px 0 0px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+/* Botão Redondo com Interrogação */
+.help-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 0px 16px 16px 0px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 10px;
+  transition: background-color 0.2s, transform 0.2s, border-color 0.2s;
+}
+
+.help-icon-btn:hover {
+  background-color: var(--brand-blue, #3a86ff);
+  border-color: var(--brand-blue, #3a86ff);
+  transform: scale(1.08);
+}
+
+/* Overlay do Modal (Fundo Escuro Translucido) */
+.help-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Conteúdo Principal do Modal (Ocupa quase a tela inteira) */
+.help-modal-content {
+  position: relative;
+  width: 90vw;
+  height: 88vh;
+  max-width: 1100px;
+  background-color: var(--bg-secundario, #1a1a24);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8);
+  padding: 36px 48px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Botão de Fechar (X) no Canto Superior Direito */
+.help-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.help-modal-close:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* Tipografia e Estrutura Interna do Modal */
+.help-modal-content h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.help-subtitle {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin-top: -16px;
+  margin-bottom: 8px;
+}
+
+.help-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.help-section h3 {
+  font-size: 1.15rem;
+  padding-bottom: 6px;
+  margin: 0;
+}
+
+.help-section p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.help-link {
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 500;
+  width: fit-content;
+  transition: color 0.2s;
+}
+
+.help-link:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+.help-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  gap: 8px 16px;
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.help-list code {
+  background-color: rgba(10, 10, 20, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--brand-pink);
+  font-family: monospace;
+}
+
+/* Grid para funcionalidades adicionais */
+.help-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.help-feature-card {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.help-feature-card h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.help-feature-card p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}

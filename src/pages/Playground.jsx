@@ -20,7 +20,7 @@ const DEFAULT_SHADERS = [
   },
   {
     id: "main",
-    name: "Frag",
+    name: "Main",
     code: `fn niam(time: f32, uv: vec2<f32>, mouse_pos: vec2<f32>, normal: vec3<f32>, pass0: vec4<f32>, tex0: vec4<f32>, cam_pos: vec3<f32>, cam_dir: vec3<f32>) -> vec4<f32> {
   // cor da primeira textura caso haja alguma
   let tex_color = tex0;
@@ -49,6 +49,7 @@ export default function Playground() {
   const [modelType, setModelType] = useState("plane");
   const [customModelUrl, setCustomModelUrl] = useState(null);
   const [customModel, setCustomModel] = useState(null);
+  const [showHelpModal, setShowHelpModal] = useState(false);
   
   const [themeKey, setThemeKey] = useState(() => localStorage.getItem("playground_theme") || "catjump");
   const [fontSize, setFontSize] = useState(() => parseInt(localStorage.getItem("playground_font_size") || "14", 10));
@@ -274,6 +275,115 @@ export default function Playground() {
               </div>
             )}
           </div>
+
+          {/* Botão de Ajuda / Documentação */}
+          <div className="help-button-container">
+            <button 
+              onClick={() => setShowHelpModal(true)}
+              className="help-icon-btn"
+              title="Ajuda e Documentação"
+              style={{
+                backgroundColor: currentTheme.bg,
+                color: currentTheme.text,
+                border: "0px solid",
+                borderColor: currentTheme.borderColor,
+                opacity: "1.0"
+              }}
+            >
+              ?
+            </button>
+          </div>
+              
+          {/* Modal de Ajuda / Documentação */}
+          {showHelpModal && (
+            <div className="help-modal-overlay" onClick={() => setShowHelpModal(false)}>
+              <div 
+                className="help-modal-content" 
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                  backgroundColor: currentTheme.bg,
+                  color: currentTheme.text,
+                  borderColor: currentTheme.border
+                }}
+              >
+                <button 
+                  className="help-modal-close" 
+                  onClick={() => setShowHelpModal(false)}
+                  style={{ color: "var(--brand-red)" }}
+                >
+                  &times;
+                </button>
+
+                <h2 style={{ color: currentTheme.text }}>Guia do Laboratório</h2>
+                <p className="help-subtitle" style={{ opacity: 0.7, color: currentTheme.text }}>Visão geral, parâmetros e funcionalidades avançadas do pipeline e do editor</p>
+
+                <div className="help-section">
+                  <h3 style={{ color: currentTheme.text }}>Visão Geral do Laboratório</h3>
+                  <p style={{ opacity: 0.9, color: currentTheme.text }}>
+                    Este editor permite a criação e teste em tempo real de shaders de fragmento utilizando a API 
+                    <strong> WebGPU</strong> e o ecossistema <strong>Three.js / TSL (Three Shading Language)</strong>. 
+                    O sistema suporta múltiplos passes encadeados (Buffer A, Buffer B, ..., até Main), permitindo 
+                    efetuar processamentos offscreen intermediários antes de renderizar a imagem final na tela.
+                  </p>
+                </div>
+
+                <div className="help-section">
+                  <h3 style={{ color: currentTheme.text }}>A Linguagem WGSL</h3>
+                  <p style={{ opacity: 0.9, color: currentTheme.text }}>
+                    Os shaders aqui precisam ser escritos na linguagem WGSL, e <strong>não</strong> em GLSL ou HLSL. Para consultar a sintaxe completa, tipos de dados e funções built-in suportadas pela especificação da WebGPU, acesse a documentação oficial:
+                  </p>
+                  <a 
+                    href="https://www.w3.org/TR/WGSL/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="help-link"
+                  >
+                    W3C WGSL Specification
+                  </a>
+                </div>
+
+                <div className="help-section">
+                  <h3 style={{ color: currentTheme.text }}>Uniforms e Parâmetros Disponíveis</h3>
+                  <p style={{ opacity: 0.9, color: currentTheme.text }}>Os seguintes parâmetros são injetados automaticamente e podem ser utilizados nas assinaturas das funções dos buffers e do main:</p>
+                  <ul className="help-list" style={{ opacity: 0.9, color: currentTheme.text }}>
+                    <li><code>time: f32</code> - Tempo decorrido em segundos, útil para animações contínuas.</li>
+                    <li><code>uv: vec2&lt;f32&gt;</code> - Coordenadas de mapeamento UV da geometria (0.0 a 1.0).</li>
+                    <li><code>mouse_pos: vec2&lt;f32&gt;</code> - Posição normalizada do cursor do mouse sobre o canvas.</li>
+                    <li><code>light_pos: vec3&lt;f32&gt;</code> - Posição tridimensional da fonte de luz configurada nos sliders XYZ.</li>
+                    <li><code>normal: vec3&lt;f32&gt;</code> - Vetor normal da superfície 3D (espaço local).</li>
+                    <li><code>pos: vec3&lt;f32&gt;</code> - Posição mundial tridimensional (World Position) do fragmento/vértice.</li>
+                    <li><code>cam_pos: vec3&lt;f32&gt;</code> - Posição atual da câmera principal no espaço 3D.</li>
+                    <li><code>cam_dir: vec3&lt;f32&gt;</code> - Vetor de direção de visão da câmera.</li>
+                    <li><code>pass0, pass1, ... : vec4&lt;f32&gt;</code> - Texturas geradas pelos passes intermediários (Buffers anteriores) para leitura encadeada.</li>
+                    <li><code>tex0, tex1, ... : vec4&lt;f32&gt;</code> - Texturas manuais carregadas nos slots ou a textura nativa extraída do modelo 3D.</li>
+                  </ul>
+                </div>
+
+                <div className="help-section">
+                  <h3 style={{ color: currentTheme.text }}>Funcionalidades Adicionais</h3>
+                  <div className="help-features-grid">
+                    <div className="help-feature-card" style={{ borderColor: currentTheme.border, background: 'rgba(255,255,255,0.02)' }}>
+                      <h4 style={{ color: currentTheme.text }}>Modelos 3D Próprios</h4>
+                      <p style={{ color: currentTheme.text, opacity: 0.9 }}>Permite importar arquivos <code>.gltf</code> ou <code>.glb</code> customizados. O sistema detecta texturas nativas e auto-gera UVs caso o modelo não possua. Modelos <code>.gltf</code> devem ser importados junto de suas texturas e <code>.bin</code></p>
+                    </div>
+                    <div className="help-feature-card" style={{ borderColor: currentTheme.border, background: 'rgba(255,255,255,0.02)' }}>
+                      <h4 style={{ color: currentTheme.text }}>Slots de Texturas</h4>
+                      <p style={{ color: currentTheme.text, opacity: 0.9 }}>Carregue imagens estáticas nos canais de textura para alimentar diretamente seus shaders com mapas visuais personalizados. Não esqueça de adicionar o parâmetro <code>tex0, tex1, ...</code> no cabeçalho da função</p>
+                    </div>
+                    <div className="help-feature-card" style={{ borderColor: currentTheme.border, background: 'rgba(255,255,255,0.02)' }}>
+                      <h4 style={{ color: currentTheme.text }}>Posição da Light-Cam</h4>
+                      <p style={{ color: currentTheme.text, opacity: 0.9 }}>Controle interativo através de sliders coloridos (RGB para eixos XYZ) que definem a posição exata da câmera de luz para cálculos de sombra e profundidade. Os buffers são "renderizados" do ponto de vista desta câmera</p>
+                    </div>
+                    <div className="help-feature-card" style={{ borderColor: currentTheme.border, background: 'rgba(255,255,255,0.02)' }}>
+                      <h4 style={{ color: currentTheme.text }}>Compartilhamento</h4>
+                      <p style={{ color: currentTheme.text, opacity: 0.9 }}>Empacota e exporta o seu estado de desenvolvimento para que você possa compartilhar facilmente suas criações com outras pessoas. Os URLs gerados são enormes, então esteja avisado!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="canvas-wrapper">
             <ShaderCanvas 
               shaders={shaders}
