@@ -177,7 +177,10 @@ export default function Playground() {
         className="split-container" 
         minSize={300} 
         gutterSize={8} 
+        gutterAlign="center"
+        key={isMobile ? "vertical" : "horizontal"}
         direction={isMobile ? "vertical" : "horizontal"} 
+        cursor={isMobile ? "row-resize" : "col-resize"}
         sizes={isMobile ? [50, 50] : [60, 40]} 
       >
         <div className="playground-left">

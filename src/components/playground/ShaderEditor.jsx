@@ -46,11 +46,11 @@ export default function ShaderEditor({
   if (vimEnabled) extensions.push(vim());
 
   return (
-    <div className="shader-editor-container" style={{ display: "flex", flexDirection: "column", height: "98%", backgroundColor: currentTheme.panelBg, color: currentTheme.text, borderRadius: "0.5rem" }}>
+    <div className="shader-editor-container" style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: 0, backgroundColor: currentTheme.panelBg, color: currentTheme.text, borderRadius: "0.5rem" }}>
       <div className="editor-toolbar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 12px", backgroundColor: currentTheme.panelBg, color: currentTheme.text, borderRadius: "0.5rem", flexWrap: "wrap", gap: "8px" }}>
         
         {/* Seletor de Passes / Shaders (Abas Dinâmicas) */}
-        <div className="editor-tabs" style={{ display: "flex", gap: "4px", alignItems: "center", overflowX: "auto" }}>
+        <div className="editor-tabs" style={{ display: "flex", minWidth: 0, gap: "4px", alignItems: "center", overflowX: "auto" }}>
           {shaders.map(shader => {
             const isActive = shader.id === activeShaderId;
             return (
@@ -108,7 +108,7 @@ export default function ShaderEditor({
         </div>
       </div>
 
-      <div style={{ flex: 1, overflow: "auto" }}>
+      <div style={{ flex: 1, minHeight: 0, overflow: "auto" }}>
         <CodeMirror value={internalCode} height="100%" theme={currentTheme.editorTheme} extensions={extensions} onChange={setInternalCode} />
       </div>
     </div>
