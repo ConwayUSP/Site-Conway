@@ -5,6 +5,7 @@ import * as THREE from "three";
 
 import ShaderCanvas from "@components/playground/ShaderCanvas";
 import ShaderEditor from "@components/playground/ShaderEditor";
+import InfoCircleIcon from "@components/icons/InfoCircleIcon";
 import { THEMES } from "@components/playground/themes";
 import { useMediaQuery } from "@hooks/useMediaQuery";
 
@@ -276,28 +277,27 @@ export default function Playground() {
             )}
           </div>
 
-          {/* Botão de Ajuda / Documentação */}
-          <div className="help-button-container">
-            <button 
-              onClick={() => setShowHelpModal(true)}
-              className="help-icon-btn"
-              title="Ajuda e Documentação"
-              style={{
-                backgroundColor: currentTheme.bg,
-                color: currentTheme.text,
-                border: "0px solid",
-                borderColor: currentTheme.borderColor,
-                opacity: "1.0"
-              }}
-            >
-              ?
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setShowHelpModal(true)}
+            className="help-icon-btn"
+            aria-label="Abrir guia do laboratório"
+            aria-haspopup="dialog"
+            aria-expanded={showHelpModal}
+            aria-controls="lab-help-dialog"
+          >
+            <InfoCircleIcon color="#FFF" />
+            <span className="help-icon-btn__label">Guia do laboratório</span>
+          </button>
               
           {/* Modal de Ajuda / Documentação */}
           {showHelpModal && (
             <div className="help-modal-overlay" onClick={() => setShowHelpModal(false)}>
-              <div 
+              <div
+                id="lab-help-dialog"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="lab-help-title"
                 className="help-modal-content" 
                 onClick={(e) => e.stopPropagation()}
                 style={{
@@ -306,15 +306,17 @@ export default function Playground() {
                   borderColor: currentTheme.border
                 }}
               >
-                <button 
+                <button
+                  type="button"
                   className="help-modal-close" 
                   onClick={() => setShowHelpModal(false)}
+                  aria-label="Fechar guia do laboratório"
                   style={{ color: "var(--brand-red)" }}
                 >
                   &times;
                 </button>
 
-                <h2 style={{ color: currentTheme.text }}>Guia do Laboratório</h2>
+                <h2 id="lab-help-title" style={{ color: currentTheme.text }}>Guia do Laboratório</h2>
                 <p className="help-subtitle" style={{ opacity: 0.7, color: currentTheme.text }}>Visão geral, parâmetros e funcionalidades avançadas do pipeline e do editor</p>
 
                 <div className="help-section">
