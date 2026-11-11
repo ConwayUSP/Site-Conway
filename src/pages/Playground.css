@@ -10,6 +10,8 @@
   display: flex;
   width: 100%;
   height: 100%;
+  min-width: 0;
+  min-height: 0;
   flex-direction: row;
 
   @media (max-width: 768px) {
@@ -38,6 +40,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
 
   @media (max-width: 768px) {
@@ -48,6 +52,8 @@
 
 .playground-right {
   height: 100%;
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -63,7 +69,6 @@
   border-radius: 0px 0.5rem 0.5rem 0px;
   width: 100%;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: auto;
   white-space: nowrap;
 }
 
@@ -137,7 +142,7 @@
 .canvas-wrapper {
   flex: 1;
   width: 100%;
-  height: 100%;
+  min-height: 0;
 }
 
 .shader-error-panel {
@@ -421,4 +426,324 @@
 
 .texture-clear-btn:hover {
   transform: scale(1.07);
+}
+
+/* SLIDERS DA LUZ */
+
+.light-menu-container {
+  position: relative;
+  display: inline-block;
+  margin: 0 8px;
+}
+
+.light-menu-btn {
+  border: 1px solid #444;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: background-color 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.light-menu-btn:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.light-menu-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: -90px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  backdrop-filter: blur(10px);
+  white-space: normal;
+}
+
+.light-menu-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #e0e0e0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
+}
+
+.light-slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.light-slider-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Cores padrão RGB para os Eixos X, Y e Z */
+.light-axis-x { color: var(--brand-red); font-weight: bold; }
+.light-axis-y { color: var(--brand-blue); font-weight: bold; }
+.light-axis-z { color: var(--brand-violet); font-weight: bold; }
+
+.light-menu-dropdown input[type="range"] {
+  width: 100%;
+  cursor: pointer;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  appearance: none;
+  outline: none;
+}
+
+.light-menu-dropdown input[type="range"].slider-x { accent-color: var(--brand-red); }
+.light-menu-dropdown input[type="range"].slider-y { accent-color: var(--brand-blue); }
+.light-menu-dropdown input[type="range"].slider-z { accent-color: var(--brand-violet); }
+
+/* TELA DE AJUDA */
+/* Atalho persistente para o guia do laboratório. */
+.help-icon-btn {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 40;
+  width: 60px;
+  height: 60px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.2s, transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.help-icon-btn svg {
+  width: 56px;
+  height: 56px;
+}
+
+.help-icon-btn__label {
+  position: absolute;
+  right: 56px;
+  white-space: nowrap;
+  border-radius: 6px;
+  padding: 7px 10px;
+  background: rgba(10, 10, 15, 0.92);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.help-icon-btn:hover {
+  transform: scale(1.12);
+}
+
+.help-icon-btn:hover .help-icon-btn__label,
+.help-icon-btn:focus-visible .help-icon-btn__label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.help-icon-btn:focus-visible,
+.help-modal-close:focus-visible {
+  outline: 3px solid var(--brand-blue, #3a86ff);
+  outline-offset: 3px;
+}
+
+/* Em telas estreitas o erro ocupa a base do canvas; preserve o acesso à ajuda. */
+@media (max-width: 768px) {
+  .playground-page:has(.shader-error-panel) .help-icon-btn {
+    bottom: calc(176px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Overlay do Modal (Fundo Escuro Translucido) */
+.help-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Conteúdo Principal do Modal (Ocupa quase a tela inteira) */
+.help-modal-content {
+  position: relative;
+  width: 90vw;
+  height: 88vh;
+  max-width: 1100px;
+  background-color: var(--bg-secundario, #1a1a24);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8);
+  padding: 36px 48px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .help-modal-overlay {
+    align-items: flex-end;
+    padding: 12px;
+  }
+
+  .help-modal-content {
+    width: 100%;
+    height: min(86dvh, 760px);
+    padding: 28px 20px;
+    gap: 18px;
+  }
+
+  .help-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Botão de Fechar (X) no Canto Superior Direito */
+.help-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.help-modal-close:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* Tipografia e Estrutura Interna do Modal */
+.help-modal-content h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.help-subtitle {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin-top: -16px;
+  margin-bottom: 8px;
+}
+
+.help-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.help-section h3 {
+  font-size: 1.15rem;
+  padding-bottom: 6px;
+  margin: 0;
+}
+
+.help-section p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.help-link {
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 500;
+  width: fit-content;
+  transition: color 0.2s;
+}
+
+.help-link:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+.help-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  gap: 8px 16px;
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.help-list code {
+  background-color: rgba(10, 10, 20, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--brand-pink);
+  font-family: monospace;
+}
+
+/* Grid para funcionalidades adicionais */
+.help-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.help-feature-card {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.help-feature-card h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.help-feature-card p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
 }
